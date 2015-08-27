@@ -7,7 +7,6 @@ class CreateAssets < ActiveRecord::Migration
       t.float :asset_price_buy
       t.float :asset_price_actual
       t.belongs_to :category, index: true
-      t.belongs_to :employee, index: true
       t.timestamps
     end
   end

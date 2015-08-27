@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root 'user#login'
+
+  #General
   get 'admin' => 'user#admin'
   get 'dashboard' => 'user#dashboard'
   get 'logout' => 'user#logout'
@@ -39,33 +41,33 @@ Rails.application.routes.draw do
   post 'employees/modify' => 'employee#modify'
 
   #Department
-  get 'departments/list_all' => 'department#list_all'
-  post 'departments/create' => 'department#create'
-  post 'departments/delete' => 'department#delete'
-  post 'departments/modify' => 'department#modify'
+  #get 'departments/list_all' => 'department#list_all'
+  #post 'departments/create' => 'department#create'
+  #post 'departments/delete' => 'department#delete'
+  #post 'departments/modify' => 'department#modify'
 
   #Office
-  get 'offices/list_all' => 'office#list_all'
-  post 'offices/create' => 'office#create'
-  post 'offices/delete' => 'office#delete'
-  post 'offices/modify' => 'office#modify'
+  #get 'offices/list_all' => 'office#list_all'
+  #post 'offices/create' => 'office#create'
+  #post 'offices/delete' => 'office#delete'
+  #post 'offices/modify' => 'office#modify'
 
   #Currency
-  get 'currencies/list_all' => 'currency#list_all'
-  post 'currencies/create' => 'currency#create'
-  post 'currencies/delete' => 'currency#delete'
-  post 'currencies/modify' => 'currency#modify'
+  #get 'currencies/list_all' => 'currency#list_all'
+  #post 'currencies/create' => 'currency#create'
+  #post 'currencies/delete' => 'currency#delete'
+  #post 'currencies/modify' => 'currency#modify'
 
   #Exchange Rate
-  get 'currency_exchanges/list_all' => 'currency_exchange#list_all'
-  post 'currency_exchanges/create' => 'currency_exchange#create'
-  post 'currency_exchange/delete' => 'currency_exchange#delete'
-  post 'currency_exchanges/modify' => 'currency_exchange#modify'
+  #get 'currency_exchanges/list_all' => 'currency_exchange#list_all'
+  #post 'currency_exchanges/create' => 'currency_exchange#create'
+  #post 'currency_exchange/delete' => 'currency_exchange#delete'
+  #post 'currency_exchanges/modify' => 'currency_exchange#modify'
 
   #Maintenance
-  get 'maintenance/list_all' => 'maintenance#list_all'
-  post 'maintenance/create' => 'maintenance#create'
-  post 'maintenance/delete' => 'maintenance#delete'
-  post 'maintenance/modify' => 'maintenance#modify'
+  #get 'maintenance/list_all' => 'maintenance#list_all'
+  #post 'maintenance/create' => 'maintenance#create'
+  #post 'maintenance/delete' => 'maintenance#delete'
+  #post 'maintenance/modify' => 'maintenance#modify'
 
 end

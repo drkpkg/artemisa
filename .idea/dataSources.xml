@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2814752637">
+    <data-source source="LOCAL" name="Rails artemisa: development" uuid="f8e79ac6-9d23-486c-8592-9fd672c11c69">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/Artemisa_development</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfde</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails artemisa: test" uuid="dc372bb4-c8fe-4e7c-bc83-10a8b2d84d4b">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/Artemisa_test</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfde</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails artemisa: production" uuid="7ba9b755-ea25-4e33-9316-d7d06dc6a7e1">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/&lt;CONFIG&gt;</jdbc-url>
+      <user-name>&lt;CONFIG&gt;</user-name>
+      <user-password>df96dfe9dfe5dfe4dfecdfe3dfeddf94</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

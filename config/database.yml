@@ -8,14 +8,14 @@ default: &default
 
 development:
   <<: *default
-  database: Saf_development
+  database: Artemisa_development
 
 test:
   <<: *default
-  database: Saf_test
+  database: Artemisa_test
 
 production:
   <<: *default
-  database: d9ha944h62p5p3
-  username: zanqyuupscgxkr
-  password: KdUH08Z4wOC_9CM03AWhXYZfRh
+  database: <CONFIG>
+  username: <CONFIG>
+  password: <CONFIG>
