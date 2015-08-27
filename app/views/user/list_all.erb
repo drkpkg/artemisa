@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <br>
+    <div class="container">
+      <div class="btn-group">
+        <%= link_to "Descargar como CSV", user_list_all_path(format: "csv"), class: "btn btn-info" %>
+        <%= link_to "Descargar como Plantilla de Excel", user_list_all_path(format: "xls"), class: "btn btn-info" %>
+      </div>
+    </div>
+    <br>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Nómina de usuarios</div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Tipo de usuario</th>
+          <th>Grupo</th>
+          <th>Empleado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user.each do |actual_index| %>
+            <tr>
+              <td id="actual-identity-<%= actual_index.id %>"><%= actual_index.username %></td>
+              <td id="actual-name-<%= actual_index.id %>"><%= actual_index.usertype %></td>
+              <td id="actual-direction-<%= actual_index.id %>"><%= actual_index.group_id %></td>
+              <td id="actual-direction-<%= actual_index.id %>"><%= actual_index.empleado_id %></td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" onclick="editUser('<%= actual_index.id %>')">
+                    <i class="fa fa-edit fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="deleteUser('<%= actual_index.id %>')">
+                    <i class="fa fa-close fa-2x"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

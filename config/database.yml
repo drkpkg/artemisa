@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: root
+  password: root
+  host: localhost
+  pool: 5
+
+development:
+  <<: *default
+  database: Saf_development
+
+test:
+  <<: *default
+  database: Saf_test
+
+production:
+  <<: *default
+  database: d9ha944h62p5p3
+  username: zanqyuupscgxkr
+  password: KdUH08Z4wOC_9CM03AWhXYZfRh

@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="panel panel-default">
+      <div class="btn-group">
+        <input type="button" class="btn btn-success" id="btn-category" value="Agregar categoría">
+        <%= link_to "Descargar como CSV", categories_list_all_path(format: "csv"), class: "btn btn-info" %>
+        <%= link_to "Descargar como Plantilla de Excel", categories_list_all_path(format: "xls"), class: "btn btn-info" %>
+      </div>
+      <br>
+      <br>
+      <div class="panel-heading"><strong>CATEGORIAS DE BIENES</strong>
+        <br>
+        <% if @categories.empty?  %>
+            <br>
+            <div class="col-xs-6 col-md-12">
+              <div  href="#" class="thumbnail text-center">
+                <i class="fa fa-exclamation-triangle fa-4x"></i>
+                No existe ninguna categoría dentro de la aplicación todavía. Agregue una nueva categoría y vuelva a intentar.
+              </div>
+            </div>
+        <% else %>
+            <br>
+            <% @categories.each do |category_index| %>
+                <div class="col-xs-6 col-md-3">
+                  <div class="panel-group">
+                    <div class="panel panel-default panel-height">
+                      <div class="panel-heading">
+
+
+                        <h5 class="panel-title">
+                          <%= category_index.asset_category_description %>
+                        </h5>
+                      </div>
+
+                      <div class="text-center">
+                        <h2><%= category_index.asset_categories_years %> años</h2>
+                        <h4><%= category_index.asset_categories_coefficient %> %</h4>
+                      </div>
+
+                    </div>
+
+                    <div class="btn-group pull-right over-panel">
+                      <a href="#" id="btn-modify-<%= category_index.id %>" class="btn btn-info" onclick="modifyCategory('<%= category_index.id %>')">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a id="btn-delete-<%= category_index.id %>" class="btn btn-danger" onclick="deleteCategory('<%= category_index.id %>')">
+                        <i class="fa fa-minus-square"></i>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new-category-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Agregar nueva categoría</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Tipo de categoría</span>
+              <input id="category-desc" class="form-control" type="text">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">Años de vida útil</span>
+              <input id="category-year" class="form-control" type="text">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">Porcentaje por año</span>
+              <input id="category-coef" class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-category">Guardar categoría</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="modify-category-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar categoría</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon">Nuevo título de categoría</span>
+          <input id="new-title-category" class="form-control" type="text">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-modify-category">Guardar categoría</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="panel panel-default">
+      <div class="btn-group">
+        <input type="button" class="btn btn-success" id="btn-office" value="Agregar cargo">
+        <%= link_to "Descargar como CSV", offices_list_all_path(format: "csv"), class: "btn btn-info" %>
+        <%= link_to "Descargar como Plantilla de Excel", offices_list_all_path(format: "xls"), class: "btn btn-info" %>
+      </div>
+
+      <br>
+      <br>
+      <div class="panel-heading"><strong>LISTA DE CARGOS DE EMPLEADOS</strong>
+        <br>
+        <% if @office.empty?  %>
+            <br>
+            <div class="col-xs-6 col-md-12">
+              <div  href="#" class="thumbnail text-center">
+                <i class="fa fa-exclamation-triangle fa-4x"></i>
+                No existe ningún cargo dentro de la aplicación todavía. Agregue un cargo y vuelva a intentar.
+              </div>
+            </div>
+        <% else %>
+            <br>
+            <% @office.each do |category_index| %>
+                <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail text-center" id="office-text-<%= category_index.id %>">
+                    <%= category_index.office_description %>
+                    <div class="btn-group">
+                      <a href="#" class="btn btn-info" onclick="modifyOffice('<%= category_index.id %>')">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a href="#" class="btn btn-danger" onclick="deleteOffice('<%= category_index.id %>')">
+                        <i class="fa fa-minus"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new-office-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Agregar nuevo cargo</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Descripción del cargo</span>
+              <input id="office-desc" class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-office">Guardar cargo</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="modify-office-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar categoría</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon">Nuevo nombre de cargo</span>
+          <input id="new-title-office" class="form-control" type="text">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="save-modify-office">Modificar cargo</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

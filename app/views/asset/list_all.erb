@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="col-md-12 row">
+
+    <br>
+    <div class="container">
+      <div class="btn-group">
+        <a href="new" class="btn btn-success">Registro de nuevo activo fijo</a>
+        <%= link_to "Descargar como CSV", assets_list_all_path(format: "csv"), class: "btn btn-info" %>
+        <%= link_to "Descargar como Plantilla de Excel", assets_list_all_path(format: "xls"), class: "btn btn-info" %>
+      </div>
+    </div>
+    <br>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Activos fijos</div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio de compra inicial</th>
+          <th>Precio actual</th>
+          <th>Asignado a</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @asset.each do |actual_index| %>
+            <tr>
+              <td id="actual-name-<%= actual_index.id %>"><%= actual_index.asset_name %></td>
+              <td id="actual-desc-<%= actual_index.id %>"><%= actual_index.asset_description %></td>
+              <td id="actual-price-<%= actual_index.id %>"><%= actual_index.asset_price_buy %></td>
+              <td id="actual-priceA-<%= actual_index.id %>"><%= actual_index.asset_price_actual %></td>
+              <td id="actual-employee-<%= actual_index.id %>">
+                <% employee = Employee.find_by(id: actual_index.employee_id) %>
+                <% if !employee.blank? %><%= employee.employee_name %><% else %>Sin Asignar<% end %>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" onclick="editAsset('<%= actual_index.id %>')" title="Editar activo fijo">
+                    <i class="fa fa-edit fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="deleteAsset('<%= actual_index.id %>')" title="Eliminar activo fijo">
+                    <i class="fa fa-close fa-2x"></i>
+                  </a>
+                  <a href="/maintenance/list_all" title="Registro de nuevo mantenimiento">
+                    <i class="fa fa-magic fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="showQR('<%= actual_index.id %>')" title="Generar codigo QR">
+                    <i class="fa fa-qrcode fa-2x"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="modify-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Nuevo nombre</span>
+            <input id="asset-name" class="form-control" type="text">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">Nueva descripción</span>
+            <textarea id="asset-desc" class="form-control" type="area"></textarea>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">Asignar a empleado</span>
+            <select id="asset-employee" class="form-control">
+              <option value="null" selected>Sin cambios</option>
+              <%= Employee.all.each do |employee_index| %>
+                  <option value="<%= employee_index.id %>"><%= employee_index.employee_name %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button id="save-btn" type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="qr-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Vista de datos en QR</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <img id="qr-img" width="304" height="236" class="img-responsive center-block">
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
