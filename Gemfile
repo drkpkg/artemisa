@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#For windows
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -18,4 +18,4 @@ production:
   <<: *default
   database: <CONFIG>
   username: <CONFIG>
-  password: <CONFIG>
+  password: <%= ENV['secret_key_base'] %>

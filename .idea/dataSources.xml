@@ -22,7 +22,7 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/&lt;CONFIG&gt;</jdbc-url>
       <user-name>&lt;CONFIG&gt;</user-name>
-      <user-password>df96dfe9dfe5dfe4dfecdfe3dfeddf94</user-password>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfd9dfcfdfc9dfd8dfcfdfdedff5dfc1dfcfdfd3dff5dfc8dfcbdfd9dfcfdf8ddff7df8adf8fdf94</user-password>
       <libraries />
     </data-source>
   </component>
