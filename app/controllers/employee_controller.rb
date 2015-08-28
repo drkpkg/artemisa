@@ -3,7 +3,8 @@ class EmployeeController < ApplicationController
     if !(cookies[:user_name] && cookies[:type])
       redirect_to root_path
     else
-      @employee = Employee.all
+      employee_id = Group.find_by_group_name('Empleados')
+      @employee = User.find_by(:group_id => employee_id)
       respond_to do |format|
         format.html
         format.csv {render text: @employee.to_csv}
@@ -13,7 +14,7 @@ class EmployeeController < ApplicationController
   end
 
   def create
-    employee = Employee.new
+    employee = User.new
     employee.employee_name = params[:name]
     employee.employee_identity = params[:identity]
     employee.employee_direction = params[:direction]
@@ -42,7 +43,7 @@ class EmployeeController < ApplicationController
       values = {employee_identity: params[:identity], employee_name: params[:name], employee_direction: params[:direction]}
       values[:office_id] = params[:office] if params[:office] != 'null'
       values[:department_id] = params[:department] if params[:department] != 'null'
-      employee = Employee.find_by(id: params[:id])
+      employee = User.find_by(id: params[:id])
       if employee.update(values)
         respond_to do |format|
           msg = { :status => "200", title: 'En hora buena', description: 'Empleado modificado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
@@ -58,7 +59,7 @@ class EmployeeController < ApplicationController
   end
 
   def delete
-    employee = Employee.find_by(id: params[:id])
+    employee = User.find_by(id: params[:id])
     if employee.delete
       respond_to do |format|
         msg = { :status => "200", title: 'En hora buena', description: 'Empleado eliminado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
