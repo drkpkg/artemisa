@@ -2,8 +2,8 @@ require 'csv'
 
 class User < ActiveRecord::Base
   has_secure_password
-  has_one :employee
-  has_one :groups
+  belongs_to :group
+  #has_one :group
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
