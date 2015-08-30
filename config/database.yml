@@ -16,6 +16,6 @@ test:
 
 production:
   <<: *default
-  database: <CONFIG>
-  username: <CONFIG>
-  password: <%= ENV['secret_key_base'] %>
+  database: d2tt75507ec5l6
+  username: rbocsqpjqcabya
+  password: ev4DKxUpwETqOmcrD9oxtVFHbn
