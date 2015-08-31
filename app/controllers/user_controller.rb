@@ -1,6 +1,9 @@
 require 'bcrypt'
 class UserController < ApplicationController
 
+  @log_msg = ""
+  @log_username = ""
+
   include BCrypt
 
   def login
@@ -22,15 +25,25 @@ class UserController < ApplicationController
   def auth_user
     if !(cookies[:user_name] && cookies[:type])
       user = User.find_by(username: params[:username])
+
       if !user.blank? && Password.new(user.password_digest) == params[:password]
         cookies[:user_name] = user.username
         cookies[:user_id] = user.id
         cookies[:type] = user.usertype
+
+        @log_username = user.username
+        @log_msg = "Autenticación de usuario correcta"
+        log_action(@log_username, @log_msg, "Login")
+
         respond_to do |format|
           msg = { :status => "200", redirect_page: 'dashboard'}
           format.json  { render :json => msg }
         end
       else
+        @log_username = user.username
+        @log_msg = "Error general en autenticación de usuario"
+        log_action(@log_username, @log_msg, "Login")
+
         if params[:username] == '' || params[:password] == ''
           respond_to do |format|
             msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
@@ -43,6 +56,7 @@ class UserController < ApplicationController
           end
         end
       end
+      log_action(@log_username, @log_msg, "Login")
     end
   end
 
