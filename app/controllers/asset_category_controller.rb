@@ -13,7 +13,7 @@ class AssetCategoryController < ApplicationController
   end
 
   def create
-    if params[:description] == '' || params[:year] == '' || params[:coef] == ''
+    if params[:description] == ''
       respond_to do |format|
         msg = { :status => "400", title: 'Error', description: 'Campo en blanco', type: 'error', redirect_page: ''}
         format.json  { render :json => msg }
@@ -21,8 +21,6 @@ class AssetCategoryController < ApplicationController
     else
       category = AssetCategory.new
       category.asset_category_description = params[:description]
-      category.asset_categories_years = params[:year]
-      category.asset_categories_coefficient = params[:coef]
       if category.save
         respond_to do |format|
           msg = { :status => "200", title: 'En hora buena', description: 'Categoría agregada satisfactoriamente', type: 'success', redirect_page: 'list_all'}

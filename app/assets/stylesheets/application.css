@@ -25,3 +25,13 @@
     margin-right: 2px;
     margin-bottom: 10px;
 }
+
+.cmn-t-bg {
+    color: #fff;
+    background-color: #7fcfff;
+    /* transition: background 0.2s; */
+}
+.cmn-t-bg:hover {
+    color: #fff;
+    background-color: #154b98;
+}

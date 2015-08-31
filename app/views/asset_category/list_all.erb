@@ -3,8 +3,8 @@
     <div class="panel panel-default">
       <div class="btn-group">
         <input type="button" class="btn btn-success" id="btn-category" value="Agregar categoría">
-        <%= link_to "Descargar como CSV", categories_list_all_path(format: "csv"), class: "btn btn-info" %>
-        <%= link_to "Descargar como Plantilla de Excel", categories_list_all_path(format: "xls"), class: "btn btn-info" %>
+        <!--%= link_to "Descargar como CSV", categories_list_all_path(format: "csv"), class: "btn btn-info" %-->
+        <!--%= link_to "Descargar como Plantilla de Excel", categories_list_all_path(format: "xls"), class: "btn btn-info" %-->
       </div>
       <br>
       <br>
@@ -25,18 +25,10 @@
                   <div class="panel-group">
                     <div class="panel panel-default panel-height">
                       <div class="panel-heading">
-
-
                         <h5 class="panel-title">
                           <%= category_index.asset_category_description %>
                         </h5>
                       </div>
-
-                      <div class="text-center">
-                        <h2><%= category_index.asset_categories_years %> años</h2>
-                        <h4><%= category_index.asset_categories_coefficient %> %</h4>
-                      </div>
-
                     </div>
 
                     <div class="btn-group pull-right over-panel">
@@ -70,14 +62,6 @@
             <div class="input-group">
               <span class="input-group-addon">Tipo de categoría</span>
               <input id="category-desc" class="form-control" type="text">
-            </div>
-            <div class="input-group">
-              <span class="input-group-addon">Años de vida útil</span>
-              <input id="category-year" class="form-control" type="text">
-            </div>
-            <div class="input-group">
-              <span class="input-group-addon">Porcentaje por año</span>
-              <input id="category-coef" class="form-control" type="text">
             </div>
           </div>
         </div>

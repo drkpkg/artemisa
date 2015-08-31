@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625172523) do
+ActiveRecord::Schema.define(version: 20150831163247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "asset_categories", force: true do |t|
     t.string   "asset_category_description"
-    t.integer  "asset_categories_years"
-    t.float    "asset_categories_coefficient"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,9 +25,7 @@ ActiveRecord::Schema.define(version: 20150625172523) do
   create_table "assets", force: true do |t|
     t.string   "asset_name"
     t.string   "asset_description"
-    t.date     "asset_date_buy"
     t.float    "asset_price_buy"
-    t.float    "asset_price_actual"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -53,10 +49,6 @@ ActiveRecord::Schema.define(version: 20150625172523) do
   create_table "grouptemplates", force: true do |t|
     t.integer  "group_id"
     t.integer  "template_id"
-    t.boolean  "permission_write"
-    t.boolean  "permission_modify"
-    t.boolean  "permission_read"
-    t.boolean  "permission_delete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,8 +56,22 @@ ActiveRecord::Schema.define(version: 20150625172523) do
   add_index "grouptemplates", ["group_id"], name: "index_grouptemplates_on_group_id", using: :btree
   add_index "grouptemplates", ["template_id"], name: "index_grouptemplates_on_template_id", using: :btree
 
+  create_table "histories", force: true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "view"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
+
   create_table "templates", force: true do |t|
     t.string   "template_name"
+    t.boolean  "permission_write"
+    t.boolean  "permission_modify"
+    t.boolean  "permission_read"
+    t.boolean  "permission_delete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -22,10 +22,12 @@ class UserController < ApplicationController
   def auth_user
     if !(cookies[:user_name] && cookies[:type])
       user = User.find_by(username: params[:username])
+
       if !user.blank? && Password.new(user.password_digest) == params[:password]
         cookies[:user_name] = user.username
         cookies[:user_id] = user.id
         cookies[:type] = user.usertype
+
         respond_to do |format|
           msg = { :status => "200", redirect_page: 'dashboard'}
           format.json  { render :json => msg }
@@ -134,6 +136,10 @@ class UserController < ApplicationController
       end
     end
   end
+
+  #def list_all_employees
+  #  @employee =
+  #end
 
   def list_all
     @user = User.all

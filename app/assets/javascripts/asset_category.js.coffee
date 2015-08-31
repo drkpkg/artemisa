@@ -19,9 +19,7 @@ saveCategory = ->
   $("#save-category").on 'click', ->
     url = 'create/'
     description = $("#category-desc").val()
-    years = $("#category-year").val()
-    coefficient = $("#category-coef").val()
-    data = {description: description, year: years, coef: coefficient}
+    data = {description: description}
     post(url, data)
     $("#new-category-modal").modal('hide')
 
