@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 20150831163247) do
 
   create_table "asset_categories", force: true do |t|
     t.string   "asset_category_description"
-    t.integer  "asset_categories_years"
-    t.float    "asset_categories_coefficient"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,9 +25,7 @@ ActiveRecord::Schema.define(version: 20150831163247) do
   create_table "assets", force: true do |t|
     t.string   "asset_name"
     t.string   "asset_description"
-    t.date     "asset_date_buy"
     t.float    "asset_price_buy"
-    t.float    "asset_price_actual"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
