@@ -53,10 +53,6 @@ ActiveRecord::Schema.define(version: 20150625172523) do
   create_table "grouptemplates", force: true do |t|
     t.integer  "group_id"
     t.integer  "template_id"
-    t.boolean  "permission_write"
-    t.boolean  "permission_modify"
-    t.boolean  "permission_read"
-    t.boolean  "permission_delete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,6 +62,10 @@ ActiveRecord::Schema.define(version: 20150625172523) do
 
   create_table "templates", force: true do |t|
     t.string   "template_name"
+    t.boolean  "permission_write"
+    t.boolean  "permission_modify"
+    t.boolean  "permission_read"
+    t.boolean  "permission_delete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
