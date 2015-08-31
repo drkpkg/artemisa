@@ -22,14 +22,11 @@ class UserController < ApplicationController
   def auth_user
     if !(cookies[:user_name] && cookies[:type])
       user = User.find_by(username: params[:username])
-      @log_username = user.username
 
       if !user.blank? && Password.new(user.password_digest) == params[:password]
         cookies[:user_name] = user.username
         cookies[:user_id] = user.id
         cookies[:type] = user.usertype
-
-        @log_msg = "Autenticación satisfactoria"
 
         respond_to do |format|
           msg = { :status => "200", redirect_page: 'dashboard'}
@@ -37,14 +34,11 @@ class UserController < ApplicationController
         end
       else
         if params[:username] == '' || params[:password] == ''
-          @log_msg = "Autenticación fallida por campos en blanco"
           respond_to do |format|
             msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
             format.json  { render :json => msg }
           end
         else
-          @log_msg = "Autenticación fallida por campo inválido"
-
           respond_to do |format|
             msg = { :status => "400", title: 'Error', description: 'Usuario o contraseña inválidos', type: 'error', redirect_page: ''}
             format.json  { render :json => msg }
@@ -52,7 +46,6 @@ class UserController < ApplicationController
         end
       end
     end
-    write_log(@log_username, @log_msg, "Login")
   end
 
   def create
@@ -143,6 +136,10 @@ class UserController < ApplicationController
       end
     end
   end
+
+  #def list_all_employees
+  #  @employee =
+  #end
 
   def list_all
     @user = User.all

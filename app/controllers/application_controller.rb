@@ -1,36 +1,39 @@
-require 'rbconfig'
-require 'fileutils'
+require 'bifurcator'
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  @path = "/tmp/artemisa/logs/"
-  @actual_date_time = Time.new
-  @log_path = "#{@path}log-#{@actual_date_time.day}-#{@actual_date_time.month}-#{@actual_date_time.year}.log"
-  @log_msg = " "
-  @log_username = " "
+  include Bifurcator
 
-  def create_folder
-    return true if FileUtils::mkdir_p @path
-  end
-
-  def create_log
-    @new_log = File.new(@log_path,"a")
-    return @log_path
-  end
-
-  def write_log(user="usuario", action="accion", modules="modulo")
-    create_folder
-    create_log
-    @new_log.puts("#{user},#{action},#{modules},#{@actual_date_time}")
-  end
+  before_filter :set_cache_buster
+  after_action :set_log_action
 
   def dashboard
     if !(cookies[:user_name] && cookies[:type])
       redirect_to root_path
     end
+  end
+
+  def set_log_action
+    if !(cookies[:user_name] && cookies[:type])
+      actual_action = History.new
+      actual_action.user_id = cookies[:user_name]
+      actual_action.action = "#{action_name}"
+      actual_action.view = "#{controller_name}"
+      actual_action.save
+    end
+  end
+
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
+  def log_action(username, action, view)
+    Bifurcator.write_log(username, action, view)
   end
 
 end

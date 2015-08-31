@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625172523) do
+ActiveRecord::Schema.define(version: 20150831163247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(version: 20150625172523) do
     t.datetime "updated_at"
   end
 
+  create_table "employees", force: true do |t|
+    t.integer  "employee_identity"
+    t.string   "employee_name"
+    t.string   "employee_direction"
+    t.integer  "office_id"
+    t.integer  "department_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employees", ["department_id"], name: "index_employees_on_department_id", using: :btree
+  add_index "employees", ["office_id"], name: "index_employees_on_office_id", using: :btree
+
   create_table "groups", force: true do |t|
     t.string   "group_name"
     t.datetime "created_at"
@@ -64,6 +77,16 @@ ActiveRecord::Schema.define(version: 20150625172523) do
   add_index "grouptemplates", ["group_id"], name: "index_grouptemplates_on_group_id", using: :btree
   add_index "grouptemplates", ["template_id"], name: "index_grouptemplates_on_template_id", using: :btree
 
+  create_table "histories", force: true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "view"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
+
   create_table "templates", force: true do |t|
     t.string   "template_name"
     t.datetime "created_at"
@@ -73,16 +96,14 @@ ActiveRecord::Schema.define(version: 20150625172523) do
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.string   "name"
-    t.string   "father_last_name"
-    t.string   "mother_last_name"
-    t.string   "home_address"
+    t.integer  "empleado_id"
     t.integer  "group_id"
     t.integer  "usertype"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["empleado_id"], name: "index_users_on_empleado_id", using: :btree
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
 
 end

@@ -46,6 +46,7 @@ function post(url, data) {
         type: 'POST',
         data: data,
         async: false,
+        cache: false,
         success: function(data)
         {
             if (data.status == '200')
@@ -69,6 +70,7 @@ function get(url, data) {
         type: 'GET',
         data: data,
         async: false,
+        cache: false,
         success: function(data)
         {
             if (data.status == '200')
