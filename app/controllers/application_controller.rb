@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_log_action
-    if !(cookies[:user_name] && cookies[:type])
+    if (cookies[:user_name] && cookies[:type])
       actual_action = History.new
       actual_action.user_id = cookies[:user_name]
       actual_action.action = "#{action_name}"
@@ -30,10 +30,6 @@ class ApplicationController < ActionController::Base
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-  end
-
-  def log_action(username, action, view)
-    Bifurcator.write_log(username, action, view)
   end
 
 end
