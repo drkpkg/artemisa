@@ -19,18 +19,21 @@ class AssetController < ApplicationController
   end
 
   def create
-    @asset = Asset.new()
-    @asset.asset_name = params[:asset][:asset_name]
-    @asset.asset_description = params[:asset][:asset_description]
-    @asset.category_id = params[:asset][:asset_category]
-    @asset.asset_price_buy = params[:asset][:activo_precio_compra]
+    if params[:asset][:asset_name]!='' || params[:asset][:asset_category] || params[:asset][:activo_precio_compra]
+      @asset = Asset.new()
+      @asset.asset_name = params[:asset][:asset_name]
+      @asset.asset_description = params[:asset][:asset_description]
+      @asset.category_id = params[:asset][:asset_category]
+      @asset.asset_price_buy = params[:asset][:activo_precio_compra]
 
-    if @asset.save()
-      flash[:success] = "Activo registrado satisfactoriamente."
-      redirect_to assets_list_all_path
+      if @asset.save()
+        redirect_to assets_list_all_path
+      else
+        redirect_to assets_new_path
+      end
     else
-      flash[:error] = "No se pudo registrar el Activo."
-      redirect_to assets_list_all_path
+
+      redirect_to assets_new_path
     end
   end
 

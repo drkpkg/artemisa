@@ -2,7 +2,7 @@
   <div class="col-md-12 row">
     <div class="panel panel-default">
       <div class="btn-group">
-        <input type="button" class="btn btn-success" id="btn-category" value="Agregar categoría">
+        <input type="button" class="btn btn-success" id="btn-category" value="Agregar categoría" onclick="newCategory()">
         <!--%= link_to "Descargar como CSV", categories_list_all_path(format: "csv"), class: "btn btn-info" %-->
         <!--%= link_to "Descargar como Plantilla de Excel", categories_list_all_path(format: "xls"), class: "btn btn-info" %-->
       </div>
@@ -32,12 +32,12 @@
                     </div>
 
                     <div class="btn-group pull-right over-panel">
-                      <a href="#" id="btn-modify-<%= category_index.id %>" class="btn btn-info" onclick="modifyCategory('<%= category_index.id %>')">
+                      <button id="btn-modify-<%= category_index.id %>" class="btn btn-info" onclick="modifyCategory('<%= category_index.id %>')">
                         <i class="fa fa-edit"></i>
-                      </a>
-                      <a id="btn-delete-<%= category_index.id %>" class="btn btn-danger" onclick="deleteCategory('<%= category_index.id %>')">
+                      </button>
+                      <button id="btn-delete-<%= category_index.id %>" class="btn btn-danger" onclick="deleteCategory('<%= category_index.id %>')">
                         <i class="fa fa-minus-square"></i>
-                      </a>
+                      </button>
                     </div>
 
                   </div>
@@ -68,7 +68,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save-category">Guardar categoría</button>
+        <button type="button" class="btn btn-primary" id="save-category" onclick="saveCategory()">Guardar categoría</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

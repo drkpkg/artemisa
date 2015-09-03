@@ -1,44 +1,40 @@
-<div class="col-md-4">
-  <h1>Registro de nuevo activo fijo</h1>
+<div class="col-md-4 center">
+  <h3>Registro de nuevo producto</h3>
   <%= form_for :asset, url: assets_create_path, html: {class: 'new-form'} do |f| %>
-      <ul>
-        <div class="input-group">
-          <span class="input-group-addon">Nombre</span>
-          <%= f.text_field :asset_name, :class => "form-control" %>
-        </div>
-      </ul>
-      <ul>
-        <div class="input-group">
-          <span class="input-group-addon">Descripción</span>
-          <%= f.text_area :asset_description, :class => "form-control" %>
-        </div>
-      </ul>
+
+      <div class="input-group">
+        <span class="input-group-addon">Nombre del producto</span>
+        <%= f.text_field :asset_name, :class => "form-control" %>
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon">Descripción</span>
+        <%= f.text_area :asset_description, :class => "form-control" %>
+      </div>
+      <br>
       <% if AssetCategory.all.empty? %>
-          <ul>
-            <div class="input-group">
-              <div class="thumbnail">
-                No existe ningún tipo listado dentro de la aplicación, por favor <a href="/categories/list_all">crea el tipo antes</a> antes de agregar el este activo fijo.
-              </div>
+          <div class="input-group">
+            <div class="thumbnail">
+              No existe ningún tipo listado dentro de la aplicación, por favor <a href="/categories/list_all">crea el tipo antes</a> antes de agregar el este activo fijo.
             </div>
-          </ul>
+          </div>
       <% else %>
-          <ul>
+          <div class="input-group">
             <span class="input-group-addon">Tipo</span>
             <%= f.select :asset_category, {},{},{class: "form-control"} do %>
                 <% AssetCategory.all.each do |index| %>
                     <%= content_tag(:option, index.asset_category_description, value: index.id) %>
                 <% end %>
             <% end %>
-          </ul>
-          <ul>
-            <div class="input-group">
-              <span class="input-group-addon">Precio de compra</span>
-              <%= f.text_field :activo_precio_compra, :class => "form-control" %>
-              <span id="errmsg" class="input-group-addon"></span>
-            </div>
-          </ul>
-          <div class="btn-group">
-            <%= f.submit 'Crear nuevo activo', :class => "btn btn-success" %>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Precio de venta (Bs)</span>
+            <%= f.text_field :activo_precio_compra, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+          </div>
+          <br>
+          <div class="btn-group pull-right">
+            <%= f.submit 'Guardar', :class => 'btn btn-success' %>
             <%= link_to 'Cancelar', assets_list_all_path, class: 'btn btn-info' %>
           </div>
       <% end %>

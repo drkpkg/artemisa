@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Artemisa sistema veterinario</title>
+  <%= stylesheet_link_tag    'themes/twitter', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -26,17 +27,26 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user fa-2x"></i>
+            <i class="fa fa-user"></i>
             <%= cookies[:user_name] %> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <!--li><a href="#">Configurar cuenta</a></li>
-            <li role="separator" class="divider"></li-->
-            <li><a href="/logout">Cerrar sesión</a></li>
+            <li>
+              <a href="#" onclick="config()">
+                <i class="fa fa-gear"></i>
+                Configuración
+              </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="/logout">
+                <i class="fa fa-sign-out"></i>
+                Cerrar sesión
+              </a>
+            </li>
           </ul>
         </li>
       </ul>

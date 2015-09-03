@@ -1,32 +1,19 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).ready ->
-  ready()
 
-$(document).on 'page:change', ->
-  ready()
+@newCategory = ->
+  $("#new-category-modal").modal('show')
 
-ready = ->
-  newCategory()
-  saveCategory()
-
-newCategory = ->
-  $("#btn-category").on 'click', ->
-    $("#new-category-modal").modal('show')
-
-saveCategory = ->
-  $("#save-category").on 'click', ->
-    url = 'create/'
-    description = $("#category-desc").val()
-    data = {description: description}
-    post(url, data)
-    $("#new-category-modal").modal('hide')
+@saveCategory = ->
+  url = 'create/'
+  description = $("#category-desc").val()
+  data = {description: description}
+  post(url, data)
 
 @modifyCategory = (id) ->
-  $("#btn-modify-"+id).on 'click', ->
-    $("#new-title-category").val($("#category-title-"+id).text())
-    $("#modify-category-modal").modal('show')
+  $("#new-title-category").val($("#category-title-"+id).text())
+  $("#modify-category-modal").modal('show')
 
   $("#save-modify-category").on 'click', ->
     newdescription = $("#new-title-category").val()

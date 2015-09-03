@@ -5,3 +5,36 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'bcrypt'
+
+#Asset Categories
+asset_categories = ["Medicamentos",
+                    "Higiene",
+                    "Alimentacion",
+                    "Vestimenta",
+                    "Accesorios"]
+asset_categories.each do |item|
+  AssetCategory.create(asset_category_description: item)
+end
+
+#User Groups
+user_groups = ["Administrador",
+               "Cliente",
+               "Empleado"]
+user_groups.each do |user|
+  Group.create(group_name: user)
+end
+
+#Template
+templates = ["Inventario",
+             "Categorias de inventario",
+             "Administracion de usuarios",
+             "Bitacora","Reportes",
+             "Empleados",
+             "Pacientes"]
+templates.each do |template|
+  Template.create(template_name: template)
+end
+
+#Admin
+User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), group_id: 1, usertype: 1)

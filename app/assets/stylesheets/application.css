@@ -13,6 +13,7 @@
  *= require_tree .
  *= require sweet-alert
  *= require font-awesome
+ *= require toastr
  *= require_self
  */
 

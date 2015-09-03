@@ -42,3 +42,4 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'sweetalert-rails'
 gem "font-awesome-rails"
+gem 'toastr-rails'

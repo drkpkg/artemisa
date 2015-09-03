@@ -11,10 +11,6 @@ ready = ->
   $("#asset-name").val("")
   $("#asset-desc").text("")
 
-  $("#asset_activo_precio_compra").on 'keypress', (e) ->
-    if (e.which != 8 && e.which != 0 && (e.which < 46 || e.which > 57))
-      $("#errmsg").html("Solo números").show().fadeOut("slow")
-
 @editAsset = (id) ->
   $("#asset-name").val($("#actual-name-" + id).text())
   $("#asset-desc").text($("#actual-desc-" + id).text())

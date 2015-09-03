@@ -15,6 +15,7 @@
 //= require sweet-alert
 //= require turbolinks
 //= require twitter/bootstrap
+//= require toastr
 //= require_tree .
 
 /*
@@ -87,16 +88,62 @@ function get(url, data) {
 
 function deleteObject(url, data){
     swal({
-        title: "¿Está seguro de borrar esta campo?",
-        text: "No se podrá recuperar los datos eliminados",
-        type: "warning",
-        cancelButtonText: "Cancelar",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Si, eliminar",
-        closeOnConfirm: false
-    }, function() {
-        return post(url, data);
-    });
+            title: "¿Eliminar?",
+            text: "No se podrá recuperar los datos eliminados",
+            cancelButtonText: "Cancelar",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true
+        },
+        function(){
+            setTimeout(function(){
+                post(url, data);
+            }, 2000);
+        });
+}
+
+function config(){
+    swal({
+            title: "Ajax request example",
+            text: "Submit to run ajax request",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true
+        },
+        function(){
+            setTimeout(function(){
+                swal("Ajax request finished!");
+            }, 2000);
+        });
+}
+
+function onlyNumbers(e){
+    if (e.which != 8 && e.which != 0 && (e.which < 46 || e.which > 57)){
+        notify("warning", "Solo se aceptan números");
+        return false;
+    }
+    return true;
+}
+
+function notify(type, message){
+    toastr[type](message);
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "10",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
 }
 

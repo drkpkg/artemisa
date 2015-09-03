@@ -3,7 +3,7 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
+# Note that this schema_old.rb definition is the authoritative source for your
 # database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903155952) do
+ActiveRecord::Schema.define(version: 20150831163247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20150903155952) do
 
   add_index "assets", ["category_id"], name: "index_assets_on_category_id", using: :btree
 
+  create_table "departments", force: true do |t|
+    t.string   "department_name"
+    t.string   "department_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", force: true do |t|
     t.string   "group_name"
     t.datetime "created_at"
@@ -40,18 +47,14 @@ ActiveRecord::Schema.define(version: 20150903155952) do
   end
 
   create_table "grouptemplates", force: true do |t|
-    t.integer  "templates_id"
-    t.integer  "groups_id"
-    t.boolean  "permission_write"
-    t.boolean  "permission_modify"
-    t.boolean  "permission_read"
-    t.boolean  "permission_delete"
+    t.integer  "group_id"
+    t.integer  "template_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "grouptemplates", ["groups_id"], name: "index_grouptemplates_on_groups_id", using: :btree
-  add_index "grouptemplates", ["templates_id"], name: "index_grouptemplates_on_templates_id", using: :btree
+  add_index "grouptemplates", ["group_id"], name: "index_grouptemplates_on_group_id", using: :btree
+  add_index "grouptemplates", ["template_id"], name: "index_grouptemplates_on_template_id", using: :btree
 
   create_table "histories", force: true do |t|
     t.integer  "user_id"
