@@ -35,7 +35,8 @@
                 <%= actual_index.usertype %>
               </td>
               <td id="actual-direction-<%= actual_index.id %>">
-                <% if !Group.find_by(id: actual_index.group_id).nil? %>
+                <% group = Group.find_by(id: actual_index.group_id) %>
+                <% if !group.nil? %>
                     <%= group.group_name %>
                 <% else %>
                     Sin grupo
