@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :father_last_name
       t.string :mother_last_name
       t.string :home_address
+      t.string :email
       t.belongs_to :group, index: true
       t.timestamps
     end

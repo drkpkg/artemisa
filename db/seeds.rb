@@ -29,7 +29,8 @@ end
 templates = ["Inventario",
              "Categorias de inventario",
              "Administracion de usuarios",
-             "Bitacora","Reportes",
+             "Bitacora",
+             "Reportes",
              "Empleados",
              "Pacientes"]
 templates.each do |template|
@@ -37,7 +38,32 @@ templates.each do |template|
 end
 
 #Group Templates
-group_templates = [[template: 1, ]]
+group_templates = [
+    [1, 1, true, true, true, true],
+    [2, 1, true, true, true, true],
+    [3, 1, true, true, true, true],
+    [4, 1, true, true, true, true],
+    [5, 1, true, true, true, true],
+    [6, 1, true, true, true, true],
+    [7, 1, true, true, true, true],
+    [1, 2, false, false, false, false],
+    [2, 2, false, false, false, false],
+    [3, 2, false, false, false, false],
+    [4, 2, false, false, false, false],
+    [5, 2, false, false, false, false],
+    [6, 2, false, false, false, false],
+    [7, 2, false, false, false, false],
+    [1, 3, false, false, true, false],
+    [2, 3, false, false, false, false],
+    [3, 3, false, false, false, false],
+    [4, 3, false, false, false, false],
+    [5, 3, false, false, false, false],
+    [6, 3, false, false, false, false],
+    [7, 3, true, true, true, false],
+]
+group_templates.each do |index, group, write, modify, read, delete|
+  Grouptemplate.create(templates_id: index, groups_id: group, permission_write: write, permission_modify: modify, permission_read: read, permission_delete: delete)
+end
 
 #Admin
-User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), group_id: 1)
+User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), name: "YOUR NAME", father_last_name: "FATHER LASTNAME", mother_last_name: "MOTHER LAST NAME", home_address: "YOUR HOME", email: "admin@admin", group_id: 1)

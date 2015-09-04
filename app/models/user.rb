@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_secure_password
   belongs_to :group
   has_and_belongs_to_many :histories
-  #has_one :group
+  validates_uniqueness_of :email
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

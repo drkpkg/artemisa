@@ -65,10 +65,6 @@ ActiveRecord::Schema.define(version: 20150903155952) do
 
   create_table "templates", force: true do |t|
     t.string   "template_name"
-    t.boolean  "permission_write"
-    t.boolean  "permission_modify"
-    t.boolean  "permission_read"
-    t.boolean  "permission_delete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150903155952) do
     t.string   "father_last_name"
     t.string   "mother_last_name"
     t.string   "home_address"
+    t.string   "email"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
