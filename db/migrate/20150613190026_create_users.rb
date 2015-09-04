@@ -8,7 +8,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :mother_last_name
       t.string :home_address
       t.belongs_to :group, index: true
-      t.integer :usertype
       t.timestamps
     end
   end

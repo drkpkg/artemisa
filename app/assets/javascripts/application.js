@@ -18,9 +18,10 @@
 //= require toastr
 //= require_tree .
 
-/*
-* Generic message function to all instances.
-* */
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 function redirectTo(data) {
     window.location.href = data.redirect_page;
 }

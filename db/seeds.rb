@@ -36,5 +36,8 @@ templates.each do |template|
   Template.create(template_name: template)
 end
 
+#Group Templates
+group_templates = [[template: 1, ]]
+
 #Admin
-User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), group_id: 1, usertype: 1)
+User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), group_id: 1)

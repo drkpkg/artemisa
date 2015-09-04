@@ -70,7 +70,8 @@ class UserController < ApplicationController
           user = User.new
           user.username = params[:username]
           user.password_digest = Password.create(params[:password])
-          user.usertype = params[:type]
+          user.group_id = params[:type]
+
           if user.save
             if params[:username] == 'admin'
               page = '/'
@@ -142,7 +143,7 @@ class UserController < ApplicationController
   #end
 
   def list_all
-    @user = User.all
+    @user = User.joins(:group).select("Users.id, username, name, father_last_name, mother_last_name, group_name").where("Users.group_id = Groups.id")
   end
 
   def logout

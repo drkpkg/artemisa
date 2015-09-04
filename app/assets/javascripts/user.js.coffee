@@ -10,6 +10,15 @@
   data = {username: 'admin', password: password, password_repeat: password_repeat, type: 1}
   post(url, data)
 
+@createUser = ->
+  username = $('#user-username').val()
+  password = $('#user-password').val()
+  password_repeat = $('#user-password-again').val()
+  user_id = $('#user-group-selector').val()
+  url = 'create/'
+  data = {username: username, password: password, password_repeat: password_repeat, type: user_id}
+  post(url, data)
+
 @deleteUser = (id) ->
   url = 'delete/'
   data = {id: id}

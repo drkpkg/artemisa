@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 20150903155952) do
     t.string   "mother_last_name"
     t.string   "home_address"
     t.integer  "group_id"
-    t.integer  "usertype"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
