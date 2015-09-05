@@ -26,7 +26,7 @@ class UserController < ApplicationController
       if !user.blank? && Password.new(user.password_digest) == params[:password]
         cookies[:user_name] = user.username
         cookies[:user_id] = user.id
-        cookies[:type] = user.usertype
+        cookies[:type] = user.group_id
 
         respond_to do |format|
           msg = { :status => "200", redirect_page: 'dashboard'}
