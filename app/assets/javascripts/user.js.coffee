@@ -32,4 +32,4 @@
   password = $("#password-text").val()
   url = 'user/auth_user'
   data = {username: username, password: password}
-  get(url, data)
+  post(url, data)

@@ -43,3 +43,5 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'sweetalert-rails'
 gem "font-awesome-rails"
 gem 'toastr-rails'
+
+gem 'dotenv-rails', :groups => [:development, :test]

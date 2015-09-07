@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'logout' => 'user#logout'
 
   #users
-  get 'user/auth_user' => 'user#auth_user' #Json
+  post 'user/auth_user' => 'user#auth_user' #Json
   get 'user/list_all' => 'user#list_all'
   post 'user/create' => 'user#create'
   post 'user/delete' => 'user#delete'
