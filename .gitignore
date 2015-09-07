@@ -35,3 +35,4 @@ bower.json
 .powenv
 
 .idea/
+.env
