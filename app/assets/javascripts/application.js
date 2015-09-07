@@ -147,4 +147,3 @@ function notify(type, message){
         "hideMethod": "fadeOut"
     };
 }
-
