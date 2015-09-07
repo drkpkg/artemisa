@@ -143,7 +143,7 @@ class UserController < ApplicationController
   #end
 
   def list_all
-    @user = User.joins(:group).select("Users.id, username, name, father_last_name, mother_last_name, group_name").where("Users.group_id = Groups.id")
+    @user = User.joins(:group).select("Users.id, username, name, father_last_name, mother_last_name, home_address, email, group_name").where("Users.group_id = Groups.id")
   end
 
   def logout

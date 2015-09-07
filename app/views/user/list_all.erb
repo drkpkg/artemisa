@@ -1,89 +1,107 @@
 <div class="container">
-  <div class="col-md-12 row">
-    <br>
-    <div class="container">
-      <div class="btn-group">
-        <button type="button" class="btn btn-success" id="btn-category" onclick="newUser()">
-          <i class="fa fa-user-plus"></i>
-          Agregar usuario
-        </button>
-        <button type="button" class="btn btn-success" id="btn-category">
-          <i class="fa fa-group"></i>
-          Agregar grupo
-        </button>
-      </div>
-    </div>
-    <br>
+    <div class="col-md-12 row">
+        <br>
+        <div class="container">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" id="btn-category" onclick="newUser()">
+                    <i class="fa fa-user-plus"></i>
+                    Agregar usuario
+                </button>
+                <button type="button" class="btn btn-success" id="btn-category">
+                    <i class="fa fa-group"></i>
+                    Agregar grupo
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Nómina de usuarios</div>
 
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Nómina de usuarios</div>
-
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Usuario</th>
-          <th>Nombre completo</th>
-          <th>Grupo</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @user.each do |actual_index| %>
-            <tr>
-              <td id="actual-identity-<%= actual_index.id %>">
-                <%= actual_index.username %>
-              </td>
-              <td id="actual-identity-<%= actual_index.id %>">
-                <%= actual_index.name + " " + actual_index.father_last_name + " " + actual_index.mother_last_name %>
-              </td>
-              <td id="actual-direction-<%= actual_index.id %>">
-                <%= actual_index.group_name %>
-              </td>
-              <td>
-                <div class="btn-group">
-                  <a href="#" onclick="editUser('<%= actual_index.id %>')">
-                    <i class="fa fa-edit fa-2x"></i>
-                  </a>
-                  <a href="#" onclick="deleteUser('<%= actual_index.id %>')">
-                    <i class="fa fa-close fa-2x"></i>
-                  </a>
-                </div>
-              </td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombre completo</th>
+                    <th>Direccion</th>
+                    <th>Email</th>
+                    <th>Grupo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @user.each do |actual_index| %>
+                    <tr>
+                        <td id="actual-identity-<%= actual_index.id %>">
+                            <%= actual_index.username %>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                               <label  id="actual-name-<%= actual_index.id %>" class="label-normal"><%= actual_index.name %></label>
+                               <label  id="actual-flastname-<%= actual_index.id %>" class="label-normal"><%= actual_index.father_last_name %></label>
+                               <label  id="actual-mlastname-<%= actual_index.id %>" class="label-normal"><%= actual_index.mother_last_name %></label>
+                            </div>
+                        </td>
+                        <td id="actual-direction-<%= actual_index.id %>">
+                            <%= actual_index.home_address %>
+                        </td>
+                        <td id="actual-email-<%= actual_index.id %>">
+                            <%= actual_index.email %>
+                        </td>
+                        <td id="actual-group-<%= actual_index.id %>">
+                            <%= actual_index.group_name %>
+                        </td>
+                        <td>
+                            <% if actual_index.username != 'admin' %>
+                                <div class="btn-group">
+                                    <a href="#" onclick="editUser('<%= actual_index.id %>')">
+                                        <i class="fa fa-edit fa-2x"></i>
+                                    </a>
+                                    <a href="#" onclick="deleteUser('<%= actual_index.id %>')">
+                                        <i class="fa fa-close fa-2x"></i>
+                                    </a>
+                                </div>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
 
-<div id="new-user-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Agregar nuevo usuario</h4>
-      </div>
-      <div class="modal-body">
-        <div class="modal-body">
-          <div class="form-group">
+<div id="modify-user-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="user-username" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div class="form-group form-group-sm">
+                        <input id="user-password" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Contraseña" placeholder="Contraseña">
+                        <div class="control-group form-inline input-group-sm space-10">
+                            <input id="user-name" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Nombre" placeholder="Nombre">
+                            <input id="user-father-lastname" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Apellido paterno" placeholder="Apellido paterno">
+                            <input id="user-mother-lastname" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Apellido materno" placeholder="Apellido materno">
+                        </div>
+                        <input id="user-direction" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Direccion de vivienda" placeholder="Direccion de vivienda">
+                        <input id="user-email" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Email de usuario" placeholder="Email de usuario">
 
-            <input id="user-username" class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="Nombre de Usuario" placeholder="Nombre de Usuario">
-            <input id="user-password" class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="Contraseña" placeholder="Contraseña">
-            <input id="user-password-again" class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="Repita contraseña" placeholder="Repita contraseña">
-            <select id="user-group-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo al que pertenece el usuario">
-              <option value="" disabled selected>Seleccione grupo</option>
-              <% Group.all.each do |index| %>
-                  <%= content_tag(:option, index.group_name, value: index.id) %>
-              <% end %>
-            </select>
-          </div>
+                        <select id="user-group-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo al que pertenece el usuario">
+                            <option value="" disabled selected>Seleccione grupo</option>
+                            <% Group.all.each do |index| %>
+                                <%= content_tag(:option, index.group_name, value: index.id) %>
+                            <% end %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Guardar categoría</button>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Guardar categoría</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+</div>

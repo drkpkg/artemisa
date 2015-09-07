@@ -66,4 +66,6 @@ group_templates.each do |index, group, write, modify, read, delete|
 end
 
 #Admin
-User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), name: "YOUR NAME", father_last_name: "FATHER LASTNAME", mother_last_name: "MOTHER LAST NAME", home_address: "YOUR HOME", email: "admin@admin", group_id: 1)
+User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), name: "YOUR NAME", father_last_name: "FATHER LASTNAME", mother_last_name: "MOTHER LAST NAME", home_address: "YOUR HOME", email: "admin@admin.com", group_id: 1)
+User.create(username: "client", password_digest: BCrypt::Password.create("client"), name: "Melina", father_last_name: "Ortiz", mother_last_name: "Suarez", home_address: "7 calles #44", email: "cliente@gmail.com", group_id: 2)
+User.create(username: "employee", password_digest: BCrypt::Password.create("employee"), name: "Cosme", father_last_name: "Fulanito", mother_last_name: "Menganito", home_address: "Av. 7 de septiembre", email: "empleado@gmail.com", group_id: 3)
