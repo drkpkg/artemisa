@@ -70,6 +70,11 @@ class UserController < ApplicationController
           user = User.new
           user.username = params[:username]
           user.password_digest = Password.create(params[:password])
+          user.name = params[:name]
+          user.father_last_name = params[:flastname]
+          user.mother_last_name = params[:mlastname]
+          user.email = params[:email]
+          user.home_address = params[:direction]
           user.group_id = params[:type]
 
           if user.save

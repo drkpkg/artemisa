@@ -17,7 +17,6 @@
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Nómina de usuarios</div>
-
             <table class="table">
                 <thead>
                 <tr>
@@ -100,7 +99,44 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Guardar categoría</button>
+                <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="new-user-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Nuevo usuario</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div class="form-group form-group-sm">
+                        <input id="newuser-username" class="form-control align-input space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre de usuario" placeholder="Nombre de usuario">
+                        <input id="newuser-password" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Contraseña" placeholder="Contraseña">
+                        <div class="control-group form-inline input-group-sm space-10">
+                            <input id="newuser-name" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Nombre" placeholder="Nombre">
+                            <input id="newuser-father-lastname" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Apellido paterno" placeholder="Apellido paterno">
+                            <input id="newuser-mother-lastname" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Apellido materno" placeholder="Apellido materno">
+                        </div>
+                        <input id="newuser-direction" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Direccion de vivienda" placeholder="Direccion de vivienda">
+                        <input id="newuser-email" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Email de usuario" placeholder="Email de usuario">
+
+                        <select id="newuser-group-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo al que pertenece el usuario">
+                            <option value="" disabled selected>Seleccione grupo</option>
+                            <% Group.all.each do |index| %>
+                                <%= content_tag(:option, index.group_name, value: index.id) %>
+                            <% end %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Crear nuevo usuario</button>
             </div>
         </div>
     </div>

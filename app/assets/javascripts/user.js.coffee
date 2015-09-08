@@ -11,12 +11,16 @@
   post(url, data)
 
 @createUser = ->
-  username = $('#user-username').val()
-  password = $('#user-password').val()
-  password_repeat = $('#user-password-again').val()
-  user_id = $('#user-group-selector').val()
+  username = $('#newuser-username').val()
+  password = $('#newuser-password').val()
+  name = $('#newuser-name').val()
+  flastname = $('#newuser-father-lastname').val()
+  mlastname = $('#newuser-mother-lastname').val()
+  direction = $('#newuser-direction').val()
+  email = $('#newuser-email').val()
+  user_id = $('#newuser-group-selector').val()
   url = 'create/'
-  data = {username: username, password: password, password_repeat: password_repeat, type: user_id}
+  data = {username: username, password: password, password_repeat: password, type: user_id, name: name,flastname: flastname, mlastname: mlastname, email: email, direction: direction}
   post(url, data)
 
 @deleteUser = (id) ->
