@@ -100,6 +100,7 @@ class UserController < ApplicationController
   end
 
   def modify
+    #REIMPLEMENTAR
     if params[:password] == '' && params[:password_repeat] == ''
       respond_to do |format|
         msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
@@ -143,12 +144,9 @@ class UserController < ApplicationController
     end
   end
 
-  #def list_all_employees
-  #  @employee =
-  #end
-
   def list_all
-    @user = User.joins(:group).select("Users.id, username, name, father_last_name, mother_last_name, home_address, email, group_name").where("Users.group_id = Groups.id")
+    @user = User.all
+    #.joins(:group).select("Users.id, username, name, father_last_name, mother_last_name, home_address, email, group_name").select(group_id: 0)
   end
 
   def logout
@@ -157,5 +155,4 @@ class UserController < ApplicationController
     cookies.delete :type
     redirect_to root_path
   end
-
 end

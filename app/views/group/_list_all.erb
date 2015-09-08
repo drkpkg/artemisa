@@ -1,0 +1,22 @@
+<div class="row col-md-3">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <label>Grupos disponibles</label>
+                <button type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Agregar nuevo grupo" onclick="newGroup()">
+                    <i class="fa fa-plus"></i>
+                    <i class="fa fa-group"></i>
+                </button>
+            </div>
+            <div class="panel-body">
+                <% Group.all.each do |index| %>
+                    <span class="label label-primary label-fix">
+                        <%= index.group_name %>
+                        <div class="fa fa-remove btn-remove" onclick="deleteGroup('<%= index.id %>');" data-toggle="tooltip" data-placement="top" title="Eliminar grupo"></div>
+                    </span>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

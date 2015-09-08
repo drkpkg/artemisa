@@ -11,4 +11,8 @@ class Asset < ActiveRecord::Base
       end
     end
   end
+
+  def self.update_asset_category_index(asset_id)
+    Asset.where(category_id: asset_id).update_all(category_id: 0)
+  end
 end

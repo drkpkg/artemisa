@@ -20,7 +20,10 @@ end
 #User Groups
 user_groups = ["Administrador",
                "Cliente",
-               "Empleado"]
+               "Empleado",
+               "Grupo 1",
+               "Grupo 2",
+               "Grupo 3",]
 user_groups.each do |user|
   Group.create(group_name: user)
 end

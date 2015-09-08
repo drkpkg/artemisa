@@ -43,4 +43,9 @@ Rails.application.routes.draw do
   #History of users
   get 'histories/list_all' => 'history#list_all'
 
+  #groups
+  post 'groups/create' => 'group#create'
+  post 'groups/modify' => 'group#modify'
+  post 'groups/delete' => 'group#delete'
+
 end

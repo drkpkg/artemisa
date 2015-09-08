@@ -48,3 +48,16 @@
 .align-input{
     padding-right: 15px !important;
 }
+
+.btn-remove{
+    background-color: #b08d68;
+}
+
+.btn-remove:hover{
+    background-color: #b00017;
+}
+
+.label-fix{
+    margin: 3px 3px 3px 3px;
+    display: inline-block;
+}

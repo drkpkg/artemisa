@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.update_group_index(group_id)
+    User.where(group_id: group_id).update_all(group_id: 0)
+  end
+
 end

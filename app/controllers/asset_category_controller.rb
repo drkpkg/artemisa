@@ -60,6 +60,7 @@ class AssetCategoryController < ApplicationController
   def delete
     category = AssetCategory.find_by(id: params[:id])
     if category.delete
+      Asset.update_asset_category_index(params[:id])
       respond_to do |format|
         msg = { :status => "200", title: 'En hora buena', description: 'Categoría eliminada satisfactoriamente', type: 'success', redirect_page: 'list_all'}
         format.json  { render :json => msg }
