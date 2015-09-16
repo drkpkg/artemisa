@@ -14,6 +14,7 @@
  *= require sweet-alert
  *= require font-awesome
  *= require toastr
+ *= require bootstrap3-switch
  *= require_self
  */
 

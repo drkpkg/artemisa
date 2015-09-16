@@ -15,11 +15,14 @@
 //= require sweet-alert
 //= require turbolinks
 //= require twitter/bootstrap
+//= require bootstrap-switch
 //= require toastr
 //= require_tree .
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
+    $("[name='checkbox']").bootstrapSwitch();
+    $("[name='checkbox']").bootstrapSwitch('size','mini');
 });
 
 function redirectTo(data) {
@@ -104,19 +107,7 @@ function deleteObject(url, data){
 }
 
 function config(){
-    swal({
-            title: "Ajax request example",
-            text: "Submit to run ajax request",
-            type: "info",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true
-        },
-        function(){
-            setTimeout(function(){
-                swal("Ajax request finished!");
-            }, 2000);
-        });
+    $("#config-modal").modal("show");
 }
 
 function onlyNumbers(e){
@@ -146,4 +137,24 @@ function notify(type, message){
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+}
+
+function updateToRest(){
+    var state = $("#checkbox-invert").bootstrapSwitch('state');
+    if(state){
+        $("#app-main").css({"-webkit-filter":"invert(1)","filter":"invert(1)"});
+    }else{
+        $("#app-main").css({"-webkit-filter":"invert(0)","filter":"invert(0)"});
+    }
+}
+
+function updateFontFamily(){
+    font_family = $("#selectFontFamily").val();
+    $("#app-main").css("font-family",font_family);
+}
+
+function updateFontSize(){
+    var size = $("#selecFontSize").val();
+    console.log(size);
+    $("#app-main").css("font-size",size + "px");
 }

@@ -100,31 +100,24 @@ class UserController < ApplicationController
   end
 
   def modify
-    #REIMPLEMENTAR
-    if params[:password] == '' && params[:password_repeat] == ''
+    user = User.find_by(id: params[:id])
+    param_list = Hash.new
+    param_list[:password_digest] = params[:password] if params[:password] != ''
+    param_list[:name] = params[:name] if params[:name] != ''
+    param_list[:father_last_name] = params[:flastname] if params[:flastname] != ''
+    param_list[:mother_last_name] = params[:mlastname] if params[:mlastname] != ''
+    param_list[:home_address] = params[:address] if params[:address] != ''
+    param_list[:email] = params[:email] if params[:email] != ''
+    param_list[:group_id] = params[:group].to_i if params[:group].to_i > 0
+    if user.update(param_list)
       respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
+        msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
         format.json  { render :json => msg }
       end
     else
-      if params[:password] != params[:password_repeat]
-        respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: 'Las contraseñas no coinciden', type: 'error', redirect_page: ''}
-          format.json  { render :json => msg }
-        end
-      else
-        user = User.find_by(id: params[:id])
-        if user.update(password: params[:password])
-          respond_to do |format|
-            msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
-            format.json  { render :json => msg }
-          end
-        else
-          respond_to do |format|
-            msg = { :status => "400", title: 'Error', description: 'Sucedió un error al modificar el usuario', type: 'error', redirect_page: ''}
-            format.json  { render :json => msg }
-          end
-        end
+      respond_to do |format|
+        msg = { :status => "400", title: 'Error', description: 'Sucedió un error al modificar el usuario', type: 'error', redirect_page: ''}
+        format.json  { render :json => msg }
       end
     end
   end

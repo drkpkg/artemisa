@@ -40,8 +40,11 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bootstrap-switch-rails'
 gem 'sweetalert-rails'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'toastr-rails'
+gem 'refile', require: 'refile/rails'
+gem 'refile-mini_magick'
 
 gem 'dotenv-rails', :groups => [:development, :test]

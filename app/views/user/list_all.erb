@@ -39,7 +39,7 @@
                                <%= actual_index.email %>
                            </td>
                            <td id="actual-group-<%= actual_index.id %>">
-                               <% group = Group.find_by(id: actual_index.id) %>
+                               <% group = Group.find_by(id: actual_index.group_id) %>
                                <% if !group.blank? %>
                                    <%= group.group_name %>
                                <% else %>
@@ -50,10 +50,10 @@
                                <% if actual_index.username != 'admin' %>
                                    <div class="btn-group">
                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar" onclick="editUser('<%= actual_index.id %>')">
-                                           <i class="fa fa-edit fa-2x"></i>
+                                           <i class="fa fa-edit"></i>
                                        </a>
                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="deleteUser('<%= actual_index.id %>')">
-                                           <i class="fa fa-close fa-2x"></i>
+                                           <i class="fa fa-close"></i>
                                        </a>
                                    </div>
                                <% end %>
@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Guardar cambios</button>
+                <button type="button" class="btn btn-primary" id="save-modify-user">Guardar cambios</button>
             </div>
         </div>
     </div>
@@ -104,7 +104,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="save-category" onclick="createUser()">Crear nuevo usuario</button>
+                <button type="button" class="btn btn-primary" id="save-new-user" onclick="createUser()">Crear nuevo usuario</button>
             </div>
         </div>
     </div>
