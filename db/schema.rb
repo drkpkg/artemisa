@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903155952) do
+ActiveRecord::Schema.define(version: 20150922113109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(version: 20150903155952) do
 
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
+  create_table "people", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "templates", force: true do |t|
     t.string   "template_name"
     t.datetime "created_at"
@@ -72,10 +77,6 @@ ActiveRecord::Schema.define(version: 20150903155952) do
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.string   "name"
-    t.string   "father_last_name"
-    t.string   "mother_last_name"
-    t.string   "home_address"
     t.string   "email"
     t.integer  "group_id"
     t.datetime "created_at"
