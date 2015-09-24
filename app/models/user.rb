@@ -2,7 +2,7 @@ require 'csv'
 
 class User < ActiveRecord::Base
   has_secure_password
-  belongs_to :person
+  belongs_to :person, dependent: :destroy
   belongs_to :group
   has_and_belongs_to_many :histories
   validates_uniqueness_of :email

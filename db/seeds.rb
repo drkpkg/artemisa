@@ -68,7 +68,12 @@ group_templates.each do |index, group, write, modify, read, delete|
   Grouptemplate.create(templates_id: index, groups_id: group, permission_write: write, permission_modify: modify, permission_read: read, permission_delete: delete)
 end
 
+#People
+Person.create(person_name: "YOUR NAME", person_father_last_name: "FATHER LASTNAME", person_mother_last_name: "MOTHER LAST NAME", person_address: "YOUR HOME", person_phone: 1234556, person_identity_number: 888888, user_id: 1)
+Person.create(person_name: "YOUR NAME", person_father_last_name: "FATHER LASTNAME", person_mother_last_name: "MOTHER LAST NAME", person_address: "YOUR HOME", person_phone: 1234556, person_identity_number: 888888, user_id: 2)
+Person.create(person_name: "YOUR NAME", person_father_last_name: "FATHER LASTNAME", person_mother_last_name: "MOTHER LAST NAME", person_address: "YOUR HOME", person_phone: 1234556, person_identity_number: 888888, user_id: 3)
+
 #Admin
-User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), name: "YOUR NAME", father_last_name: "FATHER LASTNAME", mother_last_name: "MOTHER LAST NAME", home_address: "YOUR HOME", email: "admin@admin.com", group_id: 1)
-User.create(username: "client", password_digest: BCrypt::Password.create("client"), name: "Melina", father_last_name: "Ortiz", mother_last_name: "Suarez", home_address: "7 calles #44", email: "cliente@gmail.com", group_id: 2)
-User.create(username: "employee", password_digest: BCrypt::Password.create("employee"), name: "Cosme", father_last_name: "Fulanito", mother_last_name: "Menganito", home_address: "Av. 7 de septiembre", email: "empleado@gmail.com", group_id: 3)
+User.create(username: "admin", password_digest: BCrypt::Password.create("admin"), email: "admin@admin.com" , group_id: 1, state: true)
+User.create(username: "client", password_digest: BCrypt::Password.create("client"), email: "client@gmail.com" , group_id: 2, state: true)
+User.create(username: "employee", password_digest: BCrypt::Password.create("employee"), email: "employee@gmail.com" , group_id: 3, state: true)

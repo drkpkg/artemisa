@@ -7,6 +7,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :person_address
       t.integer :person_phone
       t.integer :person_identity_number
+      t.belongs_to :user, index: true
       t.timestamps
     end
   end

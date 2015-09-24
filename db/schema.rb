@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922113109) do
+ActiveRecord::Schema.define(version: 20150922124919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animals", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "asset_categories", force: true do |t|
     t.string   "asset_category_description"
@@ -32,6 +37,21 @@ ActiveRecord::Schema.define(version: 20150922113109) do
   end
 
   add_index "assets", ["category_id"], name: "index_assets_on_category_id", using: :btree
+
+  create_table "breeds", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employees", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "groups", force: true do |t|
     t.string   "group_name"
@@ -63,7 +83,26 @@ ActiveRecord::Schema.define(version: 20150922113109) do
 
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
+  create_table "medical_records", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", force: true do |t|
+    t.string   "person_name"
+    t.string   "person_father_last_name"
+    t.string   "person_mother_last_name"
+    t.string   "person_address"
+    t.integer  "person_phone"
+    t.integer  "person_identity_number"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
+
+  create_table "species", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,6 +118,7 @@ ActiveRecord::Schema.define(version: 20150922113109) do
     t.string   "password_digest"
     t.string   "email"
     t.integer  "group_id"
+    t.boolean  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
