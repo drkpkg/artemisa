@@ -138,7 +138,7 @@ class UserController < ApplicationController
   end
 
   def list_all
-    @user = User.all
+    @user = User.joins(:person).select("Users.id, Users.username, Users.email, Users.group_id, Users.state, People.person_name, People.person_father_last_name, People.person_mother_last_name, People.person_address, People.person_phone, People.person_identity_number")
     #.joins(:group).select("Users.id, username, name, father_last_name, mother_last_name, home_address, email, group_name").select(group_id: 0)
   end
 

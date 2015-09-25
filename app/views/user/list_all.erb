@@ -27,13 +27,13 @@
                            </td>
                            <td>
                                <div class="input-group">
-                                   <label  id="actual-name-<%= actual_index.id %>" class="label-normal"><%= actual_index.name %></label>
-                                   <label  id="actual-flastname-<%= actual_index.id %>" class="label-normal"><%= actual_index.father_last_name %></label>
-                                   <label  id="actual-mlastname-<%= actual_index.id %>" class="label-normal"><%= actual_index.mother_last_name %></label>
+                                   <label  id="actual-name-<%= actual_index.id %>" class="label-normal"><%= actual_index.person_name %></label>
+                                   <label  id="actual-flastname-<%= actual_index.id %>" class="label-normal"><%= actual_index.person_father_last_name %></label>
+                                   <label  id="actual-mlastname-<%= actual_index.id %>" class="label-normal"><%= actual_index.person_mother_last_name %></label>
                                </div>
                            </td>
                            <td id="actual-direction-<%= actual_index.id %>">
-                               <%= actual_index.home_address %>
+                               <%= actual_index.person_address %>
                            </td>
                            <td id="actual-email-<%= actual_index.id %>">
                                <%= actual_index.email %>
