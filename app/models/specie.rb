@@ -1,4 +1,4 @@
 class Specie < ActiveRecord::Base
-  has_many :animals
+  #belongs_to :animals
   has_many :breeds
 end
