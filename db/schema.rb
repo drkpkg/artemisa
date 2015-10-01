@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922124919) do
+ActiveRecord::Schema.define(version: 20150928143343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "analyses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "animals", force: true do |t|
     t.datetime "created_at"
@@ -44,6 +49,11 @@ ActiveRecord::Schema.define(version: 20150922124919) do
   end
 
   create_table "clients", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diagnoses", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,6 +93,11 @@ ActiveRecord::Schema.define(version: 20150922124919) do
 
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
+  create_table "inquiries", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "medical_records", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,6 +117,16 @@ ActiveRecord::Schema.define(version: 20150922124919) do
 
   add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
 
+  create_table "providers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "species", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -109,6 +134,27 @@ ActiveRecord::Schema.define(version: 20150922124919) do
 
   create_table "templates", force: true do |t|
     t.string   "template_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "treatments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "type_employees", force: true do |t|
+    t.string   "type_employee"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "type_inquiries", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "type_services", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
