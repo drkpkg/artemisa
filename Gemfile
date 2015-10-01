@@ -44,8 +44,8 @@ gem 'bootstrap-switch-rails'
 gem 'sweetalert-rails'
 gem 'font-awesome-rails'
 gem 'toastr-rails'
-gem 'refile', require: 'refile/rails', :git => 'git://github.com/refile/refile.git'
-gem 'refile-mini_magick'
+#gem 'refile', require: 'refile/rails', :git => 'git://github.com/refile/refile.git'
+#gem 'refile-mini_magick'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'railroady', :groups => [:development, :test]
