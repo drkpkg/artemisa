@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/refile/refile.git
+  revision: 07165d5adc03e8c83b2014bcf0d4ae1d4c56e440
+  specs:
+    refile (0.6.1)
+      mime-types
+      rest-client (~> 1.8)
+      sinatra (~> 1.4.5)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 935f53bb55ef736260fa2ef04e29da2fc3fb2b3f
   specs:
@@ -109,10 +118,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    refile (0.6.1)
-      mime-types
-      rest-client (~> 1.8)
-      sinatra (~> 1.4.5)
     refile-mini_magick (0.2.0)
       mini_magick (~> 4.0)
       refile (~> 0.5)
@@ -175,7 +180,7 @@ DEPENDENCIES
   pg
   railroady
   rails (= 4.1.7)
-  refile (~> 0.6.1)
+  refile!
   refile-mini_magick
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
