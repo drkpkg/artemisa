@@ -1,7 +1,7 @@
 #For windows
 source 'http://rubygems.org'
 
-
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use postgresql as the database for Active Record
@@ -44,8 +44,8 @@ gem 'bootstrap-switch-rails'
 gem 'sweetalert-rails'
 gem 'font-awesome-rails'
 gem 'toastr-rails'
-#gem 'refile', require: 'refile/rails', :git => 'git://github.com/refile/refile.git'
-#gem 'refile-mini_magick'
+gem 'refile', require: 'refile/rails', :git => 'git://github.com/refile/refile.git'
+gem 'refile-mini_magick'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'railroady', :groups => [:development, :test]
