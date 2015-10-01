@@ -175,7 +175,7 @@ DEPENDENCIES
   pg
   railroady
   rails (= 4.1.7)
-  refile
+  refile (~> 0.6.1)
   refile-mini_magick
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
@@ -185,3 +185,6 @@ DEPENDENCIES
   turbolinks
   twitter-bootstrap-rails!
   uglifier (>= 1.3.0)
+
+BUNDLED WITH
+   1.10.6

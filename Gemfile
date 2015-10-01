@@ -44,7 +44,7 @@ gem 'bootstrap-switch-rails'
 gem 'sweetalert-rails'
 gem 'font-awesome-rails'
 gem 'toastr-rails'
-gem 'refile', require: 'refile/rails'
+gem 'refile', '~> 0.6.1', require: 'refile/rails'
 gem 'refile-mini_magick'
 
 gem 'dotenv-rails', :groups => [:development, :test]
