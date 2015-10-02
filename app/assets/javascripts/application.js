@@ -21,8 +21,7 @@
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-    $("[name='checkbox']").bootstrapSwitch();
-    $("[name='checkbox']").bootstrapSwitch('size','mini');
+    $('#checkbox-invert').bootstrapSwitch();
 });
 
 function redirectTo(data) {
