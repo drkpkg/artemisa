@@ -1,27 +1,29 @@
 Rails.application.routes.draw do
 
-  root 'user#login'
+  root 'application#login'
 
   #General
-  get 'admin' => 'user#admin'
-  get 'dashboard' => 'user#dashboard'
-  get 'logout' => 'user#logout'
+  get 'dashboard' => 'application#dashboard'
+  get 'logout' => 'application#logout'
+  post 'auth_user' => 'user#auth_user'
 
   #users
-  post 'user/auth_user' => 'user#auth_user' #Json
-  get 'user/list_all' => 'user#list_all'
-  post 'user/create' => 'user#create'
-  post 'user/delete' => 'user#delete'
-  post 'user/modify' => 'user#modify'
+  scope 'user' do
+    get 'list_all' => 'user#list_all'
+    post 'create' => 'user#create'
+    post 'delete' => 'user#delete'
+    post 'modify' => 'user#modify'
+  end
 
   #Assets
-  get 'assets/list_all' => 'asset#list_all'
-  get 'assets/new' => 'asset#new'
-  get 'assets/:id/edit' => 'asset#edit'
-  post 'assets/create' => 'asset#create'
-  post 'assets/modify' => 'asset#modify'
-  post 'assets/delete' => 'asset#delete'
-
+  scope 'assets' do
+    get 'list_all' => 'asset#list_all'
+    get 'new' => 'asset#new'
+    get ':id/edit' => 'asset#edit'
+    post 'create' => 'asset#create'
+    post 'modify' => 'asset#modify'
+    post 'delete' => 'asset#delete'
+  end
   #Assets Types
   get 'types/list_all' => 'asset_type#list_all'
   post 'types/create' => 'asset_type#create'
@@ -48,4 +50,21 @@ Rails.application.routes.draw do
   post 'groups/modify' => 'group#modify'
   post 'groups/delete' => 'group#delete'
 
+  #People
+  scope 'people/' do
+    post 'create' => 'person#create'
+    post 'modify' => 'person#modify'
+    post 'delete' => 'person#delete'
+    get 'info/:username' => 'person#info'
+    get 'selection' => 'person#selection'
+
+    scope 'clients' do
+      get 'list_all' => 'person#list_all'
+      get 'new' => 'person#new'
+    end
+    scope 'employees' do
+      get 'list_all' => 'person#list_all'
+      get 'new' => 'person#new'
+    end
+  end
 end

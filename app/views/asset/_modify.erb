@@ -1,0 +1,37 @@
+<div id="modify-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Nombre</span>
+            <input id="asset-name" class="form-control" type="text">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Descripción</span>
+            <textarea id="asset-desc" class="form-control" type="area"></textarea>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Precio de compra</span>
+            <input type="text" id="asset-price-buy" class="form-control" onkeypress="return onlyNumbers(event)">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Precio de venta</span>
+            <input type="text" id="asset-price-sell" class="form-control" onkeypress="return onlyNumbers(event)">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button id="save-btn" type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

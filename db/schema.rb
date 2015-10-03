@@ -22,9 +22,12 @@ ActiveRecord::Schema.define(version: 20150928143343) do
   end
 
   create_table "animals", force: true do |t|
+    t.integer  "breed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "animals", ["breed_id"], name: "index_animals_on_breed_id", using: :btree
 
   create_table "asset_categories", force: true do |t|
     t.string   "asset_category_description"
@@ -36,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150928143343) do
     t.string   "asset_name"
     t.string   "asset_description"
     t.float    "asset_price_buy"
+    t.float    "asset_price_sell"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,9 +48,13 @@ ActiveRecord::Schema.define(version: 20150928143343) do
   add_index "assets", ["category_id"], name: "index_assets_on_category_id", using: :btree
 
   create_table "breeds", force: true do |t|
+    t.string   "breed_type"
+    t.integer  "specie_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "breeds", ["specie_id"], name: "index_breeds_on_specie_id", using: :btree
 
   create_table "clients", force: true do |t|
     t.datetime "created_at"
@@ -104,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150928143343) do
   end
 
   create_table "people", force: true do |t|
+    t.string   "image_id"
     t.string   "person_name"
     t.string   "person_father_last_name"
     t.string   "person_mother_last_name"
@@ -128,6 +137,7 @@ ActiveRecord::Schema.define(version: 20150928143343) do
   end
 
   create_table "species", force: true do |t|
+    t.string   "specie_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

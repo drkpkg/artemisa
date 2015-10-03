@@ -1,6 +1,6 @@
 <div class="col-md-4 center">
   <h3>Registro de nuevo producto</h3>
-  <%= form_for :asset, url: assets_create_path, html: {class: 'new-form'} do |f| %>
+  <%= form_for :asset, url: 'create', html: {class: 'new-form'} do |f| %>
 
       <div class="input-group">
         <span class="input-group-addon">Nombre del producto</span>
@@ -29,13 +29,18 @@
           </div>
           <br>
           <div class="input-group">
+            <span class="input-group-addon">Precio de compra (Bs)</span>
+            <%= f.text_field :asset_price_buy, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+          </div>
+          <br>
+          <div class="input-group">
             <span class="input-group-addon">Precio de venta (Bs)</span>
-            <%= f.text_field :activo_precio_compra, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+            <%= f.text_field :asset_price_sell, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
           </div>
           <br>
           <div class="btn-group pull-right">
             <%= f.submit 'Guardar', :class => 'btn btn-success' %>
-            <%= link_to 'Cancelar', assets_list_all_path, class: 'btn btn-info' %>
+            <%= link_to 'Cancelar', 'list_all', class: 'btn btn-info' %>
           </div>
       <% end %>
   <% end %>

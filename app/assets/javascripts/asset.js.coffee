@@ -14,13 +14,17 @@ ready = ->
 @editAsset = (id) ->
   $("#asset-name").val($("#actual-name-" + id).text())
   $("#asset-desc").text($("#actual-desc-" + id).text())
+  $("#asset-price-buy").val($("#actual-price-buy-" + id).text())
+  $("#asset-price-sell").val($("#actual-price-sell-" + id).text())
   $('#modify-modal').modal('show')
   $("#save-btn").on 'click', ->
     url = 'modify/'
     name = $("#asset-name").val()
     description = $("#asset-desc").val()
     employee = $("#asset-employee option:selected").val()
-    data = {id: id, name: name, description: description, employee_id: employee}
+    buy = $("#asset-price-buy").val()
+    sell = $("#asset-price-sell").val()
+    data = {id: id, name: name, description: description, buy: buy, sell: sell}
     post(url, data)
     $("#modify-modal").modal('hide')
 

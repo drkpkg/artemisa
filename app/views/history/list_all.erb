@@ -3,8 +3,8 @@
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">Activos fijos</div>
-
-      <table class="table">
+      <%= render 'general/search' %>
+      <table id="table" class="table">
         <thead>
         <tr>
           <th>Usuario</th>
@@ -17,15 +17,15 @@
         <% @histories.each do |actual_index| %>
             <tr>
               <td id="actual-name-<%= actual_index.id %>">
-                  <% user = User.find_by(id: actual_index.user_id) %>
-                  <% if !user.blank? %>
+                <% user = User.find_by(id: actual_index.user_id) %>
+                <% if !user.blank? %>
                     <%= user.username %>
-                  <% else %>
+                <% else %>
                     Usuario desconocido
-                  <% end %>
+                <% end %>
               </td>
               <td id="actual-desc-<%= actual_index.id %>">
-                  <%= actual_index.action %>
+                <%= actual_index.action %>
               </td>
               <td id="actual-price-<%= actual_index.id %>"><%= actual_index.view %></td>
               <td id="actual-priceA-<%= actual_index.id %>"><%= actual_index.created_at %></td>

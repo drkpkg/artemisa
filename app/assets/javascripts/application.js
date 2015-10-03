@@ -21,7 +21,8 @@
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-    $('#checkbox-invert').bootstrapSwitch();
+    $.fn.bootstrapSwitch.defaults.size = 'small';
+    $('[name="checkbox"]').bootstrapSwitch();
 });
 
 function redirectTo(data) {
@@ -111,7 +112,7 @@ function config(){
 
 function onlyNumbers(e){
     if (e.which != 8 && e.which != 0 && (e.which < 46 || e.which > 57)){
-        notify("warning", "Solo se aceptan números");
+            notify("error", "Solo se aceptan números");
         return false;
     }
     return true;
@@ -156,4 +157,16 @@ function updateFontSize(){
     var size = $("#selecFontSize").val();
     console.log(size);
     $("#app-main").css("font-size",size + "px");
+}
+
+function search(seachInput){
+    _this = $(seachInput);
+    // Show only matching TR, hide rest of them
+    $.each($("#table tbody").find("tr"), function() {
+        if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1){
+            $(this).hide();
+        }else{
+            $(this).show();
+        }
+    });
 }

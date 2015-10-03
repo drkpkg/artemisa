@@ -9,3 +9,8 @@
 .panel-default > .panel-heading {
     background-color: #4d7499;
 }
+
+a:hover{
+    color: #ffffff !important;
+    border-color: inherit !important;
+}

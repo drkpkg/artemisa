@@ -1,18 +1,14 @@
 <div class="form-group form-group-sm">
-    <input id="newuser-username" class="form-control align-input space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre de usuario" placeholder="Nombre de usuario">
-    <input id="newuser-password" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Contraseña" placeholder="Contraseña">
-    <div class="control-group form-inline input-group-sm space-10">
-        <input id="newuser-name" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Nombre" placeholder="Nombre">
-        <input id="newuser-father-lastname" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Apellido paterno" placeholder="Apellido paterno">
-        <input id="newuser-mother-lastname" class="form-control align-input" type="text" data-toggle="tooltip" data-placement="top" title="Apellido materno" placeholder="Apellido materno">
-    </div>
-    <input id="newuser-direction" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Direccion de vivienda" placeholder="Direccion de vivienda">
-    <input id="newuser-email" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Email de usuario" placeholder="Email de usuario">
-
-    <select id="newuser-group-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo al que pertenece el usuario">
-        <option value="" disabled selected>Seleccione grupo</option>
-        <% Group.all.each do |index| %>
-            <%= content_tag(:option, index.group_name, value: index.id) %>
-        <% end %>
-    </select>
+  <input id="newuser-username" class="form-control align-input space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre de usuario" placeholder="Nombre de usuario">
+  <br>
+  <input id="newuser-password" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Contraseña" placeholder="Contraseña">
+  <br>
+  <input id="newuser-email" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Email de usuario" placeholder="Email de usuario">
+  <br>
+  <select id="newuser-group-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo al que pertenece el usuario">
+    <option value="" disabled selected>Seleccione grupo</option>
+    <% Group.all.each do |index| %>
+        <%= content_tag(:option, index.group_name, value: index.id) %>
+    <% end %>
+  </select>
 </div>

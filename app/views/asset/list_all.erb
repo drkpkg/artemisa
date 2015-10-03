@@ -1,7 +1,5 @@
 <div class="container">
   <div class="col-md-12 row">
-
-    <br>
     <div class="container">
       <div class="btn-group">
         <a href="new" class="btn btn-success">
@@ -11,18 +9,19 @@
       </div>
     </div>
     <br>
-
+    <%= render 'general/search' %>
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">Activos fijos</div>
 
-      <table class="table">
+      <table id="table" class="table">
         <thead>
         <tr>
           <th>Nombre</th>
           <th>Descripción</th>
-          <th>Precio de compra inicial</th>
-          <th>Precio actual</th>
+          <th>Precio de compra</th>
+          <th>Precio de venta</th>
+          <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
@@ -30,7 +29,8 @@
             <tr>
               <td id="actual-name-<%= actual_index.id %>"><%= actual_index.asset_name %></td>
               <td id="actual-desc-<%= actual_index.id %>"><%= actual_index.asset_description %></td>
-              <td id="actual-price-<%= actual_index.id %>"><%= actual_index.asset_price_buy %></td>
+              <td id="actual-price-buy-<%= actual_index.id %>"><%= actual_index.asset_price_buy %></td>
+              <td id="actual-price-sell-<%= actual_index.id %>"><%= actual_index.asset_price_sell %></td>
 
               <td>
                 <div class="btn-group">
@@ -53,45 +53,6 @@
   </div>
 </div>
 
-<div id="modify-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modificar</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon">Nuevo nombre</span>
-            <input id="asset-name" class="form-control" type="text">
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon">Nueva descripción</span>
-            <textarea id="asset-desc" class="form-control" type="area"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button id="save-btn" type="button" class="btn btn-primary">Guardar cambios</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
-<div id="qr-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Vista de datos en QR</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <img id="qr-img" width="304" height="236" class="img-responsive center-block">
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<%= render 'modify' %>
+<%= render 'qr_code' %>
