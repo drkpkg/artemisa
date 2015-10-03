@@ -48,7 +48,7 @@
     group = $("#user-group-selector").val()
     state = $("#user-state").bootstrapSwitch('state')
     url = 'modify'
-    data = {id: id, password: password, email: email, group: group, state: state}
+    data = {id: id, username: username, password: password, email: email, group: group, state: state}
     post(url, data)
 
 

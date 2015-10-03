@@ -1,7 +1,6 @@
 <div class="col-md-4 center">
   <h3>Registro de nuevo producto</h3>
   <%= form_for :asset, url: 'create', html: {class: 'new-form'} do |f| %>
-
       <div class="input-group">
         <span class="input-group-addon">Nombre del producto</span>
         <%= f.text_field :asset_name, :class => "form-control" %>

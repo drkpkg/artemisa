@@ -19,7 +19,7 @@ class AssetController < ApplicationController
   end
 
   def create
-    if params[:asset][:asset_name]!='' || params[:asset][:asset_category] || params[:asset][:activo_precio_compra]
+    if params[:asset][:asset_name]!='' || params[:asset][:asset_price_buy]!='' || params[:asset][:asset_price_sell]!=''
       @asset = Asset.new()
       @asset.asset_name = params[:asset][:asset_name]
       @asset.asset_description = params[:asset][:asset_description]
@@ -33,7 +33,7 @@ class AssetController < ApplicationController
         redirect_to '/assets/new'
       end
     else
-      redirect_to '/assets/new'
+      redirect_to '/assets/new', notice: "dsadadas"
     end
   end
 

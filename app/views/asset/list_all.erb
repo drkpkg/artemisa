@@ -9,11 +9,10 @@
       </div>
     </div>
     <br>
-    <%= render 'general/search' %>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Activos fijos</div>
-
+      <div class="panel-heading">Inventario</div>
+      <%= render 'general/search' %>
       <table id="table" class="table">
         <thead>
         <tr>
@@ -26,7 +25,7 @@
         </thead>
         <tbody>
         <% @asset.each do |actual_index| %>
-            <tr>
+            <tr class="focus">
               <td id="actual-name-<%= actual_index.id %>"><%= actual_index.asset_name %></td>
               <td id="actual-desc-<%= actual_index.id %>"><%= actual_index.asset_description %></td>
               <td id="actual-price-buy-<%= actual_index.id %>"><%= actual_index.asset_price_buy %></td>

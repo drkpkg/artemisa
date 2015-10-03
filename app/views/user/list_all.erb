@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="col-md-9 row">
-    <%= render 'general/search' %>
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">
         <label>Nómina de usuarios</label>
-        <button type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Nuevo usuario" onclick="newUser()">
+        <%= render 'general/search' %>
+        <a type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Nuevo usuario" onclick="newUser()">
           <i class="fa fa-user-plus"></i>
-        </button>
+        </a>
       </div>
       <div class="panel-body">
         <table id="table" class="table">

@@ -102,7 +102,7 @@ function deleteObject(url, data){
         function(){
             setTimeout(function(){
                 post(url, data);
-            }, 2000);
+            }, 1000);
         });
 }
 

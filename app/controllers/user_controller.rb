@@ -47,8 +47,8 @@ class UserController < ApplicationController
   def modify
     user = User.find_by(id: params[:id])
     param_list = Hash.new
-    param_list[:username] = params[:username] if params[:password] != ''
-    param_list[:password_digest] = params[:password] if params[:password] != ''
+    param_list[:username] = params[:username] if params[:username] != ''
+    param_list[:password_digest] = Password.create(params[:password]) if params[:password] != ''
     param_list[:email] = params[:email] if params[:email] != ''
     param_list[:group_id] = params[:group] if params[:group] != ''
     param_list[:state] = params[:state] if params[:state] != ''
