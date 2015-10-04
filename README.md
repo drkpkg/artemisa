@@ -6,12 +6,14 @@ INSTRUCTIONS:
 
  - Download the code
  - Create a .env file. See the .env example
+ - Change branch to development
+    - git checkout development
  - Run bundle install
  - Run rake
     - rake db:create db:migrate db:setup
     In some rails versions is:
     - rake db:setup
- -rails s
+ - rails s
 
 If you want contribute with code, ideas or feedback will be awesome. I'm not a rails senior but i'm trying to do my best work :)
 
@@ -22,5 +24,7 @@ TODO:
  - Uploading files
  - Setup configuration page
  - Animal refuge mode
+ - Initial setup configuration
+ - Tests
 
-I will adding more things in the list if I have an idea.
+I will adding more things in the list if I have an idea. Trello public dashboard soon.
