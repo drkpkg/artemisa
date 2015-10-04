@@ -36,3 +36,4 @@ bower.json
 
 .idea/
 .env
+db/schema.rb

@@ -8,33 +8,29 @@ Rails.application.routes.draw do
   post 'auth_user' => 'user#auth_user'
 
   #users
-  scope 'user' do
-    get 'list_all' => 'user#list_all'
+  scope 'users' do
+    get '/' => 'user#list_all'
     post 'create' => 'user#create'
     post 'delete' => 'user#delete'
     post 'modify' => 'user#modify'
   end
 
   #Assets
-  scope 'assets' do
-    get 'list_all' => 'asset#list_all'
-    get 'new' => 'asset#new'
-    get ':id/edit' => 'asset#edit'
-    post 'create' => 'asset#create'
-    post 'modify' => 'asset#modify'
-    post 'delete' => 'asset#delete'
+  scope 'products' do
+    get '/' => 'product#list_all'
+    get 'new' => 'product#new'
+    get ':id/edit' => 'product#edit'
+    post 'create' => 'product#create'
+    post 'modify' => 'product#modify'
+    post 'delete' => 'product#delete'
   end
-  #Assets Types
-  get 'types/list_all' => 'asset_type#list_all'
-  post 'types/create' => 'asset_type#create'
-  post 'types/delete' => 'asset_type#delete'
-  post 'types/modify' => 'asset_type#modify'
-
-  #Assets Categories
-  get 'categories/list_all' => 'asset_category#list_all'
-  post 'categories/create' => 'asset_category#create'
-  post 'categories/delete' => 'asset_category#delete'
-  post 'categories/modify' => 'asset_category#modify'
+  #Product Types
+  scope 'product_types' do
+    get '/' => 'product_type#list_all'
+    post 'create' => 'product_type#create'
+    post 'delete' => 'product_type#delete'
+    post 'modify' => 'product_type#modify'
+  end
 
   #Employee
   get 'employees/list_all' => 'employee#list_all'
@@ -43,13 +39,14 @@ Rails.application.routes.draw do
   post 'employees/modify' => 'employee#modify'
 
   #History of users
-  get 'histories/list_all' => 'history#list_all'
+  get '/logs' => 'history#list_all'
 
   #groups
-  post 'groups/create' => 'group#create'
-  post 'groups/modify' => 'group#modify'
-  post 'groups/delete' => 'group#delete'
-
+  scope 'groups' do
+    post 'create' => 'group#create'
+    post 'modify' => 'group#modify'
+    post 'delete' => 'group#delete'
+  end
   #People
   scope 'people/' do
     post 'create' => 'person#create'

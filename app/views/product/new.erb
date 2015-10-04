@@ -1,17 +1,17 @@
 <div class="col-md-4 center">
   <h3>Registro de nuevo producto</h3>
-  <%= form_for :asset, url: 'create', html: {class: 'new-form'} do |f| %>
+  <%= form_for :product, url: 'create', html: {class: 'new-form'} do |f| %>
       <div class="input-group">
         <span class="input-group-addon">Nombre del producto</span>
-        <%= f.text_field :asset_name, :class => "form-control" %>
+        <%= f.text_field :product_name, :class => "form-control" %>
       </div>
       <br>
       <div class="input-group">
         <span class="input-group-addon">Descripción</span>
-        <%= f.text_area :asset_description, :class => "form-control" %>
+        <%= f.text_area :product_description, :class => "form-control" %>
       </div>
       <br>
-      <% if AssetCategory.all.empty? %>
+      <% if ProductType.all.empty? %>
           <div class="input-group">
             <div class="thumbnail">
               No existe ningún tipo listado dentro de la aplicación, por favor <a href="/categories/list_all">crea el tipo antes</a> antes de agregar el este activo fijo.
@@ -20,21 +20,21 @@
       <% else %>
           <div class="input-group">
             <span class="input-group-addon">Tipo</span>
-            <%= f.select :asset_category, {},{},{class: "form-control"} do %>
-                <% AssetCategory.all.each do |index| %>
-                    <%= content_tag(:option, index.asset_category_description, value: index.id) %>
+            <%= f.select :product_type, {},{},{class: "form-control"} do %>
+                <% ProductType.all.each do |index| %>
+                    <%= content_tag(:option, index.product_type_description, value: index.id) %>
                 <% end %>
             <% end %>
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Precio de compra (Bs)</span>
-            <%= f.text_field :asset_price_buy, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+            <%= f.text_field :product_price_buy, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Precio de venta (Bs)</span>
-            <%= f.text_field :asset_price_sell, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+            <%= f.text_field :product_price_sell, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
           </div>
           <br>
           <div class="btn-group pull-right">

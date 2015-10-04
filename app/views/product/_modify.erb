@@ -9,22 +9,31 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-addon">Nombre</span>
-            <input id="asset-name" class="form-control" type="text">
+            <input id="product-name" class="form-control" type="text">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Descripción</span>
-            <textarea id="asset-desc" class="form-control" type="area"></textarea>
+            <textarea id="product-desc" class="form-control" type="area"></textarea>
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Precio de compra</span>
-            <input type="text" id="asset-price-buy" class="form-control" onkeypress="return onlyNumbers(event)">
+            <input type="text" id="product-price-buy" class="form-control" onkeypress="return onlyNumbers(event)">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Precio de venta</span>
-            <input type="text" id="asset-price-sell" class="form-control" onkeypress="return onlyNumbers(event)">
+            <input type="text" id="product-price-sell" class="form-control" onkeypress="return onlyNumbers(event)">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Tipo de producto</span>
+            <select id="product-category" class="form-control">
+              <% ProductType.all.each do |type| %>
+                <option value="<%= type.id %>"><%= type.product_type_description %></option>
+              <% end %>
+            </select>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
   <div class="col-md-12 row">
     <div class="container">
       <div class="btn-group">
-        <a type="button" class="btn btn-success" id="btn-category" onclick="newCategory()">
+        <a type="button" class="btn btn-success" id="btn-category" onclick="newProductType()">
           <i class="fa fa-plus"></i>
           Agregar categoría
         </a>
@@ -21,17 +21,17 @@
         </tr>
         </thead>
         <tbody>
-        <% @categories.each do |category_index| %>
+        <% @product_types.each do |category_index| %>
             <tr class="focus">
               <td>
-                <%= category_index.asset_category_description %>
+                <%= category_index.product_type_description %>
               </td>
               <td>
                 <div class="btn-group">
-                  <a href="#" id="btn-modify-<%= category_index.id %>" onclick="modifyCategory('<%= category_index.id %>')">
+                  <a href="#" id="btn-modify-<%= category_index.id %>" onclick="modifyProductType('<%= category_index.id %>')">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <a href="#" id="btn-delete-<%= category_index.id %>" onclick="deleteCategory('<%= category_index.id %>')">
+                  <a href="#" id="btn-delete-<%= category_index.id %>" onclick="deleteProductType('<%= category_index.id %>')">
                     <i class="fa fa-minus-square"></i>
                   </a>
                 </div>

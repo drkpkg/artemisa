@@ -1,14 +1,9 @@
-class AssetCategoryController < ApplicationController
+class ProductTypeController < ApplicationController
   def list_all
     if !(cookies[:user_name] && cookies[:type])
       redirect_to root_path
     else
-      @categories = AssetCategory.all
-      respond_to do |format|
-        format.html
-        format.csv {render text: @categories.to_csv}
-        format.xls {render text: @categories.to_csv(col_sep: "\t")}
-      end
+      @product_types = ProductType.all
     end
   end
 
@@ -19,11 +14,11 @@ class AssetCategoryController < ApplicationController
         format.json  { render :json => msg }
       end
     else
-      category = AssetCategory.new
-      category.asset_category_description = params[:description]
+      category = ProductType.new
+      category.product_type_description = params[:description]
       if category.save
         respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Categoría agregada satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+          msg = { :status => "200", title: 'En hora buena', description: 'Categoría agregada satisfactoriamente', type: 'success', redirect_page: '/product_types/'}
           format.json  { render :json => msg }
         end
       else
@@ -42,10 +37,10 @@ class AssetCategoryController < ApplicationController
         format.json  { render :json => msg }
       end
     else
-      category = AssetCategory.find_by(id: params[:id])
-      if category.update(asset_category_description: params[:newdescription])
+      category = ProductType.find_by(id: params[:id])
+      if category.update(product_type_description: params[:newdescription])
         respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Categoría modificada satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+          msg = { :status => "200", title: 'En hora buena', description: 'Categoría modificada satisfactoriamente', type: 'success', redirect_page: '/product_types/'}
           format.json  { render :json => msg }
         end
       else
@@ -58,11 +53,11 @@ class AssetCategoryController < ApplicationController
   end
 
   def delete
-    category = AssetCategory.find_by(id: params[:id])
-    if category.delete
-      Asset.update_asset_category_index(params[:id])
+    product_type = ProductType.find_by(id: params[:id])
+    if product_type.delete
+      Product.where(category_id: params[:id]).update_all(category_id: 0)
       respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Categoría eliminada satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+        msg = { :status => "200", title: 'En hora buena', description: 'Categoría eliminada satisfactoriamente', type: 'success', redirect_page: '/product_types/'}
         format.json  { render :json => msg }
       end
     else

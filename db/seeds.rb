@@ -7,16 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'bcrypt'
 
-#Asset Categories
-asset_categories = ["Medicamentos",
-                    "Higiene",
-                    "Alimentacion",
-                    "Vestimenta",
-                    "Accesorios"]
-asset_categories.each do |item|
-  AssetCategory.create(asset_category_description: item)
-end
-
 #User Groups
 user_groups = ["Administrador",
                "Cliente",
@@ -66,6 +56,16 @@ group_templates = [
 ]
 group_templates.each do |index, group, write, modify, read, delete|
   Grouptemplate.create(templates_id: index, groups_id: group, permission_write: write, permission_modify: modify, permission_read: read, permission_delete: delete)
+end
+
+#Product Types
+product_types = ["Medicamentos",
+                 "Higiene",
+                 "Alimentacion",
+                 "Vestimenta",
+                 "Accesorios"]
+product_types.each do |item|
+  ProductType.create(product_type_description: item)
 end
 
 #People
