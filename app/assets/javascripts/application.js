@@ -20,9 +20,9 @@
 //= require_tree .
 
 $(document).ready(function(){
+    $('[name="checkbox"]').bootstrapSwitch();
     $('[data-toggle="tooltip"]').tooltip();
     $.fn.bootstrapSwitch.defaults.size = 'small';
-    $('[name="checkbox"]').bootstrapSwitch();
 });
 
 function redirectTo(data) {
