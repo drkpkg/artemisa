@@ -6,6 +6,8 @@ INSTRUCTIONS:
 
     Download the code
         git clone https://github.com/drkpkg/artemisa.git
+    Change branch to development
+        git checkout development
     Create a .env file. See the .env example
     Run bundle install
     Run migrations and seeds
