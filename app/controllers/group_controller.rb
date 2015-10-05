@@ -16,7 +16,7 @@ class GroupController < ApplicationController
         group.group_name = params[:group_name]
         if group.save()
           respond_to do |format|
-            msg = { :status => "200", title: 'En hora buena', description: 'Grupo creado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+            msg = { :status => "200", title: 'En hora buena', description: 'Grupo creado satisfactoriamente', type: 'success', redirect_page: ''}
             format.json  { render :json => msg }
           end
         else
@@ -40,7 +40,7 @@ class GroupController < ApplicationController
       param_hash = {group_name: params[:group_name]}
       if group.update(param_hash)
         respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Grupo modificado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+          msg = { :status => "200", title: 'En hora buena', description: 'Grupo modificado satisfactoriamente', type: 'success', redirect_page: ''}
           format.json  { render :json => msg }
         end
       else
@@ -57,7 +57,7 @@ class GroupController < ApplicationController
     if (group.delete)
       User.update_group_index(params[:id])
       respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'grupo eliminado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+        msg = { :status => "200", title: 'En hora buena', description: 'grupo eliminado satisfactoriamente', type: 'success', redirect_page: ''}
         format.json  { render :json => msg }
       end
     else

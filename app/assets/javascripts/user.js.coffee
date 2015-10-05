@@ -5,7 +5,7 @@
 @saveAdmin = ->
   password = $("#password-text").val()
   password_repeat = $("#password-text-again").val()
-  url = 'user/create'
+  url = '/users/create'
   password = $("#password-text").val()
   data = {username: 'admin', password: password, password_repeat: password_repeat, type: 1}
   post(url, data)
@@ -19,12 +19,12 @@
   direction = $('#newuser-direction').val()
   email = $('#newuser-email').val()
   user_id = $('#newuser-group-selector').val()
-  url = 'create/'
+  url = '/users/create/'
   data = {username: username, password: password, password_repeat: password, type: user_id, name: name,flastname: flastname, mlastname: mlastname, email: email, direction: direction}
   post(url, data)
 
 @deleteUser = (id) ->
-  url = 'delete/'
+  url = '/users/delete/'
   data = {id: id}
   deleteObject(url, data)
 
@@ -47,7 +47,7 @@
     email = $("#user-email").val()
     group = $("#user-group-selector").val()
     state = $("#user-state").bootstrapSwitch('state')
-    url = 'modify'
+    url = '/users/modify'
     data = {id: id, username: username, password: password, email: email, group: group, state: state}
     post(url, data)
 

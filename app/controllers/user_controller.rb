@@ -30,7 +30,7 @@ class UserController < ApplicationController
 
           if user.save
             respond_to do |format|
-              msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: '/users'}
+              msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: ''}
               format.json  { render :json => msg }
             end
           else
@@ -55,7 +55,7 @@ class UserController < ApplicationController
 
     if user.update(param_list)
       respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: '/users'}
+        msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: ''}
         format.json  { render :json => msg }
       end
     else
