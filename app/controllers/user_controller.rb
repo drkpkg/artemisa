@@ -30,7 +30,7 @@ class UserController < ApplicationController
 
           if user.save
             respond_to do |format|
-              msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+              msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: '/users'}
               format.json  { render :json => msg }
             end
           else
@@ -55,7 +55,7 @@ class UserController < ApplicationController
 
     if user.update(param_list)
       respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+        msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: '/users'}
         format.json  { render :json => msg }
       end
     else
@@ -70,7 +70,7 @@ class UserController < ApplicationController
     user = User.find_by(id: params[:id])
     if user.delete
       respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Usuario eliminado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+        msg = { :status => "200", title: 'En hora buena', description: 'Usuario eliminado satisfactoriamente', type: 'success', redirect_page: '/users'}
         format.json  { render :json => msg }
       end
     else
@@ -113,6 +113,4 @@ class UserController < ApplicationController
       end
     end
   end
-
-
 end
