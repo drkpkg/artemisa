@@ -8,29 +8,24 @@ Rails.application.routes.draw do
   post 'auth_user' => 'user#auth_user'
 
   #users
-  scope 'users' do
-    get '/' => 'user#list_all'
-    post 'create' => 'user#create'
-    post 'delete' => 'user#delete'
-    post 'modify' => 'user#modify'
-  end
+  get 'users/' => 'user#list_all'
+  post 'users/create' => 'user#create'
+  post 'users/delete' => 'user#delete'
+  post 'users/modify' => 'user#modify'
 
-  #Assets
-  scope 'products' do
-    get '/' => 'product#list_all'
-    get 'new' => 'product#new'
-    get ':id/edit' => 'product#edit'
-    post 'create' => 'product#create'
-    post 'modify' => 'product#modify'
-    post 'delete' => 'product#delete'
-  end
+  #Products
+  get 'products/' => 'product#list_all'
+  get 'products/new' => 'product#new'
+  get 'products/:id/edit' => 'product#edit'
+  post 'products/create' => 'product#create'
+  post 'products/modify' => 'product#modify'
+  post 'products/delete' => 'product#delete'
+
   #Product Types
-  scope 'product_types' do
-    get '/' => 'product_type#list_all'
-    post 'create' => 'product_type#create'
-    post 'delete' => 'product_type#delete'
-    post 'modify' => 'product_type#modify'
-  end
+  get 'product_types/' => 'product_type#list_all'
+  post 'product_types/create' => 'product_type#create'
+  post 'product_types/delete' => 'product_type#delete'
+  post 'product_types/modify' => 'product_type#modify'
 
   #Employee
   get 'employees/list_all' => 'employee#list_all'
@@ -42,26 +37,27 @@ Rails.application.routes.draw do
   get '/logs' => 'history#list_all'
 
   #groups
-  scope 'groups' do
-    post 'create' => 'group#create'
-    post 'modify' => 'group#modify'
-    post 'delete' => 'group#delete'
-  end
-  #People
-  scope 'people/' do
-    post 'create' => 'person#create'
-    post 'modify' => 'person#modify'
-    post 'delete' => 'person#delete'
-    get 'info/:username' => 'person#info'
-    get 'selection' => 'person#selection'
+  post 'groups/create' => 'group#create'
+  post 'groups/modify' => 'group#modify'
+  post 'groups/delete' => 'group#delete'
 
-    scope 'clients' do
-      get 'list_all' => 'person#list_all'
-      get 'new' => 'person#new'
-    end
-    scope 'employees' do
-      get 'list_all' => 'person#list_all'
-      get 'new' => 'person#new'
-    end
-  end
+  #People General
+  post 'people/create' => 'person#create'
+  post 'people/modify' => 'person#modify'
+  post 'people/delete' => 'person#delete'
+  get 'people/info/:username' => 'person#info'
+  get 'people/selection' => 'person#selection'
+
+  #Clients
+  get 'clients/list_all' => 'person#list_all'
+  get 'clients/new' => 'person#new'
+  get 'employees/list_all' => 'person#list_all'
+  get 'employees/new' => 'person#new'
+
+  #Artemisa API for mobile NOT IMPLEMENTED YET
+  #scope 'hermes' do
+  #  scope 'v1' do
+  #    get 'version' => 'hermes#version'
+  #  end
+  #end
 end
