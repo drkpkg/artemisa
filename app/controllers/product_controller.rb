@@ -18,7 +18,7 @@ class ProductController < ApplicationController
       product = Product.new()
       product.product_name = params[:product][:product_name]
       product.product_description = params[:product][:product_description]
-      product.category_id = params[:product][:product_type]
+      product.product_type_id = params[:product][:product_type]
       product.product_price_buy = params[:product][:product_price_buy]
       product.product_price_sell = params[:product][:product_price_sell]
 
