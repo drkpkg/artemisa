@@ -1,6 +1,6 @@
 <div class="col-md-4 center">
   <h3>Registro de nuevo producto</h3>
-  <%= form_for :product, url: 'create', html: {class: 'new-form'} do |f| %>
+  <%= form_for :product, url: '/products/create', html: {class: 'new-form'} do |f| %>
       <div class="input-group">
         <span class="input-group-addon">Nombre del producto</span>
         <%= f.text_field :product_name, :class => "form-control" %>
