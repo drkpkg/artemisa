@@ -6,17 +6,24 @@ class GroupController < ApplicationController
         format.json  { render :json => msg }
       end
     else
-      group = Group.new
-      group.group_name = params[:group_name]
-      if group.save()
+      if(Group.exists?(group_name: params[:group_name]))
         respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Grupo creado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+          msg = { :status => "400", title: 'Error', description: 'El grupo ya existe', type: 'error', redirect_page: ''}
           format.json  { render :json => msg }
         end
       else
-        respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: 'Error al crear grupo, por favor intente de nuevo.', type: 'error', redirect_page: ''}
-          format.json  { render :json => msg }
+        group = Group.new
+        group.group_name = params[:group_name]
+        if group.save()
+          respond_to do |format|
+            msg = { :status => "200", title: 'En hora buena', description: 'Grupo creado satisfactoriamente', type: 'success', redirect_page: 'list_all'}
+            format.json  { render :json => msg }
+          end
+        else
+          respond_to do |format|
+            msg = { :status => "400", title: 'Error', description: 'El grupo ya existe.', type: 'error', redirect_page: ''}
+            format.json  { render :json => msg }
+          end
         end
       end
     end
