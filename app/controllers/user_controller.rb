@@ -82,26 +82,32 @@ class UserController < ApplicationController
   def auth_user
     if !(cookies[:user_name] && cookies[:type])
       user = User.find_by(username: params[:username])
-
-      if !user.blank? && Password.new(user.password_digest) == params[:password]
-        cookies[:user_name] = user.username
-        cookies[:user_id] = user.id
-        cookies[:type] = user.group_id
-
+      if user.state == false
         respond_to do |format|
-          msg = { :status => "200", redirect_page: 'dashboard'}
+          msg = { :status => "400", title: 'Error', description: 'Usuario no habilitado para inicio de sesión', type: 'error', redirect_page: ''}
           format.json  { render :json => msg }
         end
       else
-        if params[:username] == '' || params[:password] == ''
+        if !user.blank? && Password.new(user.password_digest) == params[:password]
+          cookies[:user_name] = user.username
+          cookies[:user_id] = user.id
+          cookies[:type] = user.group_id
+
           respond_to do |format|
-            msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
+            msg = { :status => "200", redirect_page: 'dashboard'}
             format.json  { render :json => msg }
           end
         else
-          respond_to do |format|
-            msg = { :status => "400", title: 'Error', description: 'Usuario o contraseña inválidos', type: 'error', redirect_page: ''}
-            format.json  { render :json => msg }
+          if params[:username] == '' || params[:password] == ''
+            respond_to do |format|
+              msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
+              format.json  { render :json => msg }
+            end
+          else
+            respond_to do |format|
+              msg = { :status => "400", title: 'Error', description: 'Usuario o contraseña inválidos', type: 'error', redirect_page: ''}
+              format.json  { render :json => msg }
+            end
           end
         end
       end
