@@ -4,44 +4,38 @@ class UserController < ApplicationController
   include BCrypt
 
   def create
-    if params[:username] == '' || params[:password] == '' || params[:password_repeat] == '' || params[:email] == ''
+
+    if params[:password] != params[:password_repeat]
       respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
+        msg = { :status => "400", title: 'Error', description: 'Contraseñas no coinciden', type: 'error', redirect_page: ''}
         format.json  { render :json => msg }
       end
     else
-      if !User.find_by(username: params[:username]).blank?
+      user = User.new
+      user.username = params[:username]
+      user.password_digest = Password.create(params[:password])
+      user.email = params[:email]
+      user.state = params[:state]
+
+      if user.valid?
+        user.save
         respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: 'El usuario ya existe', type: 'error', redirect_page: ''}
+          msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: ''}
           format.json  { render :json => msg }
         end
       else
-        if params[:password] != params[:password_repeat]
-          respond_to do |format|
-            msg = { :status => "400", title: 'Error', description: 'Contraseñas no coinciden', type: 'error', redirect_page: ''}
-            format.json  { render :json => msg }
-          end
-        else
-          user = User.new
-          user.username = params[:username]
-          user.password_digest = Password.create(params[:password])
-          user.email = params[:email]
-          user.state = params[:state]
-
-          if user.save
-            respond_to do |format|
-              msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: ''}
-              format.json  { render :json => msg }
-            end
-          else
-            respond_to do |format|
-              msg = { :status => "400", title: 'Error', description: 'Error al crear usuario', type: 'error', redirect_page: ''}
-              format.json  { render :json => msg }
-            end
-          end
+        description = ''
+        user.errors.messages.each do |actual|
+          description = actual[1].to_s.gsub!('["','').gsub!('"]','') + "\n"
+          break
+        end
+        respond_to do |format|
+          msg = { :status => "400", title: 'Error', description: description, type: 'error', redirect_page: ''}
+          format.json  { render :json => msg }
         end
       end
     end
+
   end
 
   def modify
