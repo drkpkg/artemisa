@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   #General validations
   validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message:  " Formato de email incorrecto "}
-  validates :password_digest, length: {minimum: 5, message: " La contraseña tiene que tener más de 5 caracteres "}
+  #validates_length_of :password_digest, format: {lenght:, message: " La contraseña tiene que tener más de 5 caracteres "}
 
   def self.update_group_index(group_id)
     User.where(group_id: group_id).update_all(group_id: 0)

@@ -40,4 +40,18 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def get_errors(object_controller)
+    object_controller.errors.messages.each do |actual|
+      return actual[1].to_s.gsub!('["','').gsub!('"]','') + "\n"
+      break
+    end
+  end
+
+  def respond(status, title, description, type, redirect_page)
+    respond_to do |format|
+      msg = {status: status, title: title, description: description, type: type, redirect_page: redirect_page}
+      format.json { render :json => msg }
+    end
+  end
+
 end

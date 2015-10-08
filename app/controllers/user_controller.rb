@@ -4,12 +4,8 @@ class UserController < ApplicationController
   include BCrypt
 
   def create
-
     if params[:password] != params[:password_repeat]
-      respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Contraseñas no coinciden', type: 'error', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+      respond('400','Error','Contraseñas no coinciden','error','')
     else
       user = User.new
       user.username = params[:username]
@@ -19,23 +15,12 @@ class UserController < ApplicationController
 
       if user.valid?
         user.save
-        respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Usuario creado satisfactoriamente', type: 'success', redirect_page: ''}
-          format.json  { render :json => msg }
-        end
+        respond('200', 'En hora buena', 'Usuario creado satisfactoriamente', 'success', '')
       else
-        description = ''
-        user.errors.messages.each do |actual|
-          description = actual[1].to_s.gsub!('["','').gsub!('"]','') + "\n"
-          break
-        end
-        respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: description, type: 'error', redirect_page: ''}
-          format.json  { render :json => msg }
-        end
+        description = get_errors(user)
+        respond('400', 'Error', description, 'error', '')
       end
     end
-
   end
 
   def modify
@@ -48,30 +33,19 @@ class UserController < ApplicationController
     param_list[:state] = params[:state] if params[:state] != ''
 
     if user.update(param_list)
-      respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Usuario modificado satisfactoriamente', type: 'success', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+      respond('200', 'En hora buena', 'Usuario modificado satisfactoriamente', 'success', '')
     else
-      respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Sucedió un error al modificar el usuario', type: 'error', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+      description = get_errors(user)
+      respond('400', 'Error', description, 'error', '')
     end
   end
 
   def delete
     user = User.find_by(id: params[:id])
     if user.delete
-      respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Usuario eliminado satisfactoriamente', type: 'success', redirect_page: '/users'}
-        format.json  { render :json => msg }
-      end
+      respond('200', 'En hora buena', 'Usuario eliminado satisfactoriamente', 'success', '/users')
     else
-      respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Sucedió un error al eliminar el usuario', type: 'error', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+      respond('400', 'Error', 'Sucedió un error al eliminar el usuario', 'error', '')
     end
   end
 
@@ -83,31 +57,18 @@ class UserController < ApplicationController
     if !(cookies[:user_name] && cookies[:type])
       user = User.find_by(username: params[:username])
       if user.state == false
-        respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: 'Usuario no habilitado para inicio de sesión', type: 'error', redirect_page: ''}
-          format.json  { render :json => msg }
-        end
+        respond('400', 'Error', 'Usuario no habilitado para inicio de sesión', 'error', '')
       else
         if !user.blank? && Password.new(user.password_digest) == params[:password]
           cookies[:user_name] = user.username
           cookies[:user_id] = user.id
           cookies[:type] = user.group_id
-
-          respond_to do |format|
-            msg = { :status => "200", redirect_page: 'dashboard'}
-            format.json  { render :json => msg }
-          end
+          respond('200','','','','dashboard')
         else
           if params[:username] == '' || params[:password] == ''
-            respond_to do |format|
-              msg = { :status => "400", title: 'Error', description: 'Por favor rellene los campos los campos vacíos', type: 'error', redirect_page: ''}
-              format.json  { render :json => msg }
-            end
+            respond('200', 'Error', 'Por favor rellene los campos los campos vacíos', 'error', '')
           else
-            respond_to do |format|
-              msg = { :status => "400", title: 'Error', description: 'Usuario o contraseña inválidos', type: 'error', redirect_page: ''}
-              format.json  { render :json => msg }
-            end
+            respond('400', 'Error', 'Usuario o contraseña inválidos', 'error', '')
           end
         end
       end

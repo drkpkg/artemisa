@@ -8,63 +8,34 @@ class ProductTypeController < ApplicationController
   end
 
   def create
-    if params[:description] == ''
-      respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Campo en blanco', type: 'error', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+    category = ProductType.new
+    category.product_type_description = params[:description]
+    if category.valid?
+      category.save
+      respond('200', 'En hora buena', 'Categoría agregada satisfactoriamente', 'success', '/product_types/')
     else
-      category = ProductType.new
-      category.product_type_description = params[:description]
-      if category.save
-        respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Categoría agregada satisfactoriamente', type: 'success', redirect_page: '/product_types/'}
-          format.json  { render :json => msg }
-        end
-      else
-        respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: 'Error al crear categoría', type: 'error', redirect_page: ''}
-          format.json  { render :json => msg }
-        end
-      end
+      description = get_errors(category)
+      respond('400', 'Error', description, 'error', '')
     end
   end
 
   def modify
-    if params[:newdescription] == ''
-      respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Campo en blanco', type: 'error', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+    category = ProductType.find_by(id: params[:id])
+    if category.update(product_type_description: params[:newdescription])
+      respond('200', 'En hora buena', 'Categoría modificada satisfactoriamente', 'success', '/product_types/')
     else
-      category = ProductType.find_by(id: params[:id])
-      if category.update(product_type_description: params[:newdescription])
-        respond_to do |format|
-          msg = { :status => "200", title: 'En hora buena', description: 'Categoría modificada satisfactoriamente', type: 'success', redirect_page: '/product_types/'}
-          format.json  { render :json => msg }
-        end
-      else
-        respond_to do |format|
-          msg = { :status => "400", title: 'Error', description: 'Error al modificar categoría', type: 'error', redirect_page: ''}
-          format.json  { render :json => msg }
-        end
-      end
+      description = get_errors(category)
+      respond('400', 'Error', description, 'error', '')
     end
   end
 
   def delete
     product_type = ProductType.find_by(id: params[:id])
     if product_type.delete
-      Product.where(category_id: params[:id]).update_all(category_id: 0)
-      respond_to do |format|
-        msg = { :status => "200", title: 'En hora buena', description: 'Categoría eliminada satisfactoriamente', type: 'success', redirect_page: '/product_types/'}
-        format.json  { render :json => msg }
-      end
+      Product.where(product_type_id: params[:id]).update_all(product_type_id: 0)
+      respond('200', 'En hora buena', 'Categoría eliminada satisfactoriamente', 'success', '/product_types/')
     else
-      respond_to do |format|
-        msg = { :status => "400", title: 'Error', description: 'Error al eliminar categoría', type: 'error', redirect_page: ''}
-        format.json  { render :json => msg }
-      end
+      respond('400', 'Error', 'Error al eliminar categoría', 'error', '')
     end
   end
 end
