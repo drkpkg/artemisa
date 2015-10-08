@@ -23,8 +23,9 @@ class ProductController < ApplicationController
 
     if product.valid?
       product.save()
-      redirect_to '/products/', flash: get_errors(product)
+      redirect_to '/products/'
     else
+      flash[:error] = get_errors(product)
       redirect_to '/products/new'
     end
   end
