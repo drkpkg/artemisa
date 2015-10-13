@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   post 'groups/modify' => 'group#modify'
   post 'groups/delete' => 'group#delete'
 
+  #Permissions per group
+  get 'groups/:name/permissions' => 'group_template#list_all'
+
   #People General
   post 'people/create' => 'person#create'
   post 'people/modify' => 'person#modify'

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <!--div class="container">
+      <div class="btn-group">
+        <a href="/permissions/new" class="btn btn-success">
+          <i class="fa fa-plus"></i>
+          Nuevo registro de inventario
+        </a>
+      </div>
+    </div-->
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Permisos de </div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Grupo</th>
+          <th>Template</th>
+          <th>Escritura</th>
+          <th>Modificación</th>
+          <th>Eliminar</th>
+          <th>Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @templates.each do |actual_index| %>
+            <tr class="focus">
+              <td id="<%= actual_index.id %>">
+
+              </td>
+              <td id="<%= actual_index.id %>">
+                <%= actual_index.templates_id %>
+              </td>
+              <td id="<%= actual_index.id %>">
+                <% if actual_index.permission_write %>
+                    <input type="checkbox" checked>
+                <% else %>
+                    <input type="checkbox">
+                <% end %>
+              </td>
+              <td id="<%= actual_index.id %>">
+                <% if actual_index.permission_modify %>
+                    <input type="checkbox" checked>
+                <% else %>
+                    <input type="checkbox">
+                <% end %>
+              </td>
+              <td id="<%= actual_index.id %>">
+                <% if actual_index.permission_delete %>
+                    <input type="checkbox" checked>
+                <% else %>
+                    <input type="checkbox">
+                <% end %>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" onclick="editProduct('<%= actual_index.id %>')" title="Editar activo fijo">
+                    <i class="fa fa-edit fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="deleteProduct('<%= actual_index.id %>')" title="Eliminar activo fijo">
+                    <i class="fa fa-close fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="showQR('<%= actual_index.id %>')" title="Generar codigo QR">
+                    <i class="fa fa-qrcode fa-2x"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

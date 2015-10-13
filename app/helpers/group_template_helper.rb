@@ -1,0 +1,2 @@
+module GroupTemplateHelper
+end

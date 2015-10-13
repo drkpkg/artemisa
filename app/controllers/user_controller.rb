@@ -63,7 +63,7 @@ class UserController < ApplicationController
           cookies[:user_name] = user.username
           cookies[:user_id] = user.id
           cookies[:type] = user.group_id
-          respond('200','','','','dashboard')
+          respond('200','Ingresando','Espere mientras se accede al sistema','','dashboard')
         else
           if params[:username] == '' || params[:password] == ''
             respond('200', 'Error', 'Por favor rellene los campos los campos vacíos', 'error', '')
