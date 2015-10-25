@@ -5,27 +5,27 @@ Rails.application.routes.draw do
   #General
   get 'dashboard' => 'application#dashboard'
   get 'logout' => 'application#logout'
-  post 'auth_user' => 'user#auth_user'
+  post 'auth_user' => 'usuario#auth_user'
 
   #users
-  get 'users/' => 'user#list_all'
-  post 'users/create' => 'user#create'
-  post 'users/delete' => 'user#delete'
-  post 'users/modify' => 'user#modify'
+  get 'users/' => 'usuario#list_all'
+  post 'users/create' => 'usuario#create'
+  post 'users/delete' => 'usuario#delete'
+  post 'users/modify' => 'usuario#modify'
 
   #Products
-  get 'products/' => 'product#list_all'
-  get 'products/new' => 'product#new'
-  get 'products/:id/edit' => 'product#edit'
-  post 'products/create' => 'product#create'
-  post 'products/modify' => 'product#modify'
-  post 'products/delete' => 'product#delete'
+  get 'products/' => 'producto#list_all'
+  get 'products/new' => 'producto#new'
+  get 'products/:id/edit' => 'producto#edit'
+  post 'products/create' => 'producto#create'
+  post 'products/modify' => 'producto#modify'
+  post 'products/delete' => 'producto#delete'
 
   #Product Types
-  get 'product_types/' => 'product_type#list_all'
-  post 'product_types/create' => 'product_type#create'
-  post 'product_types/delete' => 'product_type#delete'
-  post 'product_types/modify' => 'product_type#modify'
+  get 'product_types/' => 'producto_tipo#list_all'
+  post 'product_types/create' => 'producto_tipo#create'
+  post 'product_types/delete' => 'producto_tipo#delete'
+  post 'product_types/modify' => 'producto_tipo#modify'
 
   #Employee
   get 'employees/list_all' => 'employee#list_all'
@@ -34,28 +34,28 @@ Rails.application.routes.draw do
   post 'employees/modify' => 'employee#modify'
 
   #History of users
-  get '/logs' => 'history#list_all'
+  get '/logs' => 'bitacora#list_all'
 
   #groups
-  post 'groups/create' => 'group#create'
-  post 'groups/modify' => 'group#modify'
-  post 'groups/delete' => 'group#delete'
+  post 'groups/create' => 'grupo#create'
+  post 'groups/modify' => 'grupo#modify'
+  post 'groups/delete' => 'grupo#delete'
 
-  #Permissions per group
+  #Permissions per grupo
   get 'groups/:name/permissions' => 'group_template#list_all'
 
   #People General
-  post 'people/create' => 'person#create'
-  post 'people/modify' => 'person#modify'
-  post 'people/delete' => 'person#delete'
-  get 'people/info/:username' => 'person#info'
-  get 'people/selection' => 'person#selection'
+  post 'people/create' => 'persona#create'
+  post 'people/modify' => 'persona#modify'
+  post 'people/delete' => 'persona#delete'
+  get 'people/info/:username' => 'persona#info'
+  get 'people/selection' => 'persona#selection'
 
   #Clients
-  get 'clients/list_all' => 'person#list_all'
-  get 'clients/new' => 'person#new'
-  get 'employees/list_all' => 'person#list_all'
-  get 'employees/new' => 'person#new'
+  get 'clients/list_all' => 'persona#list_all'
+  get 'clients/new' => 'persona#new'
+  get 'employees/list_all' => 'persona#list_all'
+  get 'employees/new' => 'persona#new'
 
   #Artemisa API for mobile NOT IMPLEMENTED YET
   #scope 'hermes' do

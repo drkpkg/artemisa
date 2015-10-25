@@ -20,7 +20,7 @@
   deleteObject(url, data)
 
 @newGroup = ->
-  $("#new-group-modal").modal('show')
+  $("#new-grupo-modal").modal('show')
 
 @editGroup = (id)->
-  $("#modify-user-modal").modal('show')
+  $("#modify-usuario-modal").modal('show')

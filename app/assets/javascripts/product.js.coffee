@@ -8,25 +8,25 @@ $(document).on 'page:change', ->
   ready()
 
 ready = ->
-  $("#product-name").val("")
-  $("#product-desc").text("")
+  $("#producto-name").val("")
+  $("#producto-desc").text("")
 
 @editProduct = (id) ->
-  $("#product-name").val($("#actual-name-" + id).text())
-  $("#product-desc").text($("#actual-desc-" + id).text())
-  $("#product-price-buy").val($("#actual-price-buy-" + id).text())
-  $("#product-price-sell").val($("#actual-price-sell-" + id).text())
+  $("#producto-name").val($("#actual-name-" + id).text())
+  $("#producto-desc").text($("#actual-desc-" + id).text())
+  $("#producto-price-buy").val($("#actual-price-buy-" + id).text())
+  $("#producto-price-sell").val($("#actual-price-sell-" + id).text())
   category = $("#actual-category-" + id).text().trim("")
-  $("#product-category option:contains("+category+")").val()
+  $("#producto-category option:contains("+category+")").val()
   $('#modify-modal').modal('show')
 
   $("#save-btn").on 'click', ->
     url = '/products/modify/'
-    name = $("#product-name").val()
-    description = $("#product-desc").val()
-    buy = $("#product-price-buy").val()
-    sell = $("#product-price-sell").val()
-    category = $("#product-category option:selected").val()
+    name = $("#producto-name").val()
+    description = $("#producto-desc").val()
+    buy = $("#producto-price-buy").val()
+    sell = $("#producto-price-sell").val()
+    category = $("#producto-category option:selected").val()
     data = {id: id, name: name, description: description, buy: buy, sell: sell, category: category}
     post(url, data)
     $("#modify-modal").modal('hide')
