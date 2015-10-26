@@ -19,7 +19,7 @@
               <td id="actual-name-<%= actual_index.id %>">
                 <% user = Usuario.find_by(id: actual_index.user_id) %>
                 <% if !user.blank? %>
-                    <%= user.username %>
+                    <%= user.nombre_usuario %>
                 <% else %>
                     Usuario desconocido
                 <% end %>

@@ -24,7 +24,7 @@
           <% @usuarios.each do |actual_index| %>
               <tr class="focus">
                 <td id="actual-identity-<%= actual_index.id %>">
-                  <%= actual_index.username %>
+                  <%= actual_index.nombre_usuario %>
                 </td>
                 <td id="actual-email-<%= actual_index.id %>">
                   <%= actual_index.email %>
@@ -45,9 +45,9 @@
                   <% end %>
                 </td>
                 <td>
-                  <% if actual_index.username != 'admin' %>
+                  <% if actual_index.nombre_usuario != 'admin' %>
                       <div class="btn-group">
-                        <a href="/people/info/<%= actual_index.username %>" data-toggle="tooltip" data-placement="top" title="Detalles">
+                        <a href="/people/info/<%= actual_index.nombre_usuario %>" data-toggle="tooltip" data-placement="top" title="Detalles">
                           <i class="fa fa-info fa-1x"></i>
                         </a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar" onclick="editUser('<%= actual_index.id %>')">

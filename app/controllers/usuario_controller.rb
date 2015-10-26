@@ -8,8 +8,8 @@ class UsuarioController < ApplicationController
       respond('400','Error','Contraseñas no coinciden','error','')
     else
       user = Usuario.new
-      user.username = params[:username]
-      user.password_digest = Password.create(params[:password])
+      user.nombre_usuario = params[:nombre_usuario]
+      user.clave = Password.create(params[:password])
       user.email = params[:email]
       user.state = params[:state]
 
@@ -26,8 +26,8 @@ class UsuarioController < ApplicationController
   def modify
     user = Usuario.find_by(id: params[:id])
     param_list = Hash.new
-    param_list[:username] = params[:username] if params[:username] != ''
-    param_list[:password_digest] = Password.create(params[:password]) if params[:password] != ''
+    param_list[:nombre_usuario] = params[:nombre_usuario] if params[:nombre_usuario] != ''
+    param_list[:clave] = Password.create(params[:password]) if params[:password] != ''
     param_list[:email] = params[:email] if params[:email] != ''
     param_list[:group_id] = params[:grupo] if params[:grupo] != ''
     param_list[:state] = params[:state] if params[:state] != ''
@@ -55,17 +55,17 @@ class UsuarioController < ApplicationController
 
   def auth_user
     if !(cookies[:user_name] && cookies[:type])
-      user = Usuario.find_by(username: params[:username])
+      user = Usuario.find_by(nombre_usuario: params[:nombre_usuario])
       if user.state == false
         respond('400', 'Error', 'Usuario no habilitado para inicio de sesión', 'error', '')
       else
-        if !user.blank? && Password.new(user.password_digest) == params[:password]
-          cookies[:user_name] = user.username
+        if !user.blank? && Password.new(user.clave) == params[:password]
+          cookies[:user_name] = user.nombre_usuario
           cookies[:user_id] = user.id
           cookies[:type] = user.group_id
           respond('200','Ingresando','Espere mientras se accede al sistema','','dashboard')
         else
-          if params[:username] == '' || params[:password] == ''
+          if params[:nombre_usuario] == '' || params[:password] == ''
             respond('200', 'Error', 'Por favor rellene los campos los campos vacíos', 'error', '')
           else
             respond('400', 'Error', 'Usuario o contraseña inválidos', 'error', '')
