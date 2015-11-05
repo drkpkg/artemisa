@@ -28,10 +28,10 @@ Rails.application.routes.draw do
   post 'product_types/modify' => 'producto_tipo#modify'
 
   #Employee
-  get 'employees/list_all' => 'employee#list_all'
-  post 'employees/create' => 'employee#create'
-  post 'employees/delete' => 'employee#delete'
-  post 'employees/modify' => 'employee#modify'
+  get 'employees/' => 'empleado#list_all'
+  post 'employees/create' => 'empleado#create'
+  post 'employees/delete' => 'empleado#delete'
+  post 'employees/modify' => 'empleado#modify'
 
   #History of users
   get '/logs' => 'bitacora#list_all'

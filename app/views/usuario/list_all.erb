@@ -14,8 +14,8 @@
           <thead>
           <tr>
             <th>Usuario</th>
+            <th>Estado</th>
             <th>Grupo</th>
-            <th>Estado actual</th>
             <th>Opciones</th>
           </tr>
           </thead>
@@ -25,14 +25,14 @@
                 <td id="actual-identity-<%= actual_index.id %>">
                   <%= actual_index.nombre_usuario %>
                 </td>
-                <td id="actual-group-<%= actual_index.id %>">
-                  <% group = Grupo.find_by(id: actual_index.grupo_id) %>
-                  <% if !group.blank? %>
-                      <%= group.group_name %>
-                  <% else %>
+                <!--td id="actual-group-<%= actual_index.id %>">
+                  <!% group = Grupo.find_by(id: actual_index.grupo_id) %>
+                  <!% if !group.blank? %>
+                      <!%= group.group_name %>
+                  <!% else %>
                       Sin grupo
-                  <% end %>
-                </td>
+                  <!% end %>
+                </td-->
                 <td id="actual-state-<%= actual_index.id %>">
                   <% if actual_index.state == true %>
                       Activo
@@ -63,7 +63,7 @@
     </div>
   </div>
 
-  <%= render partial: 'grupo/list_all' %>
+  <!--%= render partial: 'grupo/list_all' %-->
 </div>
 </div>
 
@@ -76,7 +76,7 @@
       </div>
       <div class="modal-body">
         <div class="modal-body">
-          <%= render partial: 'modify' %>
+          <!--%= render partial: 'modify' %-->
         </div>
       </div>
       <div class="modal-footer">
@@ -96,7 +96,7 @@
       </div>
       <div class="modal-body">
         <div class="modal-body">
-          <%= render partial: 'new' %>
+          <!--%= render partial: 'new' %-->
         </div>
       </div>
       <div class="modal-footer">
@@ -115,7 +115,7 @@
         <h4 class="modal-title">Nuevo grupo</h4>
       </div>
       <div class="modal-body">
-        <%= render partial: 'grupo/new' %>
+        <!--%= render partial: 'grupo/new' %-->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
