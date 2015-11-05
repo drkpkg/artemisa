@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
 
   def set_log_action
     if (cookies[:user_name] && cookies[:type])
-      actual_action = History.new
-      actual_action.user_id = cookies[:user_id]
+      actual_action = Bitacora.new
+      actual_action.usuario_id = cookies[:user_id]
       actual_action.action = "#{action_name}"
       actual_action.view = "#{controller_name}"
       actual_action.save

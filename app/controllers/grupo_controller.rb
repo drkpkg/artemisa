@@ -1,6 +1,6 @@
 class GrupoController < ApplicationController
   def create
-    group = Group.new
+    group = Grupo.new
     group.group_name = params[:group_name]
     if group.valid?
       group.save()

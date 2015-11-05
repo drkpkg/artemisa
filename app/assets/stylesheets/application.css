@@ -60,6 +60,10 @@ body{
 }
 
 /*Login*/
+.login-message
+{
+    margin: -7% 35%;
+}
 .center-login
 {
     margin: 10% 35%;

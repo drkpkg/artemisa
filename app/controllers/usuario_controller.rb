@@ -50,26 +50,32 @@ class UsuarioController < ApplicationController
   end
 
   def list_all
-    @usuarios = Usuario.all.select("Users.id, Users.username, Users.email, Users.group_id, Users.state")
+    @usuarios = Usuario.all.select("id, nombre_usuario,grupo_id, state")
   end
 
   def auth_user
     if !(cookies[:user_name] && cookies[:type])
       user = Usuario.find_by(nombre_usuario: params[:nombre_usuario])
-      if user.state == false
-        respond('400', 'Error', 'Usuario no habilitado para inicio de sesión', 'error', '')
-      else
-        if !user.blank? && Password.new(user.clave) == params[:password]
+      if !user.blank? && Password.new(user.password_digest) == params[:clave]
+        if user.state == false
+          flash[:error] = 'Usuario no habilitado para inicio de sesión'
+          redirect_to root_url
+        else
           cookies[:user_name] = user.nombre_usuario
           cookies[:user_id] = user.id
-          cookies[:type] = user.group_id
-          respond('200','Ingresando','Espere mientras se accede al sistema','','dashboard')
+          cookies[:type] = user.grupo_id
+          redirect_to dashboard_path
+        end
+        #respond('200','Ingresando','Espere mientras se accede al sistema','','dashboard')
+      else
+        if params[:nombre_usuario] == '' || params[:clave] == ''
+          flash[:error] = 'Por favor rellene los campos los campos vacíos'
+          redirect_to root_path
+          #respond('200', 'Error', 'Por favor rellene los campos los campos vacíos', 'error', '')
         else
-          if params[:nombre_usuario] == '' || params[:password] == ''
-            respond('200', 'Error', 'Por favor rellene los campos los campos vacíos', 'error', '')
-          else
-            respond('400', 'Error', 'Usuario o contraseña inválidos', 'error', '')
-          end
+          flash[:error] = 'Usuario o contraseña inválidos'
+          redirect_to root_path
+          #respond('400', 'Error', 'Usuario o contraseña inválidos', 'error', '')
         end
       end
     end

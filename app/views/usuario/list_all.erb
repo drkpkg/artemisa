@@ -14,7 +14,6 @@
           <thead>
           <tr>
             <th>Usuario</th>
-            <th>Email</th>
             <th>Grupo</th>
             <th>Estado actual</th>
             <th>Opciones</th>
@@ -26,11 +25,8 @@
                 <td id="actual-identity-<%= actual_index.id %>">
                   <%= actual_index.nombre_usuario %>
                 </td>
-                <td id="actual-email-<%= actual_index.id %>">
-                  <%= actual_index.email %>
-                </td>
                 <td id="actual-group-<%= actual_index.id %>">
-                  <% group = Group.find_by(id: actual_index.group_id) %>
+                  <% group = Grupo.find_by(id: actual_index.grupo_id) %>
                   <% if !group.blank? %>
                       <%= group.group_name %>
                   <% else %>

@@ -5,17 +5,23 @@
 <div id="login" class="container">
   <div class="col-md-4 center-login login-beauty content">
     <h2>Bienvenido</h2>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon">Usuario</span>
-        <input type="text" id="username-text" class="form-control">
-      </div>
-      <br>
-      <div class="input-group">
-        <span class="input-group-addon">Contraseña</span>
-        <input type="password" id="password-text" class="form-control">
-      </div>
-    </div>
-    <input id="login-button" class="btn btn-success pull-right" type="button" value="Ingresar" onclick="login()">
+    <%= form_tag('/auth_user', method: 'post', class: 'form-group') do %>
+        <%= text_field_tag :nombre_usuario, "", class: "form-control", placeholder: "Usuario" %>
+        <br>
+        <%= password_field_tag :clave, "", class: "form-control", placeholder: "Contraseña" %>
+        <br>
+        <%= submit_tag('Ingresar', class: "btn btn-success pull-right") %>
+    <% end %>
   </div>
 </div>
+
+<% if flash[:error] %>
+    <div class="container">
+      <div class="col-md-4 content login-message">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= flash[:error] %>
+        </div>
+      </div>
+    </div>
+<% end %>
