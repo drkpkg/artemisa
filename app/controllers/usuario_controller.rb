@@ -9,7 +9,7 @@ class UsuarioController < ApplicationController
     else
       user = Usuario.new
       user.nombre_usuario = params[:nombre_usuario]
-      user.clave = Password.create(params[:password])
+      user.password_digest = Password.create(params[:password])
       user.email = params[:email]
       user.state = params[:state]
 
@@ -27,7 +27,7 @@ class UsuarioController < ApplicationController
     user = Usuario.find_by(id: params[:id])
     param_list = Hash.new
     param_list[:nombre_usuario] = params[:nombre_usuario] if params[:nombre_usuario] != ''
-    param_list[:clave] = Password.create(params[:password]) if params[:password] != ''
+    param_list[:password_digest] = Password.create(params[:password]) if params[:password] != ''
     param_list[:email] = params[:email] if params[:email] != ''
     param_list[:group_id] = params[:grupo] if params[:grupo] != ''
     param_list[:state] = params[:state] if params[:state] != ''

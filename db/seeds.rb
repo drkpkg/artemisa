@@ -76,6 +76,7 @@ require 'bcrypt'
 #Person.create(person_name: "YOUR NAME", person_father_last_name: "FATHER LASTNAME", person_mother_last_name: "MOTHER LAST NAME", person_address: "YOUR HOME", person_phone: 1234556, person_identity_number: 888888, user_id: 3)
 
 #Admin
-Usuario.create(nombre_usuario: "admin", clave: BCrypt::Password.create("123456"), email: "admin@admin.com" , group_id: 1, state: true)
-Usuario.create(nombre_usuario: "client", clave: BCrypt::Password.create("123456"), email: "client@gmail.com" , group_id: 2, state: true)
-Usuario.create(nombre_usuario: "employee", clave: BCrypt::Password.create("123456"), email: "employee@gmail.com" , group_id: 3, state: true)
+#Usuario.create(nombre_usuario: "admin", clave: BCrypt::Password.create("123456"), email: "admin@admin.com" , group_id: 1, state: true)
+#Usuario.create(nombre_usuario: "client", clave: BCrypt::Password.create("123456"), email: "client@gmail.com" , group_id: 2, state: true)
+#Usuario.create(nombre_usuario: "employee", clave: BCrypt::Password.create("123456"), email: "employee@gmail.com" , group_id: 3, state: true)
+Usuario.create(nombre_usuario: "admin", password_digest: BCrypt::Password.create("123456"),   grupo_id: 1, state: true)
