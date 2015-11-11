@@ -21,8 +21,8 @@
 
 $(document).ready(function(){
     $('[name="checkbox"]').bootstrapSwitch();
-    $('[data-toggle="tooltip"]').tooltip();
     $.fn.bootstrapSwitch.defaults.size = 'small';
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function redirectTo(data) {

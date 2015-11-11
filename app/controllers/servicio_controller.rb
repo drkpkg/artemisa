@@ -1,0 +1,2 @@
+class ServicioController < ApplicationController
+end

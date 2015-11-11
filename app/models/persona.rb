@@ -1,5 +1,7 @@
 class Persona < ActiveRecord::Base
-  belongs_to :usuario
+
+  attachment :imagen_perfil, type: image
+  has_one :usuario
   belongs_to :horario_persona
   has_one :cliente
   has_one :empleado

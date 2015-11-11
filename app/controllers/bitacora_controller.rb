@@ -1,5 +1,5 @@
 class BitacoraController < ApplicationController
   def list_all
-    @histories = History.all
+    @histories = Bitacora.all
   end
 end

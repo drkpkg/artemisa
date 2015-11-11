@@ -1,0 +1,2 @@
+class EspecieController < ApplicationController
+end

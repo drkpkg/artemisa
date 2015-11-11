@@ -18,21 +18,21 @@
         <%= f.text_area :product_description, :class => "form-control" %>
       </div>
       <br>
-      <% if ProductType.all.empty? %>
+      <% if !ProductoTipo.all.empty? %>
           <div class="input-group">
             <div class="thumbnail">
-              No existe ningún tipo listado dentro de la aplicación, por favor <a href="/categories/list_all">crea el tipo antes</a> antes de agregar el este activo fijo.
+              No existe ningún tipo listado dentro de la aplicación, por favor <a href="/categories/">crea el tipo antes</a> antes de agregar el este activo fijo.
             </div>
           </div>
       <% else %>
-          <div class="input-group">
-            <span class="input-group-addon">Tipo</span>
-            <%= f.select :producto_tipo, {},{},{class: "form-control"} do %>
-                <% ProductType.all.each do |index| %>
-                    <%= content_tag(:option, index.product_type_description, value: index.id) %>
-                <% end %>
-            <% end %>
-          </div>
+          <!--div class="input-group"-->
+            <!--span class="input-group-addon">Tipo</span-->
+            <!--%= f.select :producto_tipo, {},{},{class: "form-control"} do %-->
+                <!--% ProductoTipo.all.each do |index| %-->
+                    <!--%= content_tag(:option, index.product_type_description, value: index.id) %-->
+                <!--% end %-->
+            <!--% end %-->
+          <!--/div-->
           <br>
           <div class="input-group">
             <span class="input-group-addon">Precio de compra (Bs)</span>

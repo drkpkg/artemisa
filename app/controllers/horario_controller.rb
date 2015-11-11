@@ -1,0 +1,3 @@
+class HorarioController < ApplicationController
+
+end

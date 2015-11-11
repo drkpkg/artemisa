@@ -8,16 +8,16 @@
 require 'bcrypt'
 
 #Usuario Groups
-#grupo_usuarios = ["Administrador",
-#               "Cliente",
-#               "Empleado",
-#               "Grupo 1",
-#               "Grupo 2",
-#               "Grupo 3",]
+grupo_usuarios = ["Administrador",
+               "Cliente",
+               "Empleado",
+               "Grupo 1",
+               "Grupo 2",
+               "Grupo 3",]
 
-#grupo_usuarios.each do |user|
-#  Group.create(group_name: user)
-#end
+grupo_usuarios.each do |grupo|
+  Grupo.create(descripcion_grupo: grupo)
+end
 
 #Template
 #templates = ["Inventario",
@@ -80,3 +80,5 @@ require 'bcrypt'
 #Usuario.create(nombre_usuario: "client", clave: BCrypt::Password.create("123456"), email: "client@gmail.com" , group_id: 2, state: true)
 #Usuario.create(nombre_usuario: "employee", clave: BCrypt::Password.create("123456"), email: "employee@gmail.com" , group_id: 3, state: true)
 Usuario.create(nombre_usuario: "admin", password_digest: BCrypt::Password.create("123456"),   grupo_id: 1, state: true)
+Usuario.create(nombre_usuario: "empleado", password_digest: BCrypt::Password.create("123456"),   grupo_id: 2, state: true)
+Usuario.create(nombre_usuario: "secretaria", password_digest: BCrypt::Password.create("123456"),   grupo_id: 3, state: true)

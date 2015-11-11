@@ -115,3 +115,15 @@ img.cover {
 .hvr-sweep-to-top::before{
     background: #253c54 none repeat scroll 0 0;
 }
+
+/*Form image*/
+.image-form{
+    position: relative;
+    left: -150px;
+    top: 100px;
+}
+
+.input-group-addon{
+    min-width: 200px;
+    text-align: left;
+}

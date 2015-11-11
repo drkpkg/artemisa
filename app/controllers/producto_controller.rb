@@ -3,7 +3,7 @@ class ProductoController < ApplicationController
     if !(cookies[:user_name] && cookies[:type])
       redirect_to root_path
     else
-      @products = Product.all
+      @products = Producto.all
     end
   end
 
@@ -31,7 +31,7 @@ class ProductoController < ApplicationController
   end
 
   def modify
-    product = Product.find_by(id: params[:id])
+    product = Producto.find_by(id: params[:id])
     param_hash = {:product_name => params[:name],
                   :product_description => params[:description],
                   :product_price_buy => params[:buy],
@@ -46,7 +46,7 @@ class ProductoController < ApplicationController
   end
 
   def delete
-    product = Product.find_by(id: params[:id])
+    product = Producto.find_by(id: params[:id])
     if (product.delete)
       respond('200', 'En hora buena', 'Activo eliminado satisfactoriamente', 'success', '/products/')
     else

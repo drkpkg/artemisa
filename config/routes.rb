@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   get 'logout' => 'application#logout'
   post 'auth_user' => 'usuario#auth_user'
 
+  #Animals
+  get 'animals/' => 'animal#list_all'
+  get 'animals/species' => 'especie#list_all'
+  get 'animals/species/:specie' => 'raza#list_all'
+
   #users
   get 'users/' => 'usuario#list_all'
   post 'users/create' => 'usuario#create'
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
   get 'employees/' => 'empleado#list_all'
   post 'employees/create' => 'empleado#create'
   post 'employees/delete' => 'empleado#delete'
-  post 'employees/modify' => 'empleado#modify'
+  post 'employees/modify/' => 'empleado#modify'
 
   #History of users
   get '/logs' => 'bitacora#list_all'
@@ -42,20 +47,45 @@ Rails.application.routes.draw do
   post 'groups/delete' => 'grupo#delete'
 
   #Permissions per grupo
-  get 'groups/:name/permissions' => 'group_template#list_all'
+  get 'groups/:name' => 'permiso#list_all'
 
   #People General
+  get 'people/new' => 'persona#new'
   post 'people/create' => 'persona#create'
   post 'people/modify' => 'persona#modify'
   post 'people/delete' => 'persona#delete'
+  post 'people/create' => 'persona#create'
+
   get 'people/info/:username' => 'persona#info'
   get 'people/selection' => 'persona#selection'
 
   #Clients
-  get 'clients/list_all' => 'persona#list_all'
-  get 'clients/new' => 'persona#new'
-  get 'employees/list_all' => 'persona#list_all'
-  get 'employees/new' => 'persona#new'
+  get 'clients/' => 'cliente#list_all'
+  get 'clients/new' => 'cliente#new'
+  get 'clients/info/:id' => 'cliente#info'
+  post 'clients/create' => 'cliente#create'
+  post 'clients/modify' => 'cliente#modify'
+  post 'clients/delete' => 'cliente#delete'
+
+  #Employees
+  get 'employees/' => 'empleado#list_all'
+  get 'employees/new' => 'empleado#new'
+  get 'employees/info/:id' => 'empleado#info'
+  post 'employees/create' => 'empleado#create'
+  post 'employees/modify' => 'empleado#modify'
+  post 'employees/create' => 'empleado#delete'
+
+  #Stock
+  get 'stock/' => 'stock#selection'
+
+  #Schedule
+  get 'schedules/' => 'horario#list_all'
+
+  #Reports
+  get 'reports/' => 'reporte#generator'
+
+  #Services
+  get 'services/' => 'servicio#list_all'
 
   #Artemisa API for mobile NOT IMPLEMENTED YET
   #scope 'hermes' do

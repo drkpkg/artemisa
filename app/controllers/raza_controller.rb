@@ -1,0 +1,2 @@
+class RazaController < ApplicationController
+end

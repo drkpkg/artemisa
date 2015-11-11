@@ -4,13 +4,12 @@ class UsuarioController < ApplicationController
   include BCrypt
 
   def create
-    if params[:password] != params[:password_repeat]
-      respond('400','Error','Contraseñas no coinciden','error','')
-    else
+    #if params[:password] != params[:password_repeat]
+    #  respond('400','Error','Contraseñas no coinciden','error','')
+    #else
       user = Usuario.new
-      user.nombre_usuario = params[:nombre_usuario]
+      user.nombre_usuario = params[:username]
       user.password_digest = Password.create(params[:password])
-      user.email = params[:email]
       user.state = params[:state]
 
       if user.valid?
@@ -20,16 +19,15 @@ class UsuarioController < ApplicationController
         description = get_errors(user)
         respond('400', 'Error', description, 'error', '')
       end
-    end
+    #end
   end
 
   def modify
     user = Usuario.find_by(id: params[:id])
     param_list = Hash.new
-    param_list[:nombre_usuario] = params[:nombre_usuario] if params[:nombre_usuario] != ''
+    param_list[:nombre_usuario] = params[:username] if params[:username] != ''
     param_list[:password_digest] = Password.create(params[:password]) if params[:password] != ''
-    param_list[:email] = params[:email] if params[:email] != ''
-    param_list[:group_id] = params[:grupo] if params[:grupo] != ''
+    param_list[:grupo_id] = params[:group] if params[:group] != ''
     param_list[:state] = params[:state] if params[:state] != ''
 
     if user.update(param_list)
@@ -50,7 +48,8 @@ class UsuarioController < ApplicationController
   end
 
   def list_all
-    @usuarios = Usuario.all.select("id, nombre_usuario,grupo_id, state")
+    @usuarios = Usuario.all
+    #joins(:grupo).select("Usuarios.id, nombre_usuario, state, Grupos.descripcion_grupo")
   end
 
   def auth_user
@@ -66,16 +65,13 @@ class UsuarioController < ApplicationController
           cookies[:type] = user.grupo_id
           redirect_to dashboard_path
         end
-        #respond('200','Ingresando','Espere mientras se accede al sistema','','dashboard')
       else
         if params[:nombre_usuario] == '' || params[:clave] == ''
           flash[:error] = 'Por favor rellene los campos los campos vacíos'
           redirect_to root_path
-          #respond('200', 'Error', 'Por favor rellene los campos los campos vacíos', 'error', '')
         else
           flash[:error] = 'Usuario o contraseña inválidos'
           redirect_to root_path
-          #respond('400', 'Error', 'Usuario o contraseña inválidos', 'error', '')
         end
       end
     end

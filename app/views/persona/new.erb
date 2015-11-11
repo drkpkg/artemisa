@@ -1,0 +1,25 @@
+<div class="col-md-4">
+  <br>
+  <% if flash[:error] %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= flash[:error] %>
+      </div>
+  <% end %>
+
+  <h3>Registro de persona</h3>
+  <%= form_for :persona, url: '/people/create', html: {class: 'new-form'} do |f| %>
+      <%= attachment_field :people_image, direct: true, data: { remote_id: :news_article_image_cache_id } %>
+      <br>
+      <%= f.text_field :people_name, :class => "form-control", placeholder: "Nombre" %>
+      <br>
+      <%= f.text_field :people_lastname_f, :class => "form-control", placeholder: "Apellido paterno" %>
+      <br>
+      <%= f.text_field :people_lastname_m, :class => "form-control", placeholder: "Apellido paterno" %>
+      <br>
+      <div class="btn-group pull-right">
+        <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+        <%= link_to 'Cancelar', '/products', class: 'btn btn-info' %>
+      </div>
+  <% end %>
+</div>

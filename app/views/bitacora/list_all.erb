@@ -17,7 +17,7 @@
         <% @histories.each do |actual_index| %>
             <tr>
               <td id="actual-name-<%= actual_index.id %>">
-                <% user = Usuario.find_by(id: actual_index.user_id) %>
+                <% user = Usuario.find_by(id: actual_index.usuario_id) %>
                 <% if !user.blank? %>
                     <%= user.nombre_usuario %>
                 <% else %>

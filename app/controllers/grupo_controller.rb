@@ -1,7 +1,7 @@
 class GrupoController < ApplicationController
   def create
     group = Grupo.new
-    group.group_name = params[:group_name]
+    group.descripcion_grupo = params[:descripcion_grupo]
     if group.valid?
       group.save()
       respond('200', 'En hora buena', 'Grupo creado satisfactoriamente', 'success', '')
@@ -23,7 +23,7 @@ class GrupoController < ApplicationController
   end
 
   def delete
-    group = Group.find_by(id: params[:id])
+    group = Grupo.find_by(id: params[:id])
     if (group.delete)
       Usuario.update_group_index(params[:id])
       respond('200', 'En hora buena', 'grupo eliminado satisfactoriamente', 'success', '')

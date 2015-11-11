@@ -30,7 +30,7 @@
               <td id="actual-name-<%= actual_index.id %>"><%= actual_index.product_name %></td>
               <td id="actual-desc-<%= actual_index.id %>"><%= actual_index.product_description %></td>
               <td>
-                <% product_type = ProductType.find_by(id: actual_index.product_type_id) %>
+                <% product_type = ProductoTipo.find_by(id: actual_index.product_type_id) %>
                 <% if product_type.blank? %>
                     <div value="0" id="actual-category-<%= actual_index.id %>">
                       Sin categoria

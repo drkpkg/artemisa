@@ -5,7 +5,7 @@
 @createGroup = ->
   group = $('#newgroup-username').val()
   url = '/groups/create/'
-  data = {group_name: group}
+  data = {descripcion_grupo: group}
   post(url, data)
 
 @modifyGroup = ->
@@ -20,7 +20,7 @@
   deleteObject(url, data)
 
 @newGroup = ->
-  $("#new-grupo-modal").modal('show')
+  $("#new-group-modal").modal('show')
 
 @editGroup = (id)->
   $("#modify-usuario-modal").modal('show')

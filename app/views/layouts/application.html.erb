@@ -34,13 +34,6 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" onclick="config()">
-                <i class="fa fa-gear"></i>
-                Configuración
-              </a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
               <a href="/logout">
                 <i class="fa fa-sign-out"></i>
                 Cerrar sesión
@@ -54,36 +47,4 @@
 </nav>
 <%= yield %>
 </body>
-
-<div id="config-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Configuración general</h4>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-          <label>Invertir colores (Modo descanso)</label>
-          <input id="checkbox-invert" type="checkbox" name="checkbox" class="" onchange="updateToRest();">
-        </div>
-        <div class="input-group">
-          <label>Tipografias</label>
-          <select id="selectFontFamily" name="selectFontFamily" onchange="updateFontFamily();">
-            <option> Serif </option>
-            <option> Georgia </option>
-            <option> Sans-Serif </option>
-            <option> Helvetica </option>
-            <option> monospace </option>
-          </select>
-          <input type="number" value="10" id="selecFontSize" onchange="updateFontSize()">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </html>

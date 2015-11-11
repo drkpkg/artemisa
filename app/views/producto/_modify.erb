@@ -30,7 +30,7 @@
           <div class="input-group">
             <span class="input-group-addon">Tipo de producto</span>
             <select id="product-category" class="form-control">
-              <% ProductType.all.each do |type| %>
+              <% ProductoTipo.all.each do |type| %>
                 <option value="<%= type.id %>"><%= type.product_type_description %></option>
               <% end %>
             </select>

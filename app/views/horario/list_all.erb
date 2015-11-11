@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a href="#" class="btn btn-success">
+          <i class="fa fa-plus"></i>
+          Registro nuevo horario
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Horarios disponibles</div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Hora de entrada</th>
+          <th>Hora de salida</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>07:00</td>
+          <td>12:00</td>
+          <td>
+            <div class="btn-group">
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                <i class="fa fa-close"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>14:00</td>
+          <td>18:00</td>
+          <td>
+            <div class="btn-group">
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                <i class="fa fa-close"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>08:00</td>
+          <td>15:00</td>
+          <td>
+            <div class="btn-group">
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                <i class="fa fa-close"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>15:00</td>
+          <td>21:00</td>
+          <td>
+            <div class="btn-group">
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                <i class="fa fa-close"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--div id="new-group-modal" class="modal fade"-->
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Registro de nuevo horario</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-group form-group-sm">
+        <input id="schedule-enter" class="form-control space-10" type="time" size="40" data-toggle="tooltip" data-placement="top" title="Horario de entrada" placeholder="Horario de entrada">
+        <br>
+        <input id="schedule-exit" class="form-control space-10" type="time" data-toggle="tooltip" data-placement="top" title="Nombre del animal" placeholder="Horario de salida">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
+    </div>
+  </div>
+</div>
+<!--/div-->
