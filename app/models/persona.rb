@@ -1,6 +1,6 @@
 class Persona < ActiveRecord::Base
 
-  attachment :imagen_perfil, type: image
+  attachment :imagen
   has_one :usuario
   belongs_to :horario_persona
   has_one :cliente
