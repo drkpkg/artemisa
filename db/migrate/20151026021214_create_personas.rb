@@ -1,7 +1,7 @@
 class CreatePersonas < ActiveRecord::Migration
   def change
     create_table :personas do |t|
-      t.string :imagen_perfil
+      t.string :imagen
       t.string :nombre
       t.string :ap_materno
       t.string :ap_paterno

@@ -6,11 +6,4 @@ class CreateHorarioPersonas < ActiveRecord::Migration
       t.timestamps
     end
   end
-
-  def down
-    change_table :horario_personas do |t|
-      t.remove :user_id
-      t.remove :persona_id
-    end
-  end
 end

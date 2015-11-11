@@ -4,7 +4,6 @@ class CreateHistoricoClinicos < ActiveRecord::Migration
       t.references :animal, index: true
       t.references :servicio, index: true
       t.text :observaciones
-
       t.timestamps
     end
   end

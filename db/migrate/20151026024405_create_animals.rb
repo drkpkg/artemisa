@@ -1,6 +1,7 @@
 class CreateAnimals < ActiveRecord::Migration
   def change
     create_table :animals do |t|
+      t.string :imagen
       t.string :nombre
       t.float :alto
       t.float :largo
