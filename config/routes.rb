@@ -9,8 +9,22 @@ Rails.application.routes.draw do
 
   #Animals
   get 'animals/' => 'animal#list_all'
-  get 'animals/species' => 'especie#list_all'
-  get 'animals/species/:specie' => 'raza#list_all'
+  get 'animals/new' => 'animal#new'
+  get 'animals/create' => 'animal#create'
+  get 'animals/modify' => 'animal#modify'
+  get 'animals/delete' => 'animal#delete'
+
+  get 'animals/species/' => 'especie#list_all'
+  get 'animals/species/new' => 'especie#new'
+  get 'animals/species/create' => 'especie#create'
+  get 'animals/species/modify' => 'especie#modify'
+  get 'animals/species/delete' => 'especie#delete'
+
+  get 'animals/species/breeds/' => 'raza#list_all'
+  get 'animals/species/breeds/new' => 'raza#new'
+  get 'animals/species/breeds/create' => 'raza#create'
+  get 'animals/species/breeds/modify' => 'raza#modify'
+  get 'animals/species/breeds/delete' => 'raza#delete'
 
   #users
   get 'users/' => 'usuario#list_all'
@@ -86,6 +100,8 @@ Rails.application.routes.draw do
 
   #Services
   get 'services/' => 'servicio#list_all'
+
+
 
   #Artemisa API for mobile NOT IMPLEMENTED YET
   #scope 'hermes' do
