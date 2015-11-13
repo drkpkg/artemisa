@@ -5,6 +5,7 @@ class CreatePersonas < ActiveRecord::Migration
       t.string :nombre
       t.string :ap_materno
       t.string :ap_paterno
+      t.references :genero, index: true
       t.string :identificacion
       t.string :correo
       t.string :direccion

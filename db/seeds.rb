@@ -26,3 +26,9 @@ Usuario.create(nombre_usuario: "secretaria", password_digest: BCrypt::Password.c
 
 #Species
 #Especie.create()
+
+#Genero
+Genero.create(genero: "Macho")
+Genero.create(genero: "Hembra")
+Genero.create(genero: "Hombre")
+Genero.create(genero: "Mujer")
