@@ -8,7 +8,7 @@ class CreateAnimals < ActiveRecord::Migration
       t.float :peso
       t.date :fecha_nacimiento
       t.date :fecha_deceso
-      t.belongs_to :raza, index: true
+      t.belongs_to :especie, index: true
       t.belongs_to :cliente, index: true
       t.timestamps
     end
