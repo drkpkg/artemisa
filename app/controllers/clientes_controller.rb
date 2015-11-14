@@ -1,2 +1,0 @@
-class ClientesController < ApplicationController
-end

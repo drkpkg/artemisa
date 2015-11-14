@@ -18,95 +18,70 @@
         <thead>
         <tr>
           <th>Nombre completo</th>
-          <th>Cédula de identidad</th>
-          <th>Fecha de nacimiento</th>
+          <th>Género</th>
+          <th>Edad</th>
+          <th>Identificación</th>
+          <th>Correo</th>
+          <th>Dirección</th>
           <th>Teléfono</th>
-          <th>Fecha de registro</th>
+          <th>Cargo</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Juan Baldivieso</td>
-          <td>123456</td>
-          <td>09/12/2008</td>
-          <td>999912</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
+            <% @clientes.each do |cliente| %>
+            <tr>
+              <td>
+                <label id="nombre-<%= cliente.id %>"> <%= cliente.nombre %> </label>
+                <label id="apaterno-<%= cliente.id %>"> <%= cliente.ap_paterno %> </label>
+                <label id="amaterno-<%= cliente.id %>"> <%= cliente.ap_materno %> </label>
+              </td>
+              <td id="genero-<%= cliente.id %>"><%= cliente.genero %></td>
+              <td id="identificacion-<%= cliente.id %>"><%= cliente.genero %></td>
+              <td id="correo-<%= cliente.id %>"><%= cliente.genero %></td>
+              <td id="direccion-<%= cliente.id %>"><%= cliente.genero %></td>
+              <td id="telefono-<%= cliente.id %>"><%= cliente.genero %></td>
+              <td id="cargo-<%= cliente.id %>"><%= cliente.genero %></td>
 
-        <tr>
-          <td>Carlos Azurduy</td>
-          <td>123456</td>
-          <td>09/12/2008</td>
-          <td>999912</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Juana Baldivieso</td>
-          <td>123456</td>
-          <td>09/12/2008</td>
-          <td>999912</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
+              <td>
+                <div class="btn-group">
+                  <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                    <i class="fa fa-close"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!--div id="new-group-modal" class="modal fade"-->
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">Registro de cliente</h4>
-    </div>
-    <div class="modal-body">
-      <div class="form-group form-group-sm">
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre completo" placeholder="Nombre completo">
-        <br>
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Cédula de identidad" placeholder="Cédula de identidad">
-        <br>
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Fecha de nacimiento" placeholder="Fecha de nacimiento">
-        <br>
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Teléfono" placeholder="Teléfono">
+<div id="new-client-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Registro de cliente</h4>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
+      <div class="modal-body">
+        <div class="form-group form-group-sm">
+          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre completo" placeholder="Nombre completo">
+          <br>
+          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Cédula de identidad" placeholder="Cédula de identidad">
+          <br>
+          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Fecha de nacimiento" placeholder="Fecha de nacimiento">
+          <br>
+          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Teléfono" placeholder="Teléfono">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
+      </div>
     </div>
   </div>
 </div>
-<!--/div-->
