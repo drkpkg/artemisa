@@ -9,13 +9,17 @@
 
   <h3>Registro de persona</h3>
   <%= form_for :persona, url: '/people/create', html: {class: 'new-form'} do |f| %>
-      <%= attachment_field :people_image, direct: true, data: { remote_id: :news_article_image_cache_id } %>
+      <%= attachment_field :imagen, direct: true, data: { remote_id: :news_article_image_cache_id } %>
       <br>
-      <%= f.text_field :people_name, :class => "form-control", placeholder: "Nombre" %>
+      <%= f.text_field :nombre, :class => "form-control", placeholder: "Nombre" %>
       <br>
-      <%= f.text_field :people_lastname_f, :class => "form-control", placeholder: "Apellido paterno" %>
+      <%= f.text_field :ap_paterno, :class => "form-control", placeholder: "Apellido paterno" %>
       <br>
-      <%= f.text_field :people_lastname_m, :class => "form-control", placeholder: "Apellido paterno" %>
+      <%= f.text_field :ap_materno, :class => "form-control", placeholder: "Apellido paterno" %>
+      <br>
+      <%= f.text_field :ap_materno, :class => "form-control", placeholder: "Apellido paterno" %>
+      <br>
+      <%= f.text_field :ap_materno, :class => "form-control", placeholder: "Apellido paterno" %>
       <br>
       <div class="btn-group pull-right">
         <%= f.submit 'Guardar', :class => 'btn btn-success' %>
