@@ -47,6 +47,10 @@ gem 'refile', require: ['refile/rails'], :git => 'git://github.com/refile/refile
 gem 'refile-mini_magick'
 gem 'dotenv-rails'
 
+group :production do
+  gem 'rack-cache', :require => 'rack/cache'
+end
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

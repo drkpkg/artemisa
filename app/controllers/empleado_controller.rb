@@ -5,7 +5,9 @@ class EmpleadoController < ApplicationController
   end
 
   def create
-
+    empleado = Persona.new
+    empleado.image = params[:image]
+    empleado.save
   end
 
   def modify
