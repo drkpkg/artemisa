@@ -15,6 +15,8 @@
 //= require sweet-alert
 //= require turbolinks
 //= require twitter/bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
 //= require bootstrap-switch
 //= require toastr
 //= require_tree .
@@ -23,6 +25,9 @@ $(document).ready(function(){
     $('[name="checkbox"]').bootstrapSwitch();
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $('[data-toggle="tooltip"]').tooltip();
+    $('#datetimepicker').datetimepicker({
+        format: 'DD-MM-YYYY'
+    });
 });
 
 function redirectTo(data) {
@@ -113,6 +118,15 @@ function config(){
 function onlyNumbers(e){
     if (e.which != 8 && e.which != 0 && (e.which < 46 || e.which > 57)){
             notify("error", "Solo se aceptan números");
+        return false;
+    }
+    return true;
+}
+
+function onlyText(e){
+    console.log(e.which);
+    if (e.which != 8 && e.which != 0 && (e.which < 96 || e.which > 123) && (e.which < 64 || e.which > 91)){
+        notify("error", "Solo se aceptan letras");
         return false;
     }
     return true;

@@ -46,12 +46,6 @@ Rails.application.routes.draw do
   post 'product_types/delete' => 'producto_tipo#delete'
   post 'product_types/modify' => 'producto_tipo#modify'
 
-  #Employee
-  get 'employees/' => 'empleado#list_all'
-  post 'employees/create' => 'empleado#create'
-  post 'employees/delete' => 'empleado#delete'
-  post 'employees/modify/' => 'empleado#modify'
-
   #History of users
   get '/logs' => 'bitacora#list_all'
 
@@ -64,13 +58,7 @@ Rails.application.routes.draw do
   get 'groups/:name' => 'permiso#list_all'
 
   #People General
-  get 'people/new' => 'persona#new'
-  post 'people/create' => 'persona#create'
-  post 'people/modify' => 'persona#modify'
-  post 'people/delete' => 'persona#delete'
-  post 'people/create' => 'persona#create'
-
-  get 'people/info/:username' => 'persona#info'
+  #get 'people/info/:username' => 'persona#info'
   get 'people/selection' => 'persona#selection'
 
   #Clients

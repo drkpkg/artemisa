@@ -38,13 +38,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Use debugger
 # gem 'debugger', grupo: [:development, :test]
 
+gem 'dragonfly', '~> 1.0.12'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'bootstrap-switch-rails'
 gem 'sweetalert-rails'
 gem 'font-awesome-rails'
 gem 'toastr-rails'
-gem 'refile', require: ['refile/rails'], :git => 'git://github.com/refile/refile.git'
-gem 'refile-mini_magick'
 gem 'dotenv-rails'
 
 group :production do

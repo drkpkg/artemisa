@@ -15,6 +15,7 @@
  *= require font-awesome
  *= require toastr
  *= require bootstrap3-switch
+ *= require bootstrap-datetimepicker
  *= require_self
  */
 
@@ -126,4 +127,21 @@ img.cover {
 .input-group-addon{
     min-width: 200px;
     text-align: left;
+}
+
+.form-color {
+    background-color: #1d2f43;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.group-size-100{
+    width: 100% !important;
+}
+
+.group-size-80{
+    width: 80% !important;
+}
+
+.input-control{
+    width: 20% !important;
 }

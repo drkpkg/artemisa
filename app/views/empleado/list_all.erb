@@ -2,7 +2,7 @@
   <div class="col-md-12 row">
     <div class="container">
       <div class="btn-group">
-        <a href="#" class="btn btn-success">
+        <a href="/employees/new" class="btn btn-success">
           <i class="fa fa-plus"></i>
           Registro nuevo empleado
         </a>
@@ -17,104 +17,36 @@
         <thead>
         <tr>
           <th>Nombre completo</th>
+          <th>Sexo</th>
           <th>Cédula de identidad</th>
           <th>Fecha de nacimiento</th>
           <th>Teléfono</th>
-          <th>Cargo</th>
-          <th>Fecha de registro</th>
+          <th>Correo</th>
+          <th>Direccion</th>
+
+
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td><a href="/employees/info/1">Juan Baldivieso</a></td>
-          <td>123456</td>
-          <td>09/12/2008</td>
-          <td>999912</td>
-          <td>Veterinario</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Carlos Azurduy</td>
-          <td>123456</td>
-          <td>09/12/2008</td>
-          <td>999912</td>
-          <td>Vendedor</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Juana Baldivieso</td>
-          <td>123456</td>
-          <td>09/12/2008</td>
-          <td>999912</td>
-          <td>Enfermera</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
+        <% @empleados.each do |empleado| %>
+          <tr class="focus">
+            <td>
+              <label><%= empleado.nombre %></label>
+              <label><%= empleado.ap_paterno %></label>
+              <label><%= empleado.ap_materno %></label>
+            </td>
+            <td>
+              <%= Genero.find_by(id: empleado.genero_id).genero %>
+            </td>
+            <td><%= empleado.identificacion %></td>
+            <td><%= empleado.fecha_nacimiento %></td>
+            <td><%= empleado.telefono %></td>
+            <td><%= empleado.correo %></td>
+            <td><%= empleado.direccion %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-
-<!--div id="new-group-modal" class="modal fade"-->
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">Registro de empleado</h4>
-    </div>
-    <div class="modal-body">
-      <div class="form-group form-group-sm">
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre completo" placeholder="Nombre completo">
-        <br>
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Cédula de identidad" placeholder="Cédula de identidad">
-        <br>
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Fecha de nacimiento" placeholder="Fecha de nacimiento">
-        <br>
-        <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Teléfono" placeholder="Teléfono">
-        <br>
-        <select class="form-control">
-          <option selected disabled>Seleccione cargo</option>
-        </select>
-        <br>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
-    </div>
-  </div>
-</div>
-<!--/div-->
