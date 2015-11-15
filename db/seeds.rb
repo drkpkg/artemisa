@@ -24,12 +24,12 @@ Usuario.create(nombre_usuario: "admin", password_digest: BCrypt::Password.create
 Usuario.create(nombre_usuario: "empleado", password_digest: BCrypt::Password.create("123456"),   grupo_id: 2, state: true)
 Usuario.create(nombre_usuario: "secretaria", password_digest: BCrypt::Password.create("123456"),   grupo_id: 3, state: true)
 
-animales =
+animales =[
     [nombre:"Balu", alto: 40, largo: 60, peso: 10, fecha_nacimiento: "20/08/2012", fecha_deceso:"" ,genero_id:1, raza_id: 1 ,cliente_id: 3],
     [nombre:"Mufasa", alto: 35, largo: 20, peso: 7, fecha_nacimiento: "20/06/2009", fecha_deceso:"" ,genero_id:1, raza_id: 1 ,cliente_id: 4],
     [nombre:"Chuchin", alto: 20, largo: 30, peso: 4, fecha_nacimiento: "07/06/2009", fecha_deceso:"" ,genero_id:1, raza_id: 1 ,cliente_id: 3],
     [nombre:"Manchas", alto: 40, largo: 60, peso: 8, fecha_nacimiento: "10/10/2002", fecha_deceso:"23/11/2012" ,genero_id:1, raza_id: 1 ,cliente_id:5],
-    [nombre:"Keila", alto: 25, largo: 40, peso: 4, fecha_nacimiento: "20/08/2015", fecha_deceso:"" ,genero_id:2, raza_id: 3 ,cliente_id: 5],
+    [nombre:"Keila", alto: 25, largo: 40, peso: 4, fecha_nacimiento: "20/08/2015", fecha_deceso:"" ,genero_id:2, raza_id: 3 ,cliente_id: 5]
 
 ]
 animales.each do |animal|
@@ -149,7 +149,7 @@ personas = [
 ]
 
 personas.each do |pesonas|
-  Personas.create(personas)
+  Persona.create(personas)
 end
 
 servicios=[
@@ -161,22 +161,22 @@ servicios=[
 ]
 
 servicios.each do |servicios|
-  Servicios.create(servicios)
+  Servicio.create(servicios)
 end
 
 lotes = [
-    [lote:"Anestesico",cantidad_lote:100,cantida_minima:7],
-    [lote:"Atitoxina",cantidad_lote:100,cantida_minima:7],
-    [lote:"Biotecnologia",cantidad_lote:100,cantida_minima:7],
-    [lote:"Bacterina",cantidad_lote:100,cantida_minima:7],
-    [lote:"Desinfectante",cantidad_lote:100,cantida_minima:7],
-    [lote:"Antibiotico",cantidad_lote:100,cantida_minima:7],
-    [lote:"Alimenticio",cantidad_lote:100,cantida_minima:7]
-    [lote:"Accesorio",cantidad_lote:100,cantida_minima:7]
+    [lote:"Anestesico",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Atitoxina",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Biotecnologia",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Bacterina",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Desinfectante",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Antibiotico",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Alimenticio",cantidad_lote:100,cantidad_minima:7],
+    [lote:"Accesorio",cantidad_lote:100,cantidad_minima:7]
 ]
 
-lotes.each do |lotes|
-  Lotes.create(lotes)
+lotes.each do |lote_actual|
+  Lote.create(lote_actual)
 end
 
 proveedors =[
@@ -184,7 +184,7 @@ proveedors =[
 ]
 
 proveedors.each do |proveedors|
-  Proveedors.create(proveedors)
+  Proveedor.create(proveedors)
 end
 
 productos_tipos =[
@@ -193,8 +193,8 @@ productos_tipos =[
     [nombre_tipo_producto:"Accesorio"],
 ]
 
-producto_tipos.each do |producto_tipos|
-  Productotipos.create(producto_tipos)
+productos_tipos.each do |producto_tipo|
+  ProductoTipo.create(producto_tipo)
 end
 
 productos = [
@@ -213,7 +213,7 @@ productos = [
 ]
 
 productos.each do |productos|
-  Productos.create(productos)
+  Producto.create(productos)
 end
 
 #Genero
