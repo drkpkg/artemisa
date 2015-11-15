@@ -6,7 +6,9 @@ class EmpleadoController < ApplicationController
 
   def create
     empleado = Persona.new(empleado_params)
+    empleado.persona_tipos_id = 1
     if empleado.save
+      flash[:success] = "Se registro correctamente"
       redirect_to '/employees/'
     else
       description = get_errors(empleado)
@@ -16,7 +18,23 @@ class EmpleadoController < ApplicationController
   end
 
   def modify
+    empleado = Persona.find_by(id: params[:persona][:id])
+    if empleado.update(empleado_params_with_id)
+      flash[:success] = "Modificado exitosamente"
+      redirect_to "/employees/info/#{params[:persona][:id]}"
+    else
+      description = get_errors(empleado)
+      flash[:error] = description
+      redirect_to "/employees/edit/#{params[:persona][:id]}"
+    end
+  end
 
+  def edit
+    @empleado = Persona.find_by(id: params[:id])
+  end
+
+  def info
+    @empleado = Persona.find_by(id: params[:id])
   end
 
   def delete
@@ -31,14 +49,14 @@ class EmpleadoController < ApplicationController
     end
   end
 
-  def new
-
-  end
-
   private
 
   def empleado_params
-    params.require(:persona).permit(:image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipo_id, :genero_id )
+    params.require(:persona).permit(:image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipos_id, :genero_id )
+  end
+
+  def empleado_params_with_id
+    params.require(:persona).permit(:id, :image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipos_id, :genero_id )
   end
 
 end

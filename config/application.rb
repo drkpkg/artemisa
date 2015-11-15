@@ -8,11 +8,14 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require 'csv'
+require 'dotenv'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
+HOSTNAME = ENV['HOSTNAME']
 
 module Artemisa
   class Application < Rails::Application

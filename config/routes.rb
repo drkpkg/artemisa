@@ -73,8 +73,9 @@ Rails.application.routes.draw do
   get 'employees/' => 'empleado#list_all'
   get 'employees/new' => 'empleado#new'
   get 'employees/info/:id' => 'empleado#info'
+  get 'employees/edit/:id' => 'empleado#edit'
+  patch 'employees/modify' => 'empleado#modify'
   post 'employees/create' => 'empleado#create'
-  post 'employees/modify' => 'empleado#modify'
   post 'employees/create' => 'empleado#delete'
 
   #Stock

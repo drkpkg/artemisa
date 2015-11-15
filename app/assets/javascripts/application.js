@@ -26,7 +26,7 @@ $(document).ready(function(){
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $('[data-toggle="tooltip"]').tooltip();
     $('#datetimepicker').datetimepicker({
-        format: 'DD-MM-YYYY'
+        format: 'DD/MM/YYYY'
     });
 });
 
@@ -124,9 +124,17 @@ function onlyNumbers(e){
 }
 
 function onlyText(e){
-    console.log(e.which);
-    if (e.which != 8 && e.which != 0 && (e.which < 96 || e.which > 123) && (e.which < 64 || e.which > 91)){
+    if (e.which != 8 && e.which != 0 && (e.which < 96 || e.which > 123) && (e.which < 64 || e.which > 91) && e.which != 32){
         notify("error", "Solo se aceptan letras");
+        return false;
+    }
+    return true;
+}
+
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    if(re.test(email)==false){
+        notify("error", "Formato de correo no valido");
         return false;
     }
     return true;
@@ -143,34 +151,14 @@ function notify(type, message){
         "preventDuplicates": true,
         "onclick": null,
         "showDuration": "300",
-        "hideDuration": "1000",
+        "hideDuration": "300",
         "timeOut": "10",
-        "extendedTimeOut": "1000",
+        "extendedTimeOut": "300",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
-}
-
-function updateToRest(){
-    var state = $("#checkbox-invert").bootstrapSwitch('state');
-    if(state){
-        $("#app-main").css({"-webkit-filter":"invert(1)","filter":"invert(1)"});
-    }else{
-        $("#app-main").css({"-webkit-filter":"invert(0)","filter":"invert(0)"});
-    }
-}
-
-function updateFontFamily(){
-    font_family = $("#selectFontFamily").val();
-    $("#app-main").css("font-family",font_family);
-}
-
-function updateFontSize(){
-    var size = $("#selecFontSize").val();
-    console.log(size);
-    $("#app-main").css("font-size",size + "px");
 }
 
 function search(seachInput){
