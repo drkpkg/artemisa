@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a type="button" class="btn btn-success" id="btn-category" onclick="newSpecie('<%= params[:id] %>')">
+          <i class="fa fa-plus"></i>
+          Nueva raza
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Razas en especie <a href="/animals/species/" class="pull-right btn-sm btn-warning ">Volver a especies</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Nombre especie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @razas.each do |raza| %>
+            <tr class="focus">
+              <td id="raza-<%= raza.id %>">
+                <%= raza.nombre_raza %>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" id="btn-modify-<%= raza.id %>" onclick="modifyBreed('<%= raza.id %>','<%= params[:id] %>')">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a href="#" id="btn-delete-<%= raza.id %>" onclick="deleteBreed('<%= raza.id %>')">
+                    <i class="fa fa-minus-square"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= render 'new' %>
+<%= render 'modify' %>

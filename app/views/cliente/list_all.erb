@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="col-md-12 row">
+
+    <div class="container">
+      <div class="row col-lg-3 pull-right">
+        <% if flash[:success] %>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= flash[:success] %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="btn-group">
+        <a href="/clients/new" class="btn btn-success">
+          <i class="fa fa-plus"></i>
+          Registro nuevo cliente
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Lista de clientes <a href="/people/selection" class="pull-right btn-sm btn-warning ">Volver a seleccion</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Nombre completo</th>
+          <th>Sexo</th>
+          <th>Cédula de identidad</th>
+          <th>Fecha de nacimiento</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>Direccion</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @clientes.each do |cliente| %>
+          <tr class="focus">
+            <td>
+              <a href="/clients/info/<%= cliente.id %>" data-toggle="tooltip" data-placement="top" title="Detalles">
+                <label><%= cliente.nombre + " " + cliente.ap_paterno + " " + cliente.ap_materno %></label>
+              </a>
+            </td>
+            <td>
+              <%= Genero.find_by(id: cliente.genero_id).genero %>
+            </td>
+            <td><%= cliente.identificacion %></td>
+            <td><%= cliente.fecha_nacimiento %></td>
+            <td><%= cliente.telefono %></td>
+            <td><%= cliente.correo %></td>
+            <td><%= cliente.direccion %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

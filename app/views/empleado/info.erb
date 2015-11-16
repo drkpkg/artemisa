@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:success] %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:success] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Información de empleado <a href="/employees" class="pull-right btn-sm btn-warning ">Volver a empleados</a></div>
+        <form class="panel-body">
+          <div class="col-md-3">
+            <% if @empleado.image_stored? %>
+              <%= image_tag @empleado.image.thumb('200x200#').url, class:"img-thumbnail"%>
+            <% else %>
+                <%= image_tag 'no_img.jpg', size: '200x200', class: 'img-thumbnail' %>
+            <% end %>
+            <br>
+            <br>
+            <div class="btn-group">
+              <a href="/employees/edit/<%= @empleado.id %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Modificar informacion del empleado">Modificar</a>
+              <a href="#" class="btn btn-danger" onclick="deleteEmployee('<%= @empleado.id %>')" data-toggle="tooltip" data-placement="top" title="Eliminar completamente los registros del empleado">Eliminar</a>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="input-group">
+              <label class="input-group-addon">Nombre completo </label>
+              <label class="form-control"><%= @empleado.nombre + " " + @empleado.ap_paterno + " " + @empleado.ap_materno  %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Sexo </label>
+              <label class="form-control"><%= Genero.find_by(id: @empleado.genero_id).genero %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Cédula de identidad </label>
+              <label class="form-control"><%= @empleado.identificacion %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Fecha de nacimiento </label>
+              <label class="form-control"><%= @empleado.fecha_nacimiento %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Cargo </label>
+              <label class="form-control"><%= PersonaTipo.find_by(id: @empleado.persona_tipos_id).tipo %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">teléfono </label>
+              <label class="form-control"><%= @empleado.telefono %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Direccion </label>
+              <label class="form-control"><%= @empleado.direccion %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Correo electronico </label>
+              <label class="form-control"><%= @empleado.correo %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Fecha de registro </label>
+              <label class="form-control"><%= @empleado.created_at %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon">Ultima modificacion </label>
+              <label class="form-control"><%= @empleado.updated_at %></label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

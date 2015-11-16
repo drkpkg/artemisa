@@ -1,0 +1,18 @@
+<div class="form-group form-group-sm">
+  <input id="user-username" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Usuario" placeholder="Usuario">
+  <br>
+  <input id="user-password" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Contraseña" placeholder="Contraseña">
+  <br>
+  <select id="user-group-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo al que pertenece el usuario">
+    <option disabled selected>Seleccione grupo</option>
+    <% Grupo.all.each do |index| %>
+        <%= content_tag(:option, index.descripcion_grupo, value: index.id) %>
+    <% end %>
+  </select>
+  <br>
+  <div class="input-group pull-right" data-toggle="tooltip" data-placement="top" title="Deshabilitar inicio de sesion del usuario">
+    <label class="input-group">Inicio de sesion</label>
+    <input id="user-state" type="checkbox" name="checkbox">
+  </div>
+  <br>
+</div>

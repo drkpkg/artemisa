@@ -15,11 +15,54 @@
 //= require sweet-alert
 //= require turbolinks
 //= require twitter/bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
+//= require bootstrap-switch
+//= require toastr
 //= require_tree .
 
-/*
-* Generic message function to all instances.
-* */
+$(document).ready(function(){
+    $('[name="checkbox"]').bootstrapSwitch();
+    $.fn.bootstrapSwitch.defaults.size = 'small';
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#datetimepicker').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#time-in').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-in-modify').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out-modify').datetimepicker({
+        format: 'LT'
+    });
+});
+
+$(document).unload(function() {
+    $('[name="checkbox"]').bootstrapSwitch();
+    $.fn.bootstrapSwitch.defaults.size = 'small';
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#datetimepicker').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#time-in').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-in-modify').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out-modify').datetimepicker({
+        format: 'LT'
+    });
+});
+
 function redirectTo(data) {
     window.location.href = data.redirect_page;
 }
@@ -87,16 +130,89 @@ function get(url, data) {
 
 function deleteObject(url, data){
     swal({
-        title: "¿Está seguro de borrar esta campo?",
-        text: "No se podrá recuperar los datos eliminados",
-        type: "warning",
-        cancelButtonText: "Cancelar",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Si, eliminar",
-        closeOnConfirm: false
-    }, function() {
-        return post(url, data);
+            title: "¿Eliminar?",
+            text: "No se podrá recuperar los datos eliminados",
+            cancelButtonText: "Cancelar",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true
+        },
+        function(){
+            setTimeout(function(){
+                post(url, data);
+            }, 1000);
+        });
+}
+
+function config(){
+    $("#config-modal").modal("show");
+}
+
+function onlyNumbers(e){
+    if (e.which != 8 && e.which != 0 && (e.which < 46 || e.which > 57)){
+            notify("error", "Solo se aceptan números");
+        return false;
+    }
+    return true;
+}
+
+function onlyText(e){
+    if (e.which != 8 && e.which != 0 && (e.which < 96 || e.which > 123) && (e.which < 64 || e.which > 91) && e.which != 32){
+        notify("error", "Solo se aceptan letras");
+        return false;
+    }
+    return true;
+}
+
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    if(re.test(email)==false){
+        notify("error", "Formato de correo no valido");
+        return false;
+    }
+    return true;
+}
+
+function notify(type, message){
+    toastr[type](message);
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "300",
+        "timeOut": "10",
+        "extendedTimeOut": "300",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+}
+
+function search(seachInput){
+    _this = $(seachInput);
+    // Show only matching TR, hide rest of them
+    $.each($("#table tbody").find("tr"), function() {
+        if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1){
+            $(this).hide();
+        }else{
+            $(this).show();
+        }
     });
 }
 
+function readURL(input) {
+    var reader;
+    if (input.files && input.files[0]) {
+        reader = new FileReader;
+        reader.onload = function(e) {
+            return $('#preview').attr('src', e.target.result);
+        };
+        return reader.readAsDataURL(input.files[0]);
+    }
+};

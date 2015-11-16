@@ -1,0 +1,128 @@
+<%= render 'general/back_modules' %>
+
+<div class="container-fluid">
+  <div class="col-md-9 row">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <label>Nómina de usuarios</label>
+        <%= render 'general/search' %>
+        <a type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Nuevo usuario" onclick="newUser()">
+          <i class="fa fa-user-plus"></i>
+        </a>
+      </div>
+      <div class="panel-body">
+        <table id="table" class="table">
+          <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Grupo</th>
+            <th>Opciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @usuarios.each do |actual_index| %>
+              <tr class="focus">
+                <td id="actual-identity-<%= actual_index.id %>">
+                  <%= actual_index.nombre_usuario %>
+                </td>
+                <td id="actual-state-<%= actual_index.id %>">
+                  <% if actual_index.state == true %>
+                      Activo
+                  <% else %>
+                      Inactivo
+                  <% end %>
+                </td>
+                <td id="actual-group-<%= actual_index.id %>">
+                  <% grupo = Grupo.find_by(id: actual_index.grupo_id) %>
+                  <% if grupo.blank? %>
+                    Sin grupo
+                  <% else %>
+                    <%= grupo.descripcion_grupo %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if actual_index.nombre_usuario != 'admin' %>
+                      <div class="btn-group">
+                        <a href="/people/info/<%= actual_index.nombre_usuario %>" data-toggle="tooltip" data-placement="top" title="Detalles">
+                          <i class="fa fa-info fa-1x"></i>
+                        </a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar" onclick="editUser('<%= actual_index.id %>')">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="deleteUser('<%= actual_index.id %>')">
+                          <i class="fa fa-close"></i>
+                        </a>
+                      </div>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: 'grupo/list_all' %>
+</div>
+</div>
+
+<div id="modify-user-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="user-username-title" class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <%= render partial: 'modify' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="save-modify-user">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new-user-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo usuario</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <%= render partial: 'new' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="save-new-user" onclick="createUser()">Crear nuevo usuario</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new-group-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo grupo</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: 'grupo/new' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="save-category" onclick="createGroup()">Crear nuevo grupo</button>
+      </div>
+    </div>
+  </div>
+</div>

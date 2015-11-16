@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a type="button" class="btn btn-success" id="btn-category" onclick="newSpecie()">
+          <i class="fa fa-plus"></i>
+          Nueva especie
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Lista de especies <a href="/animals/selection" class="pull-right btn-sm btn-warning ">Volver a stock</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Nombre especie</th>
+          <th>Cantidad de razas registradas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @especies.each do |category_index| %>
+            <tr class="focus">
+              <td id="especie-<%= category_index.id %>">
+                <%= category_index.nombre_especie %>
+              </td>
+              <td id="cantidad-<%= category_index.id %>">
+                <a href="/animals/species/breeds/<%= category_index.id %>"><%= Raza.where(especie_id: category_index.id).count %></a>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" id="btn-modify-<%= category_index.id %>" onclick="modifySpecie('<%= category_index.id %>')">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a href="#" id="btn-delete-<%= category_index.id %>" onclick="deleteSpecie('<%= category_index.id %>')">
+                    <i class="fa fa-minus-square"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= render 'new' %>
+<%= render 'modify' %>

@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="col-md-12 row">
+
+    <div class="container">
+      <div class="row col-lg-3 pull-right">
+        <% if flash[:success] %>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= flash[:success] %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="btn-group">
+        <a href="/animals/new" class="btn btn-success">
+          <i class="fa fa-plus"></i>
+          Registro nuevo animal
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Lista de animales <a href="/animals/selection" class="pull-right btn-sm btn-warning ">Volver a seleccion</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Sexo</th>
+          <th>Alto</th>
+          <th>Largo</th>
+          <th>Peso</th>
+          <th>Fecha de nacimiento</th>
+          <th>Fecha de deceso</th>
+          <th>Raza</th>
+          <th>Dueño</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @animales.each do |animal| %>
+          <tr class="focus">
+            <td>
+              <a href="/animals/info/<%= animal.id %>" data-toggle="tooltip" data-placement="top" title="Detalles">
+                <label><%= animal.nombre %></label>
+              </a>
+            </td>
+            <td>
+              <%= Genero.find_by(id: animal.genero_id).genero %>
+            </td>
+            <td><%= animal.alto %></td>
+            <td><%= animal.largo %></td>
+            <td><%= animal.peso %></td>
+            <td><%= animal.fecha_nacimiento %></td>
+            <td><%= animal.fecha_deceso %></td>
+            <td><%= Raza.find_by(id: animal.raza_id).nombre_raza %></td>
+            <td>
+              <% persona = Persona.find_by(id: animal.cliente_id) %>
+              <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

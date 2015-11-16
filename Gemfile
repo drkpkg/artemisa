@@ -1,7 +1,6 @@
 #For windows
 source 'http://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use postgresql as the database for Active Record
@@ -34,11 +33,27 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# gem 'capistrano-rails', grupo: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+# gem 'debugger', grupo: [:development, :test]
 
+gem 'dragonfly', '~> 1.0.12'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+gem 'bootstrap-switch-rails'
 gem 'sweetalert-rails'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'toastr-rails'
+gem 'dotenv-rails'
+
+group :production do
+  gem 'rack-cache', :require => 'rack/cache'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'railroady'
+end

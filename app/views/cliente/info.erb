@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:success] %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:success] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Información de cliente <a href="/clients" class="pull-right btn-sm btn-warning ">Volver a clientes</a></div>
+        <form class="panel-body">
+          <div class="col-md-3">
+            <% if @cliente.image_stored? %>
+              <%= image_tag @cliente.image.thumb('200x200#').url, class:"img-thumbnail"%>
+            <% else %>
+                <%= image_tag 'no_img.jpg', size: '200x200', class: 'img-thumbnail' %>
+            <% end %>
+            <br>
+            <br>
+            <div class="btn-group">
+              <a href="/clients/edit/<%= @cliente.id %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Modificar informacion del cliente">Modificar</a>
+              <a href="#" class="btn btn-danger" onclick="deleteEmployee('<%= @cliente.id %>')" data-toggle="tooltip" data-placement="top" title="Eliminar completamente los registros del cliente">Eliminar</a>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Nombre completo </label>
+              <label class="form-control"><%= @cliente.nombre + " " + @cliente.ap_paterno + " " + @cliente.ap_materno  %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Sexo </label>
+              <label class="form-control"><%= Genero.find_by(id: @cliente.genero_id).genero %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Cédula de identidad </label>
+              <label class="form-control"><%= @cliente.identificacion %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Fecha de nacimiento </label>
+              <label class="form-control"><%= @cliente.fecha_nacimiento %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">teléfono </label>
+              <label class="form-control"><%= @cliente.telefono %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Direccion </label>
+              <label class="form-control"><%= @cliente.direccion %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Correo electronico </label>
+              <label class="form-control"><%= @cliente.correo %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Fecha de registro </label>
+              <label class="form-control"><%= @cliente.created_at %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Ultima modificacion </label>
+              <label class="form-control"><%= @cliente.updated_at %></label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,8 +13,19 @@
  *= require_tree .
  *= require sweet-alert
  *= require font-awesome
+ *= require toastr
+ *= require bootstrap3-switch
+ *= require bootstrap-datetimepicker
  *= require_self
  */
+
+body{
+    background-color: #a8a8a8;
+}
+
+.focus:hover{
+    background-color: #101b26;
+}
 
 .panel-height {
     height: 190px;
@@ -28,10 +39,109 @@
 
 .cmn-t-bg {
     color: #fff;
-    background-color: #7fcfff;
+    background-color: #355d76;
     /* transition: background 0.2s; */
 }
-.cmn-t-bg:hover {
-    color: #fff;
-    background-color: #154b98;
+
+.align-input{
+    padding-right: 15px !important;
+}
+
+.btn-remove{
+    background-color: #b08d68;
+}
+
+.btn-remove:hover{
+    background-color: #b00017;
+}
+
+.label-fix{
+    margin: 3px 3px 3px 3px;
+    display: inline-block;
+}
+
+/*Login*/
+.login-message
+{
+    margin: -7% 35%;
+}
+.center-login
+{
+    margin: 10% 35%;
+}
+
+.login-beauty{
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+/* cover */
+div.cover {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+img.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+    overflow-x: hidden;
+}
+
+.background-image {
+    background-size: cover;
+    display: block;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    position: fixed;
+    z-index: -1;
+}
+
+
+/*Overrides*/
+.hvr-sweep-to-top::before{
+    background: #253c54 none repeat scroll 0 0;
+}
+
+/*Form image*/
+.image-form{
+    position: relative;
+    left: -150px;
+    top: 100px;
+}
+
+.normalize-size{
+    min-width: 200px;
+    text-align: left;
+}
+
+.form-color {
+    background-color: #1d2f43;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.group-size-100{
+    width: 100% !important;
+}
+
+.group-size-80{
+    width: 80% !important;
+}
+
+.input-control{
+    width: 20% !important;
 }

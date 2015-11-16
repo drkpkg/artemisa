@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:success] %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:success] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Información de <%= @animal.nombre %> <a href="/animals" class="pull-right btn-sm btn-warning ">Volver a animales</a></div>
+        <form class="panel-body">
+          <div class="col-md-3">
+            <% if @animal.image_stored? %>
+              <%= image_tag @animal.image.thumb('200x200#').url, class:"img-thumbnail"%>
+            <% else %>
+                <%= image_tag 'no_img.jpg', size: '200x200', class: 'img-thumbnail' %>
+            <% end %>
+            <br>
+            <br>
+            <div class="btn-group">
+              <a href="/animals/edit/<%= @animal.id %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Modificar informacion del animal">Modificar</a>
+              <a href="#" class="btn btn-danger" onclick="deleteAnimal('<%= @animal.id %>')" data-toggle="tooltip" data-placement="top" title="Eliminar completamente los registros del animal">Eliminar</a>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Nombre </label>
+              <label class="form-control"><%= @animal.nombre %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Sexo </label>
+              <label class="form-control"><%= Genero.find_by(id: @animal.genero_id).genero %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Alto </label>
+              <label class="form-control"><%= @animal.alto %> CM</label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Largo </label>
+              <label class="form-control"><%= @animal.largo %> CM</label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Peso </label>
+              <label class="form-control"><%= @animal.peso %> KG</label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Fecha de nacimiento </label>
+              <label class="form-control"><%= @animal.fecha_nacimiento %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Fecha de deceso </label>
+              <label class="form-control"><%= @animal.fecha_deceso %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Raza </label>
+              <% raza = Raza.find_by(id: @animal.raza_id) %>
+              <label class="form-control"><%= raza.nombre_raza %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Especie </label>
+              <label class="form-control"><%= Especie.find_by(id: raza.especie_id).nombre_especie %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Dueño </label>
+              <label class="form-control">
+                <% persona = Persona.find_by(id: @animal.cliente_id) %>
+                <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+              </label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Fecha de registro </label>
+              <label class="form-control"><%= @animal.created_at %></label>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="input-group-addon normalize-size">Ultima modificacion </label>
+              <label class="form-control"><%= @animal.updated_at %></label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

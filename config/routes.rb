@@ -1,46 +1,118 @@
 Rails.application.routes.draw do
 
-  root 'user#login'
+  root 'application#login'
 
   #General
-  get 'admin' => 'user#admin'
-  get 'dashboard' => 'user#dashboard'
-  get 'logout' => 'user#logout'
+  get 'dashboard' => 'application#dashboard'
+  get 'logout' => 'application#logout'
+  post 'auth_user' => 'usuario#auth_user'
+
+  #Animals
+  get 'animals/' => 'animal#list_all'
+  get 'animals/new' => 'animal#new'
+  get 'animals/edit/:id' => 'animal#edit'
+  get 'animals/info/:id' => 'animal#info'
+  post 'animals/create' => 'animal#create'
+  patch 'animals/modify' => 'animal#modify'
+  post 'animals/delete' => 'animal#delete'
+
+  get 'animals/species/' => 'especie#list_all'
+  post 'animals/species/create' => 'especie#create'
+  post 'animals/species/modify' => 'especie#modify'
+  post 'animals/species/delete' => 'especie#delete'
+
+  get 'animals/species/breeds/' => 'raza#list_all'
+  get 'animals/species/breeds/:id' => 'raza#list_all'
+  post 'animals/species/breeds/create' => 'raza#create'
+  post 'animals/species/breeds/modify' => 'raza#modify'
+  post 'animals/species/breeds/delete' => 'raza#delete'
 
   #users
-  get 'user/auth_user' => 'user#auth_user' #Json
-  get 'user/list_all' => 'user#list_all'
-  post 'user/create' => 'user#create'
-  post 'user/delete' => 'user#delete'
-  post 'user/modify' => 'user#modify'
+  get 'users/' => 'usuario#list_all'
+  post 'users/create' => 'usuario#create'
+  post 'users/delete' => 'usuario#delete'
+  post 'users/modify' => 'usuario#modify'
 
-  #Assets
-  get 'assets/list_all' => 'asset#list_all'
-  get 'assets/new' => 'asset#new'
-  get 'assets/:id/edit' => 'asset#edit'
-  post 'assets/create' => 'asset#create'
-  post 'assets/modify' => 'asset#modify'
-  post 'assets/delete' => 'asset#delete'
+  #Products
+  get 'products/' => 'producto#list_all'
+  get 'products/new' => 'producto#new'
+  get 'products/:id/edit' => 'producto#edit'
+  post 'products/create' => 'producto#create'
+  post 'products/modify' => 'producto#modify'
+  post 'products/delete' => 'producto#delete'
 
-  #Assets Types
-  get 'types/list_all' => 'asset_type#list_all'
-  post 'types/create' => 'asset_type#create'
-  post 'types/delete' => 'asset_type#delete'
-  post 'types/modify' => 'asset_type#modify'
+  #Product Types
+  get 'product_types/' => 'producto_tipo#list_all'
+  post 'product_types/create' => 'producto_tipo#create'
+  post 'product_types/delete' => 'producto_tipo#delete'
+  post 'product_types/modify' => 'producto_tipo#modify'
 
-  #Assets Categories
-  get 'categories/list_all' => 'asset_category#list_all'
-  post 'categories/create' => 'asset_category#create'
-  post 'categories/delete' => 'asset_category#delete'
-  post 'categories/modify' => 'asset_category#modify'
-
-  #Employee
-  get 'employees/list_all' => 'employee#list_all'
-  post 'employees/create' => 'employee#create'
-  post 'employees/delete' => 'employee#delete'
-  post 'employees/modify' => 'employee#modify'
+  #Batch
+  get 'batch/' => 'lote#list_all'
+  post 'batch/create' => 'lote#create'
+  post 'batch/delete' => 'lote#delete'
+  post 'batch/modify' => 'lote#modify'
 
   #History of users
-  get 'histories/list_all' => 'history#list_all'
+  get '/logs' => 'bitacora#list_all'
 
+  #groups
+  post 'groups/create' => 'grupo#create'
+  post 'groups/modify' => 'grupo#modify'
+  post 'groups/delete' => 'grupo#delete'
+
+  #Permissions per grupo
+  get 'groups/:name' => 'permiso#list_all'
+
+  #Clients
+  get 'clients/' => 'cliente#list_all'
+  get 'clients/new' => 'cliente#new'
+  get 'clients/info/:id' => 'cliente#info'
+  get 'clients/edit/:id' => 'cliente#edit'
+  patch 'clients/modify' => 'cliente#modify'
+  post 'clients/create' => 'cliente#create'
+  post 'clients/modify' => 'cliente#modify'
+  post 'clients/delete' => 'cliente#delete'
+
+  #Employees
+  get 'employees/' => 'empleado#list_all'
+  get 'employees/new' => 'empleado#new'
+  get 'employees/info/:id' => 'empleado#info'
+  get 'employees/edit/:id' => 'empleado#edit'
+  patch 'employees/modify' => 'empleado#modify'
+  post 'employees/create' => 'empleado#create'
+  post 'employees/delete' => 'empleado#delete'
+
+  #Stock
+  get 'stock/' => 'stock#selection'
+  get 'people/selection' => 'persona#selection'
+  get 'animals/selection' => 'animal#selection'
+
+  #Schedule
+  get 'schedules/' => 'horario#list_all'
+  post 'schedules/create' => 'horario#create'
+  post 'schedules/modify' => 'horario#modify'
+  post 'schedules/delete' => 'horario#delete'
+
+  #Reports
+  get 'reports/' => 'reporte#generator'
+
+  #Services
+  get 'services/' => 'servicio#list_all'
+
+  #Artemisa API for mobile NOT IMPLEMENTED YET
+  scope 'hermes' do
+    scope 'v1' do
+      get 'version' => 'hermes#version'
+      scope 'breeds' do
+        get 'list' => 'raza#list_breeds'
+      end
+      scope 'animals' do
+        post 'create' => 'animal#create_animal'
+      end
+      scope 'clients' do
+        get 'list' => 'cliente#list_clients'
+      end
+    end
+  end
 end

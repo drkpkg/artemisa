@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a type="button" class="btn btn-success" id="btn-category" onclick="newProductType()">
+          <i class="fa fa-plus"></i>
+          Agregar categoría
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Categorías de inventario <a href="/stock/" class="pull-right btn-sm btn-warning ">Volver a stock</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @tipos.each do |category_index| %>
+            <tr class="focus">
+              <td id="nombre-<%= category_index.id %>">
+                <%= category_index.nombre_tipo_producto %>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" id="btn-modify-<%= category_index.id %>" onclick="modifyProductType('<%= category_index.id %>')">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a href="#" id="btn-delete-<%= category_index.id %>" onclick="deleteProductType('<%= category_index.id %>')">
+                    <i class="fa fa-minus-square"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= render 'new' %>
+<%= render 'modify' %>

@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a href="/products/new" class="btn btn-success">
+          <i class="fa fa-plus"></i>
+          Nuevo registro de inventario
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Inventario <a href="/stock/" class="pull-right btn-sm btn-warning ">Volver a stock</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Marca</th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Vencimiento</th>
+          <th>Categoria</th>
+          <th>Lote</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @productos.each do |actual_index| %>
+            <tr class="focus">
+              <td id="marca-<%= actual_index.id %>"><%= actual_index.marca_producto %></td>
+              <td id="producto-<%= actual_index.id %>"><%= actual_index.nombre_producto %></td>
+              <td id="precio-<%= actual_index.id %>"><%= actual_index.precio_total %></td>
+              <td id="vencimiento-<%= actual_index.id %>"><%= actual_index.fecha_vencimiento %></td>
+              <td>
+                <% product_type = ProductoTipo.find_by(id: actual_index.producto_tipo_id) %>
+                <% if product_type.blank? %>
+                    <div id="categoria-<%= actual_index.id %>">
+                      Sin categoria
+                    </div>
+                <% else %>
+                    <div id="categoria-<%= actual_index.id %>">
+                      <%= product_type.nombre_tipo_producto %>
+                    </div>
+                <% end %>
+              </td>
+              <td>
+                <div id="lote-<%= actual_index.id %>">
+                    <%= Lote.find_by(id: actual_index.lotes_id).lote %>
+                </div>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="#" onclick="editProduct('<%= actual_index.id %>')" data-toggle="tooltip" data-placement="top" title="Modificar informacion el producto">
+                    <i class="fa fa-edit fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="deleteProduct('<%= actual_index.id %>')" data-toggle="tooltip" data-placement="top" title="Eliminar activo fijo">
+                    <i class="fa fa-close fa-2x"></i>
+                  </a>
+                  <a href="#" onclick="showQR('<%= actual_index.id %>')" data-toggle="tooltip" data-placement="top" title="Generar codigo QR">
+                    <i class="fa fa-qrcode fa-2x"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<%= render 'modify' %>
+<%= render 'qr_code' %>
