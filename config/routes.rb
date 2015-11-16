@@ -90,6 +90,9 @@ Rails.application.routes.draw do
 
   #Schedule
   get 'schedules/' => 'horario#list_all'
+  post 'schedules/create' => 'horario#create'
+  post 'schedules/modify' => 'horario#modify'
+  post 'schedules/delete' => 'horario#delete'
 
   #Reports
   get 'reports/' => 'reporte#generator'

@@ -28,6 +28,18 @@ $(document).ready(function(){
     $('#datetimepicker').datetimepicker({
         format: 'DD/MM/YYYY'
     });
+    $('#time-in').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-in-modify').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out-modify').datetimepicker({
+        format: 'LT'
+    });
 });
 
 $(document).unload(function() {
@@ -36,6 +48,18 @@ $(document).unload(function() {
     $('[data-toggle="tooltip"]').tooltip();
     $('#datetimepicker').datetimepicker({
         format: 'DD/MM/YYYY'
+    });
+    $('#time-in').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-in-modify').datetimepicker({
+        format: 'LT'
+    });
+    $('#time-out-modify').datetimepicker({
+        format: 'LT'
     });
 });
 
