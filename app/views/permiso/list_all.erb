@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <label>Grupos permisos de <%= @grupo.descripcion_grupo %></label>
+        <button type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Agregar nuevo grupo" onclick="newGroup()">
+          <i class="fa fa-plus"></i>
+          <i class="fa fa-group"></i>
+        </button>
+      </div>
+      <div class="panel-body">
+        <% permiso_object = JSON.parse Permiso.find_by(id: @grupo.permisos_id).data %>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <td>Vista</td>
+              <td>Crear</td>
+              <td>Modificar</td>
+              <td>Eliminar</td>
+            </tr>
+          </thead>
+          <tbody>
+          <% permiso_object.each do |index| %>
+              <tr>
+                <td><%= index[0] %></td>
+                <td><%= index[1]['c'] %></td>
+                <td><%= index[1]['m'] %></td>
+                <td><%= index[1]['d'] %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

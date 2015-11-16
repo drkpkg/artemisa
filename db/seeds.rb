@@ -216,3 +216,5 @@ Genero.create(genero: "Macho")
 Genero.create(genero: "Hembra")
 Genero.create(genero: "Hombre")
 Genero.create(genero: "Mujer")
+
+Permiso.create(data: '{"animales":{"c":true,"m":true,"d":true},"especies":{"c":true,"m":true,"d":true},"razas":{"c":true,"m":true,"d":true},"clientes":{"c":true,"m":true,"d":true},"empleados":{"c":true,"m":true,"d":true},"usuarios":{"c":true,"m":true,"d":true},"grupos":{"c":true,"m":true,"d":true},"permisos":{"c":true,"m":true,"d":true},"horarios":{"c":true,"m":true,"d":true},"servicios":{"c":true,"m":true,"d":true},"productos":{"c":true,"m":true,"d":true},"tproductos":{"c":true,"m":true,"d":true},"lotes":{"c":true,"m":true,"d":true}}')
