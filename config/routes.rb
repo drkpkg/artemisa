@@ -100,14 +100,18 @@ Rails.application.routes.draw do
   #Services
   get 'services/' => 'servicio#list_all'
 
-
-
   #Artemisa API for mobile NOT IMPLEMENTED YET
   scope 'hermes' do
     scope 'v1' do
       get 'version' => 'hermes#version'
       scope 'breeds' do
         get 'list' => 'raza#list_breeds'
+      end
+      scope 'animals' do
+        post 'create' => 'animal#create_animal'
+      end
+      scope 'clients' do
+        get 'list' => 'cliente#list_clients'
       end
     end
   end

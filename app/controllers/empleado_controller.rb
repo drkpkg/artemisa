@@ -1,7 +1,7 @@
 class EmpleadoController < ApplicationController
 
   def list_all
-    @empleados = Persona.where(persona_tipos_id: 1)
+    @empleados = Persona.where.not(persona_tipos_id: 1)
   end
 
   def create

@@ -47,6 +47,24 @@ class AnimalController < ApplicationController
     end
   end
 
+  #Hermes API
+  #PARAMS
+  # :id, :image, :nombre, :alto, :largo, :peso, :fecha_deceso,:fecha_nacimiento, :genero_id, :raza_id, :cliente_id
+  def create_animal
+    animal = Animal.new(animal_params)
+    if animal.save
+      #respond_to do |format|
+        msg = {status: 200, description: 'Registro completo'}
+        render :json => msg
+      #end
+    else
+      #respond_to do |format|
+        msg = {status: 400, description: 'Error al registrar'}
+        render :json => msg
+      #end
+    end
+  end
+
   private
 
   def animal_params
