@@ -17,17 +17,14 @@ Rails.application.routes.draw do
   post 'animals/delete' => 'animal#delete'
 
   get 'animals/species/' => 'especie#list_all'
-  get 'animals/species/new' => 'especie#new'
-  get 'animals/species/edit' => 'especie#edit'
   post 'animals/species/create' => 'especie#create'
-  patch 'animals/species/modify' => 'especie#modify'
+  post 'animals/species/modify' => 'especie#modify'
   post 'animals/species/delete' => 'especie#delete'
 
   get 'animals/species/breeds/' => 'raza#list_all'
-  get 'animals/species/breeds/new' => 'raza#new'
-  get 'animals/species/breeds/edit' => 'raza#edit'
+  get 'animals/species/breeds/:id' => 'raza#list_all'
   post 'animals/species/breeds/create' => 'raza#create'
-  patch 'animals/species/breeds/modify' => 'raza#modify'
+  post 'animals/species/breeds/modify' => 'raza#modify'
   post 'animals/species/breeds/delete' => 'raza#delete'
 
   #users

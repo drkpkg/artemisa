@@ -23,7 +23,7 @@ class LoteController < ApplicationController
   end
 
   def modify
-    tipo = ProductoTipo.find_by(id: params[:id])
+    tipo = Lote.find_by(id: params[:id])
     if tipo.update(lote: params[:lote], cantidad_lote: params[:cantidad], cantidad_minima: params[:minimo])
       respond('200', 'En hora buena', 'lote modificado satisfactoriamente', 'success', '/batch/')
     else

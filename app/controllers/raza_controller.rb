@@ -1,44 +1,43 @@
 class RazaController < ApplicationController
 
   def list_all
-    razas = Raza.joins(:especie)
+    @razas = Raza.where(especie_id: params[:id])
   end
 
   def create
     raza = Raza.new
-    raza.nombre_raza = params[:nombre_raza]
-    raza.especie_id = params[:especie]
-    if raza.save
-      flash[:success] = "Raza guardada satisfactoriamente"
-      redirect_to animals_species_breeds_path
+    raza.nombre_raza = params[:raza]
+    raza.especie_id = params[:especie_id]
+
+    if raza.valid?
+      raza.save
+      respond('200', 'En hora buena', 'Raza agregada satisfactoriamente', 'success', "/animals/species/breeds/#{params[:especie_id]}")
     else
-      flash[:error] = "Error al crear raza"
-      redirect_to animals_species_breeds_path
+      description = get_errors(raza)
+      respond('400', 'Error', description, 'error', '')
     end
   end
 
   def modify
     raza = Raza.find_by(id: params[:id])
-    param_list = Hash.new
-    param_list[:nombre_raza] = params[:nombre_raza]
-    if raza.update(param_list)
-      flash[:success] = "Raza modificada satisfactoriamente"
-      redirect_to '/animals/species/breeds/'
+    if raza.update(nombre_raza: params[:raza], especie_id: params[:especie_id])
+      respond('200', 'En hora buena', 'lote modificado satisfactoriamente', 'success', "/animals/species/breeds/#{params[:especie_id]}")
     else
-      flash[:error] = "Error al crear raza"
-      redirect_to '/animals/species/breeds/'
+      description = get_errors(raza)
+      respond('400', 'Error', description, 'error', '')
     end
   end
 
   def delete
     raza = Raza.find_by(id: params[:id])
     if user.delete
-      respond('200', 'En hora buena', 'Raza eliminada satisfactoriamente', 'success', '/animals/species/breeds/')
+      respond('200', 'En hora buena', 'Raza eliminada satisfactoriamente', 'success', "/animals/species/breeds/#{params[:especie_id]}")
     else
       respond('400', 'Error', 'Sucedió un error al eliminar el usuario', 'error', '')
     end
   end
 
+  #Hermes V1
   def list_breeds
     breeds = Raza.where(especie_id: params[:id]).select("id, nombre_raza")
     respond_to do |format|

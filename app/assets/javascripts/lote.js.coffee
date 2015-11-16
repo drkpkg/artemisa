@@ -20,9 +20,9 @@
   $("#modify-batch-modal").modal('show')
 
   $("#save-modify-batch").on 'click', ->
-    lote = $("#lote-" + id).val()
-    cantidad = $("#cantidad-" + id).val()
-    minimo = $("#minimo-" + id).val()
+    lote = $("#lotem").val()
+    cantidad = $("#cantidadm" ).val()
+    minimo = $("#minimom").val()
     url = '/batch/modify'
     data = {id: id, lote: lote, cantidad: cantidad, minimo: minimo}
     post(url, data)
