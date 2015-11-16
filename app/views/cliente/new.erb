@@ -13,12 +13,12 @@
         </div>
       </div>
 
-      <h3 class="panel-heading">Registro de empleado</h3>
+      <h3 class="panel-heading">Registro de cliente</h3>
 
       <%= form_for :persona, url: '/employees/create' do |f| %>
           <div class="form-group">
             <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
-            <%= f.file_field :image, onchange:"readURL(this)" %>
+            <%= f.file_field :image, onchange: "readURL(this)" %>
           </div>
 
           <br>
@@ -43,11 +43,10 @@
             <%= f.select :genero_id, options_for_select([["Hombre", "3"], ["Mujer", "4"]]), {}, {class: 'form-control input-control'} %>
           </div>
           <br>
-          <%= f.select :persona_tipos_id, PersonaTipo.where.not(id: 1).collect {|p| [ p.tipo, p.id ] }, {}, {class: 'form-control input-control'} %>
 
           <div class="btn-group pull-right">
             <%= f.submit 'Guardar', :class => 'btn btn-success' %>
-            <%= link_to 'Cancelar', '/employees', class: 'btn btn-info' %>
+            <%= link_to 'Cancelar', '/clients', class: 'btn btn-info' %>
           </div>
       <% end %>
     </div>

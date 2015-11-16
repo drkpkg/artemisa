@@ -4,7 +4,7 @@ class CreateVenta < ActiveRecord::Migration
       t.float :precio_total
       t.references :cliente, index: true
       t.references :historico_clinico, index: true
-      t.references :empleado, "vendedor_id", index: true
+      t.references :@cliente, "vendedor_id", index: true
 
       t.timestamps
     end

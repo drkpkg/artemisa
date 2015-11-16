@@ -3,7 +3,7 @@ class ProductoController < ApplicationController
     if !(cookies[:user_name] && cookies[:type])
       redirect_to root_path
     else
-      @products = Producto.all
+      @productos = Producto.all
     end
   end
 
@@ -14,15 +14,9 @@ class ProductoController < ApplicationController
   end
 
   def create
-    product = Product.new()
-    product.product_name = params[:producto][:product_name]
-    product.product_description = params[:producto][:product_description]
-    product.product_type_id = params[:producto][:producto_tipo]
-    product.product_price_buy = params[:producto][:product_price_buy]
-    product.product_price_sell = params[:producto][:product_price_sell]
+    product = Producto.new(producto_params)
 
-    if product.valid?
-      product.save()
+    if product.save()
       redirect_to '/products/'
     else
       flash[:error] = get_errors(product)
@@ -32,11 +26,12 @@ class ProductoController < ApplicationController
 
   def modify
     product = Producto.find_by(id: params[:id])
-    param_hash = {:product_name => params[:name],
-                  :product_description => params[:description],
-                  :product_price_buy => params[:buy],
-                  :product_price_sell => params[:sell],
-                  :category_id => params[:category] }
+    param_hash = {:marca_producto => params[:marca],
+                  :nombre_producto => params[:producto],
+                  :precio_total => params[:precio],
+                  :fecha_vencimiento => params[:vencimiento],
+                  :producto_tipo_id => params[:tipo],
+                  :lotes_id => params[:lote]}
     if product.update(param_hash)
       respond('200', 'En hora buena', 'Activo modificado satisfactoriamente', 'success', '/products/')
     else
@@ -52,5 +47,11 @@ class ProductoController < ApplicationController
     else
       respond('400', 'Error', 'Error al eliminar activo, por favor intente de nuevo.', 'error', '')
     end
+  end
+
+  private
+
+  def producto_params
+    params.require(:producto).permit(:id, :marca_producto, :nombre_producto, :precio_total, :fecha_vencimiento, :producto_tipo_id, :lotes_id )
   end
 end

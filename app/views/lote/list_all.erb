@@ -2,7 +2,7 @@
   <div class="col-md-12 row">
     <div class="container">
       <div class="btn-group">
-        <a type="button" class="btn btn-success" id="btn-category" onclick="newProductType()">
+        <a type="button" class="btn btn-success" id="btn-category" onclick="newBatch()">
           <i class="fa fa-plus"></i>
           Agregar categoría
         </a>
@@ -16,22 +16,29 @@
       <table id="table" class="table">
         <thead>
         <tr>
-          <th>Descripción</th>
-          <th>Opciones</th>
+          <th>Lote</th>
+          <th>Cantidad</th>
+          <th>Cantidad minima</th>
         </tr>
         </thead>
         <tbody>
-        <% @tipos.each do |category_index| %>
+        <% @lotes.each do |category_index| %>
             <tr class="focus">
-              <td id="nombre-<%= category_index.id %>">
-                <%= category_index.nombre_tipo_producto %>
+              <td id="lote-<%= category_index.id %>">
+                <%= category_index.lote %>
+              </td>
+              <td id="cantidad-<%= category_index.id %>">
+                <%= category_index.cantidad_lote %>
+              </td>
+              <td id="minimo-<%= category_index.id %>">
+                <%= category_index.cantidad_minima %>
               </td>
               <td>
                 <div class="btn-group">
-                  <a href="#" id="btn-modify-<%= category_index.id %>" onclick="modifyProductType('<%= category_index.id %>')">
+                  <a href="#" id="btn-modify-<%= category_index.id %>" onclick="modifyBatch('<%= category_index.id %>')">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <a href="#" id="btn-delete-<%= category_index.id %>" onclick="deleteProductType('<%= category_index.id %>')">
+                  <a href="#" id="btn-delete-<%= category_index.id %>" onclick="deleteBatch('<%= category_index.id %>')">
                     <i class="fa fa-minus-square"></i>
                   </a>
                 </div>

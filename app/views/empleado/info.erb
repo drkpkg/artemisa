@@ -14,7 +14,7 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading">Información de empleado</div>
+        <div class="panel-heading">Información de empleado <a href="/employees" class="pull-right btn-sm btn-warning ">Volver a empleados</a></div>
         <form class="panel-body">
           <div class="col-md-3">
             <% if @empleado.image_stored? %>
@@ -24,7 +24,10 @@
             <% end %>
             <br>
             <br>
-            <a href="/employees/edit/<%= @empleado.id %>" class="btn btn-info">Modificar informacion</a>
+            <div class="btn-group">
+              <a href="/employees/edit/<%= @empleado.id %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Modificar informacion del empleado">Modificar</a>
+              <a href="#" class="btn btn-danger" onclick="deleteEmployee('<%= @empleado.id %>')" data-toggle="tooltip" data-placement="top" title="Eliminar completamente los registros del empleado">Eliminar</a>
+            </div>
           </div>
           <div class="col-md-9">
             <div class="input-group">
@@ -63,7 +66,7 @@
             </div>
             <br>
             <div class="input-group">
-              <label class="input-group-addon">Direccion </label>
+              <label class="input-group-addon">Correo electronico </label>
               <label class="form-control"><%= @empleado.correo %></label>
             </div>
             <br>

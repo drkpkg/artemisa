@@ -30,6 +30,15 @@ $(document).ready(function(){
     });
 });
 
+$(document).unload(function() {
+    $('[name="checkbox"]').bootstrapSwitch();
+    $.fn.bootstrapSwitch.defaults.size = 'small';
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#datetimepicker').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+});
+
 function redirectTo(data) {
     window.location.href = data.redirect_page;
 }
@@ -172,3 +181,14 @@ function search(seachInput){
         }
     });
 }
+
+function readURL(input) {
+    var reader;
+    if (input.files && input.files[0]) {
+        reader = new FileReader;
+        reader.onload = function(e) {
+            return $('#preview').attr('src', e.target.result);
+        };
+        return reader.readAsDataURL(input.files[0]);
+    }
+};

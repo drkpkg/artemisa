@@ -1,181 +1,69 @@
 <div class="container">
   <div class="col-md-12 row">
+
+    <div class="container">
+      <div class="row col-lg-3 pull-right">
+        <% if flash[:success] %>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= flash[:success] %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="container">
       <div class="btn-group">
-        <a href="#" class="btn btn-success">
+        <a href="/animals/new" class="btn btn-success">
           <i class="fa fa-plus"></i>
-          Registro de nuevo animal
+          Registro nuevo cliente
         </a>
       </div>
     </div>
     <br>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Lista de animales</div>
+      <div class="panel-heading">Lista de animals <a href="/animal/selection" class="pull-right btn-sm btn-warning ">Volver a seleccion</a></div>
       <%= render 'general/search' %>
       <table id="table" class="table">
         <thead>
         <tr>
           <th>Nombre</th>
-          <th>Especie</th>
-          <th>Raza</th>
+          <th>Sexo</th>
+          <th>Alto</th>
+          <th>Largo</th>
+          <th>Peso</th>
           <th>Fecha de nacimiento</th>
           <th>Fecha de deceso</th>
-          <th>Fecha de registro</th>
+          <th>Raza</th>
+          <th>Dueño</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>
-            <a href="#" data-toggle="tooltip" data-placement="top" title="Mostrar información">Cachuchin</a>
-          </td>
-          <td><a href="#" data-toggle="tooltip" data-placement="top" title="Ver información de especies">Perro</a></td>
-          <td>Cancu</td>
-          <td>08/12/2008</td>
-          <td>-</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
+        <% @animales.each do |animal| %>
+          <tr class="focus">
+            <td>
+              <a href="/animals/info/<%= animal.id %>" data-toggle="tooltip" data-placement="top" title="Detalles">
+                <label><%= animal.nombre %></label>
               </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>PHP</td>
-          <td><a href="#">Delfín</a></td>
-          <td>Cunumi</td>
-          <td>08/12/2008</td>
-          <td>09/12/12</td>
-          <td>17/09/2015</td>
-          <td>
-            <div class="btn-group">
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                <i class="fa fa-close"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-
+            </td>
+            <td>
+              <%= Genero.find_by(id: animal.genero_id).genero %>
+            </td>
+            <td><%= animal.alto %></td>
+            <td><%= animal.largo %></td>
+            <td><%= animal.peso %></td>
+            <td><%= animal.fecha_nacimiento %></td>
+            <td><%= animal.fecha_deceso %></td>
+            <td><%= Raza.find_by(id: animal.raza_id).nombre_raza %></td>
+            <td>
+              <% persona = Persona.find_by(id: animal.cliente_id) %>
+              <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+            </td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-
-
-<!--div id="new-group-modal" class="modal fade"-->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Registro animal</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group form-group-sm">
-          <input id="animal-image" type="file" size="40" data-toggle="tooltip" data-placement="top" title="Fotografía del animal">
-          <br>
-          <input id="animal-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre del animal" placeholder="Nombre del animal">
-          <br>
-          <select id="animal-owner-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Dueño del animal">
-            <option disabled selected>Seleccione dueño</option>
-            <option>Juan valdez</option>
-            <option>Juan Bautista Sabadú</option>
-            <option>Helena Mamani</option>
-          </select>
-          <br>
-          <select id="animal-specie-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Especie del animal">
-            <option disabled selected>Especie</option>
-            <option>Perro</option>
-            <option>Gato</option>
-            <option>Serpiente</option>
-          </select>
-          <br>
-          <select id="animal-breed-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Raza del animal">
-            <option disabled selected>Seleccione raza</option>
-          </select>
-          <br>
-          <input id="animal-born-date" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Fecha de nacimiento" placeholder="Fecha de nacimiento">
-          <br>
-          <input id="animal-weight" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Peso en Kg" placeholder="Peso en Kg">
-          <br>
-          <input id="animal-size" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Tamaño" placeholder="Tamaño">
-          <br>
-          <input id="animal-color" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Color" placeholder="Color">
-          <br>
-          <div class="form-inline">
-            <input id="animal-pass-date" class="form-control space-10" type="datetime" data-toggle="tooltip" data-placement="top" title="Fecha de deceso" placeholder="Fecha de deceso">
-            <a href="#" class="alert-link">Usar fecha actual</a>
-          </div>
-
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
-      </div>
-    </div>
-  </div>
-<!--/div-->
-
-<!--div id="new-group-modal" class="modal fade"-->
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">Modificar datos del animal</h4>
-    </div>
-    <div class="modal-body">
-      <div class="form-group form-group-sm">
-        <input type="file" name="datafile" size="40" data-toggle="tooltip" data-placement="top" title="Fotografía del animal">
-        <br>
-        <input id="animal-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre del animal" placeholder="Nombre del animal">
-        <br>
-        <select id="animal-owner-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Dueño del animal">
-          <option disabled selected>Seleccione dueño</option>
-          <option>Juan valdez</option>
-          <option>Juan Bautista Sabadú</option>
-          <option>Helena Mamani</option>
-        </select>
-        <br>
-        <select id="animal-specie-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Especie del animal">
-          <option disabled selected>Especie</option>
-          <option>Perro</option>
-          <option>Gato</option>
-          <option>Serpiente</option>
-        </select>
-        <br>
-        <select id="animal-breed-selector" class="form-control" data-toggle="tooltip" data-placement="top" title="Raza del animal">
-          <option disabled selected>Seleccione raza</option>
-        </select>
-        <br>
-        <input id="animal-born-date" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Fecha de nacimiento" placeholder="Fecha de nacimiento">
-        <br>
-        <input id="animal-weight" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Peso en Kg" placeholder="Peso en Kg">
-        <br>
-        <input id="animal-size" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Tamaño" placeholder="Tamaño">
-        <br>
-        <input id="animal-color" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Color" placeholder="Color">
-        <br>
-        <div class="form-inline">
-          <input id="animal-pass-date" class="form-control space-10" type="datetime" data-toggle="tooltip" data-placement="top" title="Fecha de deceso" placeholder="Fecha de deceso">
-          <a href="#" class="alert-link">Usar fecha actual</a>
-        </div>
-
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
-    </div>
-  </div>
-</div>
-<!--/div-->

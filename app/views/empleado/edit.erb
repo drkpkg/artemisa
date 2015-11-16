@@ -13,22 +13,12 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="row col-lg-3 pull-right">
-          <% if flash[:error] %>
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <%= flash[:error] %>
-              </div>
-          <% end %>
-        </div>
-      </div>
-
       <h3 class="panel-heading">Modificar datos de <%= @empleado.nombre + " " + @empleado.ap_paterno + " " + @empleado.ap_materno %></h3>
 
       <%= form_for @empleado, url: '/employees/modify' do |f| %>
           <div class="form-group">
-            <%= f.file_field :image %>
+            <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+            <%= f.file_field :image, onchange:"readURL(this)" %>
           </div>
           <div class="input-group group-size-100">
             <div class="hide">

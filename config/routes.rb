@@ -10,21 +10,25 @@ Rails.application.routes.draw do
   #Animals
   get 'animals/' => 'animal#list_all'
   get 'animals/new' => 'animal#new'
-  get 'animals/create' => 'animal#create'
-  get 'animals/modify' => 'animal#modify'
-  get 'animals/delete' => 'animal#delete'
+  get 'animals/edit/:id' => 'animal#edit'
+  get 'animals/info/:id' => 'animal#info'
+  post 'animals/create' => 'animal#create'
+  patch 'animals/modify' => 'animal#modify'
+  post 'animals/delete' => 'animal#delete'
 
   get 'animals/species/' => 'especie#list_all'
   get 'animals/species/new' => 'especie#new'
-  get 'animals/species/create' => 'especie#create'
-  get 'animals/species/modify' => 'especie#modify'
-  get 'animals/species/delete' => 'especie#delete'
+  get 'animals/species/edit' => 'especie#edit'
+  post 'animals/species/create' => 'especie#create'
+  patch 'animals/species/modify' => 'especie#modify'
+  post 'animals/species/delete' => 'especie#delete'
 
   get 'animals/species/breeds/' => 'raza#list_all'
   get 'animals/species/breeds/new' => 'raza#new'
-  get 'animals/species/breeds/create' => 'raza#create'
-  get 'animals/species/breeds/modify' => 'raza#modify'
-  get 'animals/species/breeds/delete' => 'raza#delete'
+  get 'animals/species/breeds/edit' => 'raza#edit'
+  post 'animals/species/breeds/create' => 'raza#create'
+  patch 'animals/species/breeds/modify' => 'raza#modify'
+  post 'animals/species/breeds/delete' => 'raza#delete'
 
   #users
   get 'users/' => 'usuario#list_all'
@@ -46,6 +50,12 @@ Rails.application.routes.draw do
   post 'product_types/delete' => 'producto_tipo#delete'
   post 'product_types/modify' => 'producto_tipo#modify'
 
+  #Batch
+  get 'batch/' => 'lote#list_all'
+  post 'batch/create' => 'lote#create'
+  post 'batch/delete' => 'lote#delete'
+  post 'batch/modify' => 'lote#modify'
+
   #History of users
   get '/logs' => 'bitacora#list_all'
 
@@ -65,6 +75,8 @@ Rails.application.routes.draw do
   get 'clients/' => 'cliente#list_all'
   get 'clients/new' => 'cliente#new'
   get 'clients/info/:id' => 'cliente#info'
+  get 'clients/edit/:id' => 'cliente#edit'
+  patch 'clients/modify' => 'cliente#modify'
   post 'clients/create' => 'cliente#create'
   post 'clients/modify' => 'cliente#modify'
   post 'clients/delete' => 'cliente#delete'
@@ -76,7 +88,7 @@ Rails.application.routes.draw do
   get 'employees/edit/:id' => 'empleado#edit'
   patch 'employees/modify' => 'empleado#modify'
   post 'employees/create' => 'empleado#create'
-  post 'employees/create' => 'empleado#delete'
+  post 'employees/delete' => 'empleado#delete'
 
   #Stock
   get 'stock/' => 'stock#selection'
@@ -93,9 +105,12 @@ Rails.application.routes.draw do
 
 
   #Artemisa API for mobile NOT IMPLEMENTED YET
-  #scope 'hermes' do
-  #  scope 'v1' do
-  #    get 'version' => 'hermes#version'
-  #  end
-  #end
+  scope 'hermes' do
+    scope 'v1' do
+      get 'version' => 'hermes#version'
+      scope 'breeds' do
+        get 'list' => 'raza#list_breeds'
+      end
+    end
+  end
 end

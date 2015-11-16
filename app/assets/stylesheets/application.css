@@ -124,7 +124,7 @@ img.cover {
     top: 100px;
 }
 
-.input-group-addon{
+.normalize-size{
     min-width: 200px;
     text-align: left;
 }

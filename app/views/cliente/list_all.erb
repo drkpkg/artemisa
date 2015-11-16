@@ -2,86 +2,61 @@
   <div class="col-md-12 row">
 
     <div class="container">
+      <div class="row col-lg-3 pull-right">
+        <% if flash[:success] %>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= flash[:success] %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
       <div class="btn-group">
-        <a href="#" class="btn btn-success">
+        <a href="/clients/new" class="btn btn-success">
           <i class="fa fa-plus"></i>
-          Registro nuevo
+          Registro nuevo cliente
         </a>
       </div>
     </div>
     <br>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Nómina de empleados</div>
+      <div class="panel-heading">Lista de clientes <a href="/people/selection" class="pull-right btn-sm btn-warning ">Volver a seleccion</a></div>
       <%= render 'general/search' %>
       <table id="table" class="table">
         <thead>
         <tr>
           <th>Nombre completo</th>
-          <th>Género</th>
-          <th>Edad</th>
-          <th>Identificación</th>
-          <th>Correo</th>
-          <th>Dirección</th>
+          <th>Sexo</th>
+          <th>Cédula de identidad</th>
+          <th>Fecha de nacimiento</th>
           <th>Teléfono</th>
-          <th>Cargo</th>
+          <th>Correo</th>
+          <th>Direccion</th>
         </tr>
         </thead>
         <tbody>
-            <% @clientes.each do |cliente| %>
-            <tr>
-              <td>
-                <label id="nombre-<%= cliente.id %>"> <%= cliente.nombre %> </label>
-                <label id="apaterno-<%= cliente.id %>"> <%= cliente.ap_paterno %> </label>
-                <label id="amaterno-<%= cliente.id %>"> <%= cliente.ap_materno %> </label>
-              </td>
-              <td id="genero-<%= cliente.id %>"><%= cliente.genero %></td>
-              <td id="identificacion-<%= cliente.id %>"><%= cliente.genero %></td>
-              <td id="correo-<%= cliente.id %>"><%= cliente.genero %></td>
-              <td id="direccion-<%= cliente.id %>"><%= cliente.genero %></td>
-              <td id="telefono-<%= cliente.id %>"><%= cliente.genero %></td>
-              <td id="cargo-<%= cliente.id %>"><%= cliente.genero %></td>
-
-              <td>
-                <div class="btn-group">
-                  <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar">
-                    <i class="fa fa-edit"></i>
-                  </a>
-                  <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                    <i class="fa fa-close"></i>
-                  </a>
-                </div>
-              </td>
-            </tr>
-            <% end %>
+        <% @clientes.each do |cliente| %>
+          <tr class="focus">
+            <td>
+              <a href="/clients/info/<%= cliente.id %>" data-toggle="tooltip" data-placement="top" title="Detalles">
+                <label><%= cliente.nombre + " " + cliente.ap_paterno + " " + cliente.ap_materno %></label>
+              </a>
+            </td>
+            <td>
+              <%= Genero.find_by(id: cliente.genero_id).genero %>
+            </td>
+            <td><%= cliente.identificacion %></td>
+            <td><%= cliente.fecha_nacimiento %></td>
+            <td><%= cliente.telefono %></td>
+            <td><%= cliente.correo %></td>
+            <td><%= cliente.direccion %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
-
-<div id="new-client-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Registro de cliente</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group form-group-sm">
-          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Nombre completo" placeholder="Nombre completo">
-          <br>
-          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Cédula de identidad" placeholder="Cédula de identidad">
-          <br>
-          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Fecha de nacimiento" placeholder="Fecha de nacimiento">
-          <br>
-          <input id="employee-name" class="form-control space-10" type="text" data-toggle="tooltip" data-placement="top" title="Teléfono" placeholder="Teléfono">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="save-category">Guardar</button>
-      </div>
     </div>
   </div>
 </div>

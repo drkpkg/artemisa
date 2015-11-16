@@ -6,7 +6,6 @@ class EmpleadoController < ApplicationController
 
   def create
     empleado = Persona.new(empleado_params)
-    empleado.persona_tipos_id = 1
     if empleado.save
       flash[:success] = "Se registro correctamente"
       redirect_to '/employees/'
@@ -19,7 +18,7 @@ class EmpleadoController < ApplicationController
 
   def modify
     empleado = Persona.find_by(id: params[:persona][:id])
-    if empleado.update(empleado_params_with_id)
+    if empleado.update(empleado_params)
       flash[:success] = "Modificado exitosamente"
       redirect_to "/employees/info/#{params[:persona][:id]}"
     else
@@ -39,23 +38,18 @@ class EmpleadoController < ApplicationController
 
   def delete
     empleado = Persona.find_by(id: params[:id])
-    if empleado.destroy
+    if empleado.delete
       flash[:success] = "Se elimino correctamente"
-      redirect_to employees_list_all_path
+      respond('200', 'En hora buena', 'Usuario eliminado satisfactoriamente', 'success', '/employees')
     else
-      description = get_errors(empleado)
       flash[:error] = description
-      redirect_to employees_list_all_path
+      respond('400', 'Error', 'Sucedi? un error al eliminar el usuario', 'error', '')
     end
   end
 
   private
 
   def empleado_params
-    params.require(:persona).permit(:image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipos_id, :genero_id )
-  end
-
-  def empleado_params_with_id
     params.require(:persona).permit(:id, :image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipos_id, :genero_id )
   end
 

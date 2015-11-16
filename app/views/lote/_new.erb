@@ -1,0 +1,30 @@
+<div id="new-batch-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar lote</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon normalize-size">Lote</span>
+          <input id="loten" class="form-control" type="text">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon normalize-size">Cantidad</span>
+          <input id="cantidadn" class="form-control" type="text" onkeypress="return onlyNumbers(event)">
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon normalize-size">Cantidad minima</span>
+          <input id="minimon" class="form-control" type="text" onkeypress="return onlyNumbers(event)">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-batch-category" onclick="saveBatch()">Guardar categoría</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

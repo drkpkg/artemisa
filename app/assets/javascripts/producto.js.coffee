@@ -12,22 +12,33 @@ ready = ->
   $("#producto-desc").text("")
 
 @editProduct = (id) ->
-  $("#producto-name").val($("#actual-name-" + id).text())
-  $("#producto-desc").text($("#actual-desc-" + id).text())
-  $("#producto-price-buy").val($("#actual-price-buy-" + id).text())
-  $("#producto-price-sell").val($("#actual-price-sell-" + id).text())
-  category = $("#actual-category-" + id).text().trim("")
-  $("#producto-category option:contains("+category+")").val()
+  $("#marca").val($("#marca-" + id).text())
+  $("#producto").val($("#producto-" + id).text())
+  $("#precio").val($("#precio-" + id).text())
+  $("#vencimiento").val($("#vencimiento-" + id).text())
+
+  $('#categoria option').filter(->
+    category = $("#categoria-" + id).text().trim("");
+    $(this).text() == category
+  ).prop 'selected', true
+
+  $('#lote option').filter(->
+    lote = $("#lote-" + id).text().trim("");
+    console.log lote
+    $(this).text() == lote
+  ).prop 'selected', true
+
   $('#modify-modal').modal('show')
 
   $("#save-btn").on 'click', ->
     url = '/products/modify/'
-    name = $("#producto-name").val()
-    description = $("#producto-desc").val()
-    buy = $("#producto-price-buy").val()
-    sell = $("#producto-price-sell").val()
-    category = $("#producto-category option:selected").val()
-    data = {id: id, name: name, description: description, buy: buy, sell: sell, category: category}
+    marca = $("#marca").val()
+    producto = $("#producto").val()
+    vencimiento = $("#vencimiento").val()
+    precio = $("#precio").val()
+    tipo = $("#categoria option:selected").val()
+    lote = $("#lote option:selected").val()
+    data = {id: id, marca: marca, producto: producto, precio: precio, tipo: tipo, lote: lote, vencimiento: vencimiento}
     post(url, data)
     $("#modify-modal").modal('hide')
 

@@ -136,15 +136,14 @@ raza.each do |raza|
 end
 
 persona_tipos = [
+    [tipo:"Cliente"],
     [tipo:"Gerente"],
     [tipo:"Doctor"],
     [tipo:"Enfermero"],
     [tipo:"Vendedor"],
     [tipo:"Cajero"],
     [tipo:"Proveedor"],
-    [tipo:"Limpieza"],
-    [tipo:"Cliente"]
-
+    [tipo:"Limpieza"]
 ]
 persona_tipos.each do |persona_tipos|
   PersonaTipo.create(persona_tipos)

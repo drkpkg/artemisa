@@ -1,4 +1,4 @@
-<div class="col-md-4 center">
+<div class="col-md-4 center form-color">
   <br>
   <% if flash[:error] %>
       <div class="alert alert-danger alert-dismissible" role="alert">
@@ -7,41 +7,45 @@
       </div>
   <% end %>
   <h3>Registro de nuevo producto</h3>
-  <%= form_for :product, url: '/products/create', html: {class: 'new-form'} do |f| %>
+  <%= form_for :producto, url: '/products/create', html: {class: 'form'} do |f| %>
       <div class="input-group">
-        <span class="input-group-addon">Nombre del producto</span>
-        <%= f.text_field :product_name, :class => "form-control" %>
+        <span class="input-group-addon normalize-size">Marca del producto</span>
+        <%= f.text_field :marca_producto, :class => "form-control", data:{toggle:"tooltip", placement:"top", title:"Marca del producto"}, onkeypress: 'return onlyText(event)' %>
       </div>
       <br>
       <div class="input-group">
-        <span class="input-group-addon">Descripción</span>
-        <%= f.text_area :product_description, :class => "form-control" %>
+        <span class="input-group-addon normalize-size">Nombre del producto</span>
+        <%= f.text_field :nombre_producto, :class => "form-control", data:{toggle:"tooltip", placement:"top", title:"Nombre del producto"}, onkeypress: 'return onlyText(event)' %>
       </div>
       <br>
-      <% if !ProductoTipo.all.empty? %>
+      <div class="input-group">
+        <span class="input-group-addon normalize-size">Precio</span>
+        <%= f.text_field :precio_total, :class => "form-control", data:{toggle:"tooltip", placement:"top", title:"Precio del producto"}, onkeypress: 'return onlyNumbers(event)' %>
+      </div>
+      <br>
+      <div class='input-group date' id='datetimepicker'>
+        <span class="input-group-addon normalize-size">Fecha de vencimiento</span>
+        <%= f.text_field :fecha_vencimiento, :class => "form-control", data:{toggle:"tooltip", placement:"top", title:"Fecha de vencimiento"} %>
+        <span class="input-group-addon">
+                <span class="fa fa-calendar"></span>
+             </span>
+      </div>
+      <br>
+      <% if ProductoTipo.all.empty? %>
           <div class="input-group">
             <div class="thumbnail">
               No existe ningún tipo listado dentro de la aplicación, por favor <a href="/categories/">crea el tipo antes</a> antes de agregar el este activo fijo.
             </div>
           </div>
       <% else %>
-          <!--div class="input-group"-->
-            <!--span class="input-group-addon">Tipo</span-->
-            <!--%= f.select :producto_tipo, {},{},{class: "form-control"} do %-->
-                <!--% ProductoTipo.all.each do |index| %-->
-                    <!--%= content_tag(:option, index.product_type_description, value: index.id) %-->
-                <!--% end %-->
-            <!--% end %-->
-          <!--/div-->
-          <br>
           <div class="input-group">
-            <span class="input-group-addon">Precio de compra (Bs)</span>
-            <%= f.text_field :product_price_buy, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+            <span class="input-group-addon normalize-size">Tipo</span>
+            <%= f.select :producto_tipo_id, ProductoTipo.all.collect {|p| [ p.nombre_tipo_producto, p.id ] },{},{class: "form-control"} %>
           </div>
           <br>
           <div class="input-group">
-            <span class="input-group-addon">Precio de venta (Bs)</span>
-            <%= f.text_field :product_price_sell, :class => 'form-control', :onkeypress => 'return onlyNumbers(event)'%>
+            <span class="input-group-addon normalize-size">Lote</span>
+            <%= f.select :lotes_id, Lote.all.collect {|p| [ p.lote, p.id ] },{},{class: "form-control"} %>
           </div>
           <br>
           <div class="btn-group pull-right">

@@ -8,17 +8,17 @@
 @saveProductType = ->
   url = '/product_types/create/'
   description = $("#category-desc").val()
-  data = {description: description}
+  data = {nombre: description}
   post(url, data)
 
 @modifyProductType = (id) ->
-  $("#new-title-category").val($("#category-title-"+id).text())
+  $("#new-title-category").val($("#nombre-"+id).text().trim(""))
   $("#modify-category-modal").modal('show')
 
   $("#save-modify-category").on 'click', ->
     newdescription = $("#new-title-category").val()
     url = '/product_types/modify'
-    data = {id: id, newdescription: newdescription}
+    data = {id: id, nombre: newdescription}
     post(url, data)
     $("#modify-category-modal").modal('hide')
 
@@ -26,20 +26,3 @@
   url = '/product_types/delete/'
   data = {id: id}
   deleteObject(url, data)
-
-#@addProductType = (id) ->
-#  $("#new-type-modal").modal('show')
-#  $("#save-type").on 'click', ->
-#    category_id = id
-#    description = $("#type-desc").val()
-#    url = '/types/create'
-#    data = {category_id: category_id, description: description}
-#    post(url, data)
-
-#@deleteTypeInCategory = (id_type, id_category) ->
-#  url = '/types/delete'
-#  data = {id_type: id_type, id_category: id_category}
-#  deleteObject(url, data)
-
-#$(document).ready(ready)
-#$(document).on('page:load', ready)
