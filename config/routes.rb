@@ -67,10 +67,6 @@ Rails.application.routes.draw do
   #Permissions per grupo
   get 'groups/:name' => 'permiso#list_all'
 
-  #People General
-  #get 'people/info/:username' => 'persona#info'
-  get 'people/selection' => 'persona#selection'
-
   #Clients
   get 'clients/' => 'cliente#list_all'
   get 'clients/new' => 'cliente#new'
@@ -92,6 +88,8 @@ Rails.application.routes.draw do
 
   #Stock
   get 'stock/' => 'stock#selection'
+  get 'people/selection' => 'persona#selection'
+  get 'animals/selection' => 'animal#selection'
 
   #Schedule
   get 'schedules/' => 'horario#list_all'
