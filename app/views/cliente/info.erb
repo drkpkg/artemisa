@@ -12,6 +12,16 @@
           <% end %>
         </div>
       </div>
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:error] %>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">Información de cliente <a href="/clients" class="pull-right btn-sm btn-warning ">Volver a clientes</a></div>

@@ -60,9 +60,10 @@ Rails.application.routes.draw do
   post 'groups/create' => 'grupo#create'
   post 'groups/modify' => 'grupo#modify'
   post 'groups/delete' => 'grupo#delete'
-
-  #Permissions per grupo
-  get 'groups/:name' => 'permiso#list_all'
+  get 'groups/:name' => 'grupo#permissions'
+  post 'groups/permissions/create' => 'grupo#create_permissions'
+  post 'groups/permissions/modify' => 'grupo#modify_permissions'
+  post 'groups/permissions/delete' => 'grupo#delete_permissions'
 
   #Clients
   get 'clients/' => 'cliente#list_all'

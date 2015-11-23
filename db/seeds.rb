@@ -8,15 +8,13 @@
 require 'bcrypt'
 
 #Usuario Groups
-grupo_usuarios = ["Administrador",
-               "Cliente",
-               "Empleado",
-               "Grupo 1",
-               "Grupo 2",
-               "Grupo 3",]
+grupo_usuarios = [[descripcion_grupo:"Administrador",
+                   data: '{"animales":{"c":true,"m":true,"d":true},"especies":{"c":true,"m":true,"d":true},"razas":{"c":true,"m":true,"d":true},"clientes":{"c":true,"m":true,"d":true},"empleados":{"c":true,"m":true,"d":true},"usuarios":{"c":true,"m":true,"d":true},"grupos":{"c":true,"m":true,"d":true},"permisos":{"c":true,"m":true,"d":true},"horarios":{"c":true,"m":true,"d":true},"servicios":{"c":true,"m":true,"d":true},"productos":{"c":true,"m":true,"d":true},"tproductos":{"c":true,"m":true,"d":true},"lotes":{"c":true,"m":true,"d":true}}'],
+               [descripcion_grupo: "Cliente"],
+               [descripcion_grupo: "Empleado"]]
 
 grupo_usuarios.each do |grupo|
-  Grupo.create(descripcion_grupo: grupo)
+  Grupo.create(grupo)
 end
 
 #Users
@@ -216,5 +214,3 @@ Genero.create(genero: "Macho")
 Genero.create(genero: "Hembra")
 Genero.create(genero: "Hombre")
 Genero.create(genero: "Mujer")
-
-Permiso.create(data: '{"animales":{"c":true,"m":true,"d":true},"especies":{"c":true,"m":true,"d":true},"razas":{"c":true,"m":true,"d":true},"clientes":{"c":true,"m":true,"d":true},"empleados":{"c":true,"m":true,"d":true},"usuarios":{"c":true,"m":true,"d":true},"grupos":{"c":true,"m":true,"d":true},"permisos":{"c":true,"m":true,"d":true},"horarios":{"c":true,"m":true,"d":true},"servicios":{"c":true,"m":true,"d":true},"productos":{"c":true,"m":true,"d":true},"tproductos":{"c":true,"m":true,"d":true},"lotes":{"c":true,"m":true,"d":true}}')

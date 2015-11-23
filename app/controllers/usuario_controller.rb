@@ -4,22 +4,19 @@ class UsuarioController < ApplicationController
   include BCrypt
 
   def create
-    #if params[:password] != params[:password_repeat]
-    #  respond('400','Error','Contraseñas no coinciden','error','')
-    #else
-      user = Usuario.new
-      user.nombre_usuario = params[:username]
-      user.password_digest = Password.create(params[:password])
-      user.state = params[:state]
+    user = Usuario.new
+    user.nombre_usuario = params[:username]
+    user.password_digest = Password.create(params[:password])
+    user.state = params[:state]
 
-      if user.valid?
-        user.save
-        respond('200', 'En hora buena', 'Usuario creado satisfactoriamente', 'success', '')
-      else
-        description = get_errors(user)
-        respond('400', 'Error', description, 'error', '')
-      end
-    #end
+    if user.valid?
+      user.save
+      respond('200', 'En hora buena', 'Usuario creado satisfactoriamente', 'success', '')
+    else
+      description = get_errors(user)
+      respond('400', 'Error', description, 'error', '')
+    end
+
   end
 
   def modify
@@ -49,7 +46,6 @@ class UsuarioController < ApplicationController
 
   def list_all
     @usuarios = Usuario.all
-    #joins(:grupo).select("Usuarios.id, nombre_usuario, state, Grupos.descripcion_grupo")
   end
 
   def auth_user

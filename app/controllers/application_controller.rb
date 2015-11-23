@@ -54,4 +54,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def verify_cookies(path)
+    if (cookies[:user_name].nil? && cookies[:type].nil?)
+      render layout: 'login'
+    else
+      redirect_to path
+    end
+  end
+
 end
