@@ -40,9 +40,9 @@ class RazaController < ApplicationController
   #Hermes V1
   def list_breeds
     breeds = Raza.where(especie_id: params[:id]).select("id, nombre_raza")
-    respond_to do |format|
-      format.json { render :json => breeds }
-    end
+    #respond_to do |format|
+    render :json => breeds
+    #end
   end
 
 end
