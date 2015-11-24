@@ -35,6 +35,7 @@ class GrupoController < ApplicationController
 
   def permissions
     @grupo = Grupo.find_by(descripcion_grupo: params[:name])
+    @permiso_object = JSON.parse @grupo.data
   end
 
   def create_permissions
@@ -44,13 +45,29 @@ class GrupoController < ApplicationController
   end
 
   def modify_permissions
-    grupo = Grupo.find_by(id: params[:permiso])
-    if grupo.update(data: params[:permiso][:data])
+    grupo = Grupo.find_by(id: params[:permiso][:grupo])
+    #parsing json
+    data = parse_json(grupo.data, params[:permiso][:vista], params[:permiso][:crear], params[:permiso][:modificar], params[:permiso][:eliminar])
+    if grupo.update(data: data)
       flash[:success] = 'Se cambiaron los permisos correctamente'
     else
       flash[:error] = 'Error al cambiar los permisos'
     end
     redirect_to "/groups/#{grupo.descripcion_grupo}"
+  end
+
+  def parse_json(grupo, vista, crear, modificar, eliminar)
+    data = JSON.parse grupo
+    data[vista]['c'] = to_b(crear)
+    data[vista]['m'] = to_b(modificar)
+    data[vista]['d'] = to_b(eliminar)
+    return data.to_json
+  end
+
+  private
+
+  def to_b(number)
+    number.eql? "1"
   end
 
 end

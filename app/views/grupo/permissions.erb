@@ -29,8 +29,6 @@
         <a href="/users" class="pull-right btn-sm btn-warning ">Volver a usuarios</a>
       </div>
       <div class="panel-body">
-        <% permiso_object = JSON.parse @grupo.data if !@grupo.data.nil?%>
-
         <table class="table">
           <thead>
           <tr>
@@ -41,18 +39,40 @@
           </tr>
           </thead>
           <tbody>
-          <% permiso_object.each do |index| %>
-              <tr class="focus">
-                <td><%= index[0] %></td>
-                <%= form_for :permiso, url:'/groups/permissions/modify', class:'form-inline' do |f| %>
-                    <td class="hide"><%= f.text_field :grupo, value: @grupo.id, method:{}, options:{disabled: true} %></td>
-                    <td class="hide"><%= f.text_field :vista, value: index[0], method:{}, options:{disabled: true} %></td>
-                    <td><%= f.check_box :crear, checked: index[1]['c'] %></td>
-                    <td><%= f.check_box :modificar, checked: index[1]['c'] %></td>
-                    <td><%= f.check_box :eliminar, checked: index[1]['c'] %></td>
-                    <td><%= f.submit 'Cambiar permisos', class: 'btn-sm btn-info' %></td>
-                <% end %>
-              </tr>
+          <% if !@grupo.data.nil? %>
+              <% @permiso_object.each do |index| %>
+                  <tr class="focus">
+                    <td><%= index[0] %></td>
+                    <%= form_for :permiso, url:'/groups/permissions/modify', class:'form-inline' do |f| %>
+                        <td class="hide"><%= f.text_field :grupo, value: @grupo.id, method:{}, options:{disabled: true} %></td>
+                        <td class="hide"><%= f.text_field :vista, value: index[0], method:{}, options:{disabled: true} %></td>
+                        <td>
+                          <% if index[1]['c'].nil? %>
+                              <%= f.check_box :crear, checked: false %>
+                          <% else %>
+                            <%= f.check_box :crear, checked: index[1]['c'] %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if index[1]['c'].nil? %>
+                              <%= f.check_box :crear, checked: false %>
+                          <% else %>
+                              <%= f.check_box :modificar, checked: index[1]['m'] %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if index[1]['c'].nil? %>
+                              <%= f.check_box :crear, checked: false %>
+                          <% else %>
+                              <%= f.check_box :eliminar, checked: index[1]['d'] %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= f.submit 'Cambiar permisos', class: 'btn-sm btn-info' %>
+                        </td>
+                    <% end %>
+                  </tr>
+              <% end %>
           <% end %>
           </tbody>
         </table>
