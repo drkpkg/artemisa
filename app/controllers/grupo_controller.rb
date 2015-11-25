@@ -35,12 +35,7 @@ class GrupoController < ApplicationController
 
   def permissions
     @grupo = Grupo.find_by(descripcion_grupo: params[:name])
-    if @grupo.data.nil?
-      @permiso_object = JSON.parse ''
-    else
-      @permiso_object = JSON.parse @grupo.data
-    end
-
+    @permiso_object = JSON.parse @grupo.data
   end
 
   def create_permissions
