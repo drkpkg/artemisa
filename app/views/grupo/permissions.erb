@@ -39,12 +39,10 @@
           </tr>
           </thead>
           <tbody>
-
               <% @permiso_object.each do |index| %>
                   <tr class="focus">
                     <td><%= index[0] %></td>
-                    <%= form_for :permiso, url:'/groups/permissions/modify', class:'form-inline' do |f| %>
-                        <td class="hide"><%= f.text_field :grupo, value: @grupo.id, method:{}, options:{disabled: true} %></td>
+                    <%= form_for :permiso, url:"/groups/permissions/#{@grupo.descripcion_grupo}/modify", class:'form-inline' do |f| %>
                         <td class="hide"><%= f.text_field :vista, value: index[0], method:{}, options:{disabled: true} %></td>
                         <td>
                           <% if index[1]['c'].nil? %>

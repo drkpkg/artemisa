@@ -35,7 +35,11 @@ class GrupoController < ApplicationController
 
   def permissions
     @grupo = Grupo.find_by(descripcion_grupo: params[:name])
-    @permiso_object = JSON.parse @grupo.data
+    if !@grupo.data.nil?
+      @permiso_object = JSON.parse @grupo.data
+    else
+      @permiso_object = JSON.parse load_permissions
+    end
   end
 
   def create_permissions
@@ -45,9 +49,14 @@ class GrupoController < ApplicationController
   end
 
   def modify_permissions
-    grupo = Grupo.find_by(id: params[:permiso][:grupo])
+    grupo = Grupo.find_by(descripcion_grupo: params[:name])
     #parsing json
-    data = parse_json(grupo.data, params[:permiso][:vista], params[:permiso][:crear], params[:permiso][:modificar], params[:permiso][:eliminar])
+    if grupo.data.nil?
+      data = parse_json(load_permissions, params[:permiso][:vista], params[:permiso][:crear], params[:permiso][:modificar], params[:permiso][:eliminar])
+    else
+      data = parse_json(grupo.data, params[:permiso][:vista], params[:permiso][:crear], params[:permiso][:modificar], params[:permiso][:eliminar])
+    end
+
     if grupo.update(data: data)
       flash[:success] = 'Se cambiaron los permisos correctamente'
     else
@@ -68,6 +77,10 @@ class GrupoController < ApplicationController
 
   def to_b(number)
     number.eql? "1"
+  end
+
+  def load_permissions
+    return '{"animales":{"c":false,"m":false,"d":false},"especies":{"c":false,"m":false,"d":false},"razas":{"c":false,"m":false,"d":false},"clientes":{"c":false,"m":false,"d":false},"empleados":{"c":false,"m":false,"d":false},"usuarios":{"c":false,"m":false,"d":false},"grupos":{"c":false,"m":false,"d":false},"permisos":{"c":false,"m":false,"d":false},"horarios":{"c":false,"m":false,"d":false},"servicios":{"c":false,"m":false,"d":false},"productos":{"c":false,"m":false,"d":false},"tproductos":{"c":false,"m":false,"d":false},"lotes":{"c":false,"m":false,"d":false}}'
   end
 
 end
