@@ -42,12 +42,6 @@ class GrupoController < ApplicationController
     end
   end
 
-  def create_permissions
-    grupo = Grupo.new
-    grupo.data = params[:data]
-
-  end
-
   def modify_permissions
     grupo = Grupo.find_by(descripcion_grupo: params[:name])
     #parsing json
