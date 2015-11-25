@@ -10,8 +10,8 @@ require 'bcrypt'
 #Usuario Groups
 grupo_usuarios = [[descripcion_grupo:"Administrador",
                    data: '{"animales":{"c":true,"m":true,"d":true},"especies":{"c":true,"m":true,"d":true},"razas":{"c":true,"m":true,"d":true},"clientes":{"c":true,"m":true,"d":true},"empleados":{"c":true,"m":true,"d":true},"usuarios":{"c":true,"m":true,"d":true},"grupos":{"c":true,"m":true,"d":true},"permisos":{"c":true,"m":true,"d":true},"horarios":{"c":true,"m":true,"d":true},"servicios":{"c":true,"m":true,"d":true},"productos":{"c":true,"m":true,"d":true},"tproductos":{"c":true,"m":true,"d":true},"lotes":{"c":true,"m":true,"d":true}}'],
-               [descripcion_grupo: "Cliente"],
-               [descripcion_grupo: "Empleado"]]
+               [descripcion_grupo: "Cliente", data:'{}'],
+               [descripcion_grupo: "Empleado", data:'{}']]
 
 grupo_usuarios.each do |grupo|
   Grupo.create(grupo)
