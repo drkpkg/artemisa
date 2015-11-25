@@ -42,7 +42,7 @@ $(document).ready(function(){
     });
 });
 
-$(document).unload(function() {
+$(document).on('page:load',function() {
     $('[name="checkbox"]').bootstrapSwitch();
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $('[data-toggle="tooltip"]').tooltip();
