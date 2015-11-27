@@ -2,21 +2,9 @@
   <div class="container-fluid">
     <div class="panel panel-default">
       <!-- Default panel contents -->
-
-      <div class="container">
-        <div class="row col-lg-3 pull-right">
-          <% if flash[:success] %>
-              <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <%= flash[:success] %>
-              </div>
-          <% end %>
-        </div>
-      </div>
-
       <div class="panel-heading">
         <label>Grupos disponibles</label>
-        <button type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Agregar nuevo grupo" onclick="newGroup()">
+        <button type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="modal" data-target="#new-group-modal" data-placement="top" title="Agregar nuevo grupo" >
           <i class="fa fa-plus"></i>
           <i class="fa fa-group"></i>
         </button>

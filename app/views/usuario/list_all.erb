@@ -7,9 +7,9 @@
       <div class="panel-heading">
         <label>Nómina de usuarios</label>
         <%= render 'general/search' %>
-        <a type="button" class="btn btn-success pull-right" id="btn-category" data-toggle="tooltip" data-placement="top" title="Nuevo usuario" onclick="newUser()">
+        <button type="button" class="btn btn-success pull-right" data-placement="top" title="Nuevo usuario" data-toggle="modal" data-target="#new-user-modal">
           <i class="fa fa-user-plus"></i>
-        </a>
+        </button>
       </div>
       <div class="panel-body">
         <table id="table" class="table">
@@ -45,10 +45,7 @@
                 <td>
                   <% if actual_index.nombre_usuario != 'admin' %>
                       <div class="btn-group">
-                        <a href="/people/info/<%= actual_index.nombre_usuario %>" data-toggle="tooltip" data-placement="top" title="Detalles">
-                          <i class="fa fa-info fa-1x"></i>
-                        </a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Modificar" onclick="editUser('<%= actual_index.id %>')">
+                        <a href="#" data-toggle="modal" data-target="#modify-user-modal" title="Modificar" onclick="editUser('<%= actual_index.id %>')">
                           <i class="fa fa-edit"></i>
                         </a>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="deleteUser('<%= actual_index.id %>')">

@@ -1,6 +1,13 @@
 class ReporteController < ApplicationController
-
   #Hermes V1
+
+  def tables
+    data = ['animales','personas','usuarios','ventas','compras','productos','lotes']
+    respond_to do |format|
+      format.json { render :json => data }
+    end
+  end
+
   def dependencies
     data = [
         "animales":["genero", "especie", "raza" ,"cliente"],
@@ -8,11 +15,12 @@ class ReporteController < ApplicationController
         "usuarios":["grupo", "persona", "permisos"],
         "ventas":["cliente", "producto", "empleado" ,"fecha"],
         "compras":["cliente", "producto", "empleado" ,"fecha"],
-        "productos":["tipo", "marca", "lote", "vencimiento"]
+        "productos":["tipo", "marca", "lote", "vencimiento"],
+        "lotes":["nombre", "proveedor", "fecha de registro", "vencimiento"]
     ]
     #breeds = .where(especie_id: params[:id]).select("id, nombre_raza")
     respond_to do |format|
-      format.json { render :json => data }
+      format.json { render :json => data[0][:"#{params[:name]}"] }
     end
   end
 

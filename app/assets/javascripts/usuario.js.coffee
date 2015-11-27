@@ -24,11 +24,11 @@
   data = {id: id}
   deleteObject(url, data)
 
-@newUser = ->
-  $("#new-user-modal").modal('show')
+#@newUser = ->
+  #$("#new-user-modal").modal('show')
 
 @editUser = (id)->
-  $("#modify-user-modal").modal('show')
+  #$("#modify-user-modal").modal('show')
   $("#user-username-title").html("Modificar " + $("#actual-identity-"+id).html().trim(""))
   $("#user-username").val($("#actual-identity-"+id).html().trim(""))
   if($("#actual-state-"+id).html().trim("")=="Activo")

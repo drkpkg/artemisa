@@ -113,6 +113,10 @@ Rails.application.routes.draw do
       scope 'clients' do
         get 'list' => 'cliente#list_clients'
       end
+      scope 'reports' do
+        get 'tables' => 'reporte#tables'
+        get 'dependencies/:name' => 'reporte#dependencies'
+      end
     end
   end
 end
