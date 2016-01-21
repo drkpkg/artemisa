@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :set_cache_buster
   after_action :set_log_action
+  before_action :verify_permissions
 
   def set_log_action
     if (cookies[:user_name] && cookies[:type])
@@ -61,5 +62,10 @@ class ApplicationController < ActionController::Base
       redirect_to path
     end
   end
+
+  def verify_permissions
+    self
+  end
+
 
 end

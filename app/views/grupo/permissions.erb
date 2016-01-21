@@ -48,7 +48,7 @@
                           <% if index[1]['c'].nil? %>
                               <%= f.check_box :crear, checked: false %>
                           <% else %>
-                            <%= f.check_box :crear, checked: index[1]['c'] %>
+                              <%= f.check_box :crear, checked: index[1]['c'] %>
                           <% end %>
                         </td>
                         <td>
@@ -71,7 +71,6 @@
                     <% end %>
                   </tr>
               <% end %>
-
           </tbody>
         </table>
       </div>
