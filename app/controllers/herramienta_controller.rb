@@ -1,0 +1,2 @@
+class HerramientaController < ApplicationController
+end

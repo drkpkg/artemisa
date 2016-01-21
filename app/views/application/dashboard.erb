@@ -1,37 +1,33 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-xs-6 col-md-3">
-      <a  href="/services/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa  fa-scissors fa-4x"></i>
-        <br>
-        Servicios
-      </a>
-    </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a  href="/animals/selection" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa fa-paw fa-4x"></i>
-        <br>
-        Animales
-      </a>
-    </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a  href="/stock/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa fa-object-group fa-4x"></i>
-        <br>
-        Stock
-      </a>
-    </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a  href="#" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa  fa-money fa-4x"></i>
-        <br>
-        Compra y Ventas
-      </a>
-    </div>
+    <% if (@user_permissions['servicios']['c'] or @user_permissions['servicios']['m'] or @user_permissions['servicios']['d']) == true  %>
+        <div class="col-xs-6 col-md-3">
+          <a  href="/services/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
+            <i class="fa  fa-scissors fa-4x"></i>
+            <br>
+            Servicios
+          </a>
+        </div>
+    <% end %>
+    <% if (@user_permissions['animales']['c'] or @user_permissions['animales']['m'] or @user_permissions['animales']['d']) == true  %>
+        <div class="col-xs-6 col-md-3">
+          <a  href="/animals/selection" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
+            <i class="fa fa-paw fa-4x"></i>
+            <br>
+            Animales
+          </a>
+        </div>
+    <% end %>
+    <% if (@user_permissions['productos']['c'] or @user_permissions['productos']['m'] or @user_permissions['productos']['d'] or @user_permissions['tproductos']['c'] or @user_permissions['tproductos']['m'] or @user_permissions['tproductos']['d'])  == true  %>
+        <div class="col-xs-6 col-md-3">
+          <a  href="/stock/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
+            <i class="fa fa-object-group fa-4x"></i>
+            <br>
+            Stock
+          </a>
+        </div>
+  <% end %>
 
     <div class="col-xs-6 col-md-3">
       <a  href="/people/selection" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
@@ -42,32 +38,12 @@
     </div>
 
     <div class="col-xs-6 col-md-3">
-      <a  href="/users/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa fa-user fa-4x"></i>
-        <i class="fa fa-gears fa-4x"></i>
+      <a  href="/tools/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
+        <i class="fa fa-cogs fa-4x"></i>
         <br>
-        Usuarios, Grupos y Privilegios
+        Herramientas y configuración
       </a>
     </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a  href="/logs/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa fa-child fa-4x"></i>
-        <i class="fa fa-exchange fa-4x"></i>
-        <i class="fa fa-server fa-4x"></i>
-        <br>
-        Bitácora
-      </a>
-    </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a  href="/reports" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
-        <i class="fa fa-files-o fa-4x"></i>
-        <br>
-        Reportes
-      </a>
-    </div>
-
   </div>
 </div>
 

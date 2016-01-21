@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'logout' => 'application#logout'
   post 'auth_user' => 'usuario#auth_user'
 
+  #Tools
+  get 'tools' => 'herramienta#list_all'
+
   #Animals
   get 'animals/' => 'animal#list_all'
   get 'animals/new' => 'animal#new'
