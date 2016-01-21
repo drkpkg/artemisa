@@ -65,7 +65,8 @@ class ApplicationController < ActionController::Base
 
   private
   def load_permissions
-    @user_permissions = JSON.parse(Grupo.find_by(id: Usuario.find_by(id: cookies[:user_id]).grupo_id).data)
+    if cookies[:user_id]
+      @user_permissions = JSON.parse(Grupo.find_by(id: Usuario.find_by(id: cookies[:user_id]).grupo_id).data)
+    end
   end
-
 end
