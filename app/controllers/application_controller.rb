@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :set_cache_buster
   after_action :set_log_action
-  before_action :verify_permissions
+  before_action :load_permissions
 
   def set_log_action
     if (cookies[:user_name] && cookies[:type])
@@ -63,9 +63,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def verify_permissions
-    self
+  private
+  def load_permissions
+    @user_permissions = JSON.parse(Grupo.find_by(id: Usuario.find_by(id: cookies[:user_id]).grupo_id).data)
   end
-
 
 end

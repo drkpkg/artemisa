@@ -8,34 +8,47 @@ class EspecieController < ApplicationController
   end
 
   def create
-    especie = Especie.new
-    especie.nombre_especie = params[:especie]
-
-    if especie.valid?
-      especie.save
-      respond('200', 'En hora buena', 'Lote agregado satisfactoriamente', 'success', '/animals/species')
+    if @user_permissions["especies"]["c"]==false
+      respond('200', 'Error', 'Permisos insuficientes', 'error', '')
     else
-      description = get_errors(especie)
-      respond('400', 'Error', description, 'error', '')
+      especie = Especie.new
+      especie.nombre_especie = params[:especie]
+
+      if especie.valid?
+        especie.save
+        respond('200', 'En hora buena', 'Lote agregado satisfactoriamente', 'success', '/animals/species')
+      else
+        description = get_errors(especie)
+        respond('400', 'Error', description, 'error', '')
+      end
     end
   end
 
   def modify
-    especie = Especie.find_by(id: params[:id])
-    if especie.update(nombre_especie: params[:especie])
-      respond('200', 'En hora buena', 'lote modificado satisfactoriamente', 'success', '/animals/species/')
+    if @user_permissions["especies"]["m"]==false
+      respond('200', 'Error', 'Permisos insuficientes', 'error', '')
     else
-      description = get_errors(especie)
-      respond('400', 'Error', description, 'error', '')
+      especie = Especie.find_by(id: params[:id])
+      if especie.update(nombre_especie: params[:especie])
+        respond('200', 'En hora buena', 'lote modificado satisfactoriamente', 'success', '/animals/species/')
+      else
+        description = get_errors(especie)
+        respond('400', 'Error', description, 'error', '')
+      end
     end
   end
 
   def delete
-    tipo = Especie.find_by(id: params[:id])
-    if tipo.delete
-      respond('200', 'En hora buena', 'Lote eliminado satisfactoriamente', 'success', '/animals/species')
+    if @user_permissions["especies"]["d"]==false
+      respond('200', 'Error', 'Permisos insuficientes', 'error', '')
     else
-      respond('400', 'Error', 'Error al eliminar categor?a', 'error', '')
+      tipo = Especie.find_by(id: params[:id])
+      if tipo.delete
+        respond('200', 'En hora buena', 'Lote eliminado satisfactoriamente', 'success', '/animals/species')
+      else
+        respond('400', 'Error', 'Error al eliminar categoría', 'error', '')
+      end
     end
+
   end
 end

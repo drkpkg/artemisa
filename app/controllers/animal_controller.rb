@@ -37,13 +37,31 @@ class AnimalController < ApplicationController
   end
 
   def delete
-    animal = Animal.find_by(id: params[:id])
-    if animal.delete
-      flash[:success] = "Se elimino correctamente"
-      respond('200', 'En hora buena', 'Usuario eliminado satisfactoriamente', 'success', '/clients')
+    if @user_permissions["animales"]["d"]==false
+      respond('200', 'Error', 'Permisos insuficientes', 'error', '')
     else
-      flash[:error] = description
-      respond('400', 'Error', 'Sucedi? un error al eliminar el usuario', 'error', '')
+      animal = Animal.find_by(id: params[:id])
+      if animal.delete
+        flash[:success] = "Se elimino correctamente"
+        respond('200', 'En hora buena', 'Usuario eliminado satisfactoriamente', 'success', '/animals')
+      else
+        flash[:error] = description
+        respond('400', 'Error', 'Sucedi? un error al eliminar el usuario', 'error', '')
+      end
+    end
+  end
+
+  def edit
+    if @user_permissions["animales"]["m"]==false
+      flash[:error] = "Permisos insuficiente"
+      redirect_to animals_path
+    end
+  end
+
+  def new
+    if @user_permissions["animales"]["c"]==false
+      flash[:error] = "Permisos insuficiente"
+      redirect_to animals_path
     end
   end
 
