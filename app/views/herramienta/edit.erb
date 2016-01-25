@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container form-color">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:error] %>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <h3 class="panel-heading">Información de la empresa</h3>
+
+      <%= form_for :info, url: '/info/modify' do |f| %>
+          <div class='group-size-80'>
+            <%= f.text_field :name, :class => "form-control", placeholder: "Nombre de la empresa", data:{toggle:"tooltip", placement:"top", title:"Nombre de la empresa"} %>
+          </div>
+          <br>
+          <div class='group-size-80'>
+            <%= f.text_field :phone, :class => "form-control", placeholder: "Teléfono de referencia", data:{toggle:"tooltip", placement:"top", title:"Teléfono de referencia"} %>
+          </div>
+          <br>
+          <div class='group-size-80'>
+            <%= f.text_field :email, :class => "form-control", placeholder: "Email", data:{toggle:"tooltip", placement:"top", title: "Email"} %>
+          </div>
+          <br>
+          <div class='group-size-80'>
+            <%= f.text_field :address, :class => "form-control", placeholder: "Dirección", data:{toggle:"tooltip", placement:"top", title: "Dirección"} %>
+          </div>
+          <br>
+          <div class="btn-group pull-right">
+            <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+            <%= link_to 'Cancelar', "/tools/", class: 'btn btn-info' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,12 @@ Rails.application.routes.draw do
   #Tools
   get 'tools' => 'herramienta#list_all'
 
+  #Information system
+  get 'info' => 'herramienta#info'
+  get 'info/edit' => 'herramienta#edit'
+  post 'info/modify' => 'herramienta#modify'
+
+
   #Animals
   get 'animals/' => 'animal#list_all'
   get 'animals/new' => 'animal#new'

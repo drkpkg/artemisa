@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:success] %>
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:success] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Información de Artemisa<a href="/tools" class="pull-right btn-sm btn-warning ">Volver a herramientas</a></div>
+        <% if @info.blank? %>
+            <h3>Información en blanco, por favor rellene los datos <a href="/info/edit">aquí</a></h3>
+        <% else %>
+            <form class="panel-body">
+
+              <div class="col-md-3">
+                <a href="/info/edit" class="btn btn-info">Modificar datos de la empresa</a>
+              </div>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <label class="input-group-addon normalize-size">Sistema de ejecución</label>
+                  <label class="form-control"><%= RUBY_PLATFORM %></label>
+                </div>
+                <br>
+                <div class="input-group">
+                  <label class="input-group-addon normalize-size">Nombre de la empresa</label>
+                  <label class="form-control"><%= @info.name %></label>
+                </div>
+                <br>
+                <div class="input-group">
+                  <label class="input-group-addon normalize-size">Teléfono de contacto </label>
+                  <label class="form-control"><%= @info.phone %></label>
+                </div>
+                <br>
+                <div class="input-group">
+                  <label class="input-group-addon normalize-size">Email </label>
+                  <label class="form-control"><%= @info.email %></label>
+                </div>
+                <br>
+                <div class="input-group">
+                  <label class="input-group-addon normalize-size">Dirección </label>
+                  <label class="form-control"><%= @info.address %></label>
+                </div>
+              </div>
+            </form>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
