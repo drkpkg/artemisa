@@ -17,7 +17,11 @@
 
       <%= form_for @animal, url: '/animals/modify' do |f| %>
           <div class="form-group">
-            <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+            <% if !@animal.image.url.present? %>
+                <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+            <% else %>
+              <%= image_tag @animal.image.url, id:"preview", size: '200x200', class: 'img-thumbnail' %>
+            <% end %>
             <%= f.file_field :image, onchange: "readURL(this)" %>
           </div>
           <div class="hide">

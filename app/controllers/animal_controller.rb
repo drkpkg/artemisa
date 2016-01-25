@@ -55,6 +55,8 @@ class AnimalController < ApplicationController
     if @user_permissions["animales"]["m"]==false
       flash[:error] = "Permisos insuficiente"
       redirect_to animals_path
+    else
+      @animal = Animal.find_by(id: params[:id])
     end
   end
 

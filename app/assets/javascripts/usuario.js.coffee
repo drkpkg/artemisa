@@ -13,7 +13,7 @@
 @createUser = ->
   username = $('#newuser-username').val()
   password = $('#newuser-password').val()
-  group = $('#newuser-grupo-selector').val()
+  group = $('#newuser-group-selector').val()
   state = $('#newuser-state').bootstrapSwitch('state')
   url = '/users/create/'
   data = {username: username, password: password, password_repeat: password, type: group, state: state}

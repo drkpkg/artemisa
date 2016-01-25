@@ -8,6 +8,7 @@ class UsuarioController < ApplicationController
     user.nombre_usuario = params[:username]
     user.password_digest = Password.create(params[:password])
     user.state = params[:state]
+    user.grupo_id = params[:type]
 
     if user.valid?
       user.save
