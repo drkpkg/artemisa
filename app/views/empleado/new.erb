@@ -16,34 +16,74 @@
       <h3 class="panel-heading">Registro de empleado</h3>
 
       <%= form_for :persona, url: '/employees/create' do |f| %>
-          <div class="form-group">
-            <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
-            <%= f.file_field :image, onchange:"readURL(this)" %>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+              <%= f.file_field :image, onchange:"readURL(this)" %>
+            </div>
           </div>
 
-          <br>
-          <div class="input-group group-size-100">
-            <%= f.text_field :nombre, :class => "form-control input-control", placeholder: "Nombre", data:{toggle:"tooltip", placement:"top", title:"Nombre"} ,:onkeypress=>"return onlyText(event)" %>
-            <%= f.text_field :ap_paterno, :class => "form-control input-control", placeholder: "Apellido paterno", data:{toggle:"tooltip", placement:"top", title:"Apellido paterno"}, :onkeypress=>"return onlyText(event)" %>
-            <%= f.text_field :ap_materno, :class => "form-control input-control", placeholder: "Apellido materno", data:{toggle:"tooltip", placement:"top", title:"Apellido materno"}, :onkeypress=>"return onlyText(event)" %>
-            <%= f.text_field :identificacion, :class => "form-control input-control", placeholder: "Identificación", data:{toggle:"tooltip", placement:"top", title:"Cedula de identidad"}, :onkeypress=>"return onlyNumbers(event)"%>
+          <div class="col-md-9">
+            <div class="panel panel-default">
+              <div class="panel-heading">Información básica</div>
+              <div class="panel-body">
+                <div class="input-group group-size-100">
+                  <%= f.text_field :nombre, :class => "form-control input-control-33", placeholder: "Nombre", data:{toggle:"tooltip", placement:"top", title:"Nombre"} ,:onkeypress=>"return onlyText(event)" %>
+                  <%= f.text_field :ap_paterno, :class => "form-control input-control-33", placeholder: "Apellido paterno", data:{toggle:"tooltip", placement:"top", title:"Apellido paterno"}, :onkeypress=>"return onlyText(event)" %>
+                  <%= f.text_field :ap_materno, :class => "form-control input-control-33", placeholder: "Apellido materno", data:{toggle:"tooltip", placement:"top", title:"Apellido materno"}, :onkeypress=>"return onlyText(event)" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">Identificación, género y fecha de nacimiento</div>
+              <div class="panel-body">
+                <div class="input-group group-size-100">
+                  <%= f.text_field :identificacion, :class => "form-control input-control-33", placeholder: "Identificación", data:{toggle:"tooltip", placement:"top", title:"Cedula de identidad"}, :onkeypress=>"return onlyNumbers(event)"%>
+                  <%= f.select :genero_id, options_for_select([["Hombre", "3"], ["Mujer", "4"]]), {}, {class: 'form-control input-control-33'} %>
+
+                  <div class='input-group date' id='datetimepicker'>
+                    <%= f.text_field :fecha_nacimiento, :class => "form-control", placeholder: "Fecha de nacimiento", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
+                    <span class="input-group-addon">
+                      <span class="fa fa-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">Información complementaria</div>
+              <div class="panel-body">
+                <div class="input-group group-size-100">
+                  <%= f.text_field :correo, :class => "form-control input-control-33", placeholder: "Correo electrónico", data:{toggle:"tooltip", placement:"top", title:"Correo electronico "}, :onblur=>"return validateEmail(this.value)" %>
+                  <%= f.text_field :telefono, :class => "form-control input-control-33", placeholder: "Teléfono", data:{toggle:"tooltip", placement:"top", title:"Telefono"}, :onkeypress=>"return onlyNumbers(event)" %>
+                  <%= f.text_field :direccion, :class => "form-control input-control-33", placeholder: "Dirección", data:{toggle:"tooltip", placement:"top", title:"Direccion"} %>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">Cargo y horarios</div>
+              <div class="panel-body">
+                <%= f.select :persona_tipos_id, PersonaTipo.where.not(id: 1).collect {|p| [ p.tipo, p.id ] }, {}, {class: 'form-control input-control-30'} %>
+                <br>
+                <div class='input-group date' id='time-in'>
+                  <%= f.text_field :horario_entrada, :class => "form-control", placeholder: "Horario entrada", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
+                  <span class="input-group-addon">
+                      <span class="fa fa-clock-o"></span>
+                    </span>
+                </div>
+                <br>
+                <div class='input-group date' id='time-out'>
+                  <%= f.text_field :horario_salida, :class => "form-control", placeholder: "Horario de salida", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
+                  <span class="input-group-addon">
+                      <span class="fa fa-clock-o"></span>
+                    </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <br>
-          <div class='input-group group-size-80 date' id='datetimepicker'>
-            <%= f.text_field :fecha_nacimiento, :class => "form-control", placeholder: "Fecha de nacimiento", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
-            <span class="input-group-addon">
-                <span class="fa fa-calendar"></span>
-             </span>
-          </div>
-          <br>
-          <div class="input-group group-size-100">
-            <%= f.text_field :correo, :class => "form-control input-control", placeholder: "Correo electrónico", data:{toggle:"tooltip", placement:"top", title:"Correo electronico "}, :onblur=>"return validateEmail(this.value)" %>
-            <%= f.text_field :telefono, :class => "form-control input-control", placeholder: "Teléfono", data:{toggle:"tooltip", placement:"top", title:"Telefono"}, :onkeypress=>"return onlyNumbers(event)" %>
-            <%= f.text_field :direccion, :class => "form-control input-control", placeholder: "Dirección", data:{toggle:"tooltip", placement:"top", title:"Direccion"} %>
-            <%= f.select :genero_id, options_for_select([["Hombre", "3"], ["Mujer", "4"]]), {}, {class: 'form-control input-control'} %>
-          </div>
-          <br>
-          <%= f.select :persona_tipos_id, PersonaTipo.where.not(id: 1).collect {|p| [ p.tipo, p.id ] }, {}, {class: 'form-control input-control'} %>
 
           <div class="btn-group pull-right">
             <%= f.submit 'Guardar', :class => 'btn btn-success' %>

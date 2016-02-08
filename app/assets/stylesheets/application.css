@@ -15,7 +15,7 @@
  *= require font-awesome
  *= require toastr
  *= require bootstrap3-switch
- *= require bootstrap-datetimepicker
+ #*= require bootstrap-datetimepicker
  *= require_self
  */
 
@@ -142,6 +142,10 @@ img.cover {
     width: 80% !important;
 }
 
-.input-control{
-    width: 20% !important;
+.input-control-33{
+    width: 33% !important;
+}
+
+.input-control-30{
+    width: 30% !important;
 }

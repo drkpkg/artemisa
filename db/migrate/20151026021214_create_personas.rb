@@ -11,6 +11,8 @@ class CreatePersonas < ActiveRecord::Migration
       t.string :correo
       t.string :direccion
       t.string :telefono
+      t.time :horario_entrada
+      t.time :horario_salida
       t.references :genero, index: true
       t.belongs_to :persona_tipos, index: true
       t.timestamps

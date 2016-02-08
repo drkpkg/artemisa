@@ -50,7 +50,7 @@ class EmpleadoController < ApplicationController
   private
 
   def empleado_params
-    params.require(:persona).permit(:id, :image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipos_id, :genero_id )
+    params.require(:persona).permit(:id, :image, :nombre, :ap_paterno, :ap_materno, :identificacion, :fecha_nacimiento, :telefono, :correo, :direccion,:persona_tipos_id, :genero_id, :horario_entrada, :horario_salida )
   end
 
 end

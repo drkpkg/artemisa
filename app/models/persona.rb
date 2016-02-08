@@ -1,7 +1,6 @@
 class Persona < ActiveRecord::Base
 
   dragonfly_accessor :image
-  belongs_to :horario_persona
   has_one :usuario
   has_one :genero
   has_one :persona_tipo
