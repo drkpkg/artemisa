@@ -16,51 +16,36 @@
       <h3 class="panel-heading">Modificar datos de <%= @animal.nombre %></h3>
 
       <%= form_for @animal, url: '/animals/modify' do |f| %>
-          <div class="form-group">
-            <% if !@animal.image.url.present? %>
-                <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
-            <% else %>
-              <%= image_tag @animal.image.url, id:"preview", size: '200x200', class: 'img-thumbnail' %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <% if @animal.image_uid.blank? %>
+                  <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+              <% else %>
+                  <% if !@animal.image.url.present? %>
+                      <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+                  <% else %>
+                      <%= image_tag @animal.image.url, id:"preview", size: '200x200', class: 'img-thumbnail' %>
+                  <% end %>
             <% end %>
-            <%= f.file_field :image, onchange: "readURL(this)" %>
+              <%= f.file_field :image, onchange: "readURL(this)" %>
+            </div>
           </div>
-          <div class="hide">
-            <%= f.text_field :id %>
-          </div>
-          <div class="input-group group-size-100">
-            <%= f.text_field :nombre, :class => "form-control input-control", placeholder: "Nombre", data:{toggle:"tooltip", placement:"top", title:"Nombre"} ,:onkeypress=>"return onlyText(event)" %>
-            <%= f.text_field :alto, :class => "form-control input-control", placeholder: "Alto (En CM)", data:{toggle:"tooltip", placement:"top", title:"Alto (En CM)"}, :onkeypress=>"return onlyNumbers(event)" %>
-            <%= f.text_field :largo, :class => "form-control input-control", placeholder: "Ancho (En CM)", data:{toggle:"tooltip", placement:"top", title:"Ancho (En CM)"}, :onkeypress=>"return onlyNumbers(event)" %>
-            <%= f.text_field :peso, :class => "form-control input-control", placeholder: "Peso (En Kilogramos)", data:{toggle:"tooltip", placement:"top", title:"Peso (En Kilogramos)"}, :onkeypress=>"return onlyNumbers(event)"%>
-          </div>
-          <br>
-          <div class='input-group group-size-80 date' id='datetimepicker'>
-            <%= f.text_field :fecha_nacimiento, :class => "form-control", placeholder: "Fecha de nacimiento", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
-            <span class="input-group-addon">
+
+          <div class="col-md-9">
+            <div class="hide">
+              <%= f.text_field :id %>
+            </div>
+            <%= f.text_field :peso, :class => "form-control input-control-50", placeholder: "Peso (En Kilogramos)", data:{toggle:"tooltip", placement:"top", title:"Peso (En Kilogramos)"}, :onkeypress=>"return onlyNumbers(event)"%>
+
+            <br>
+            <div class='input-group group-size-50 date' id='datetimepicker'>
+              <%= f.text_field :fecha_deceso, :class => "form-control", placeholder: "Fecha de deceso", data:{toggle:"tooltip", placement:"top", title:"Fecha de deceso"} %>
+              <span class="input-group-addon">
                 <span class="fa fa-calendar"></span>
              </span>
-          </div>
-          <br>
-          <div class='input-group group-size-80 date' id='datetimepicker'>
-            <%= f.text_field :fecha_deceso, :class => "form-control", placeholder: "Fecha de deceso", data:{toggle:"tooltip", placement:"top", title:"Fecha de deceso"} %>
-            <span class="input-group-addon">
-                <span class="fa fa-calendar"></span>
-             </span>
-          </div>
-          <br>
-          <div class="input-group group-size-100">
-            <%= select_tag "especie", options_from_collection_for_select(Especie.all.collect, "id", "nombre_especie"), prompt: "Seleccione especie", class: 'form-control input-control', onchange: "showBreeds()" %>
-            <%= f.select :raza_id, {}, {}, {class: 'form-control input-control'} %>
+            </div>
+            <br>
 
-            <%= f.select :cliente_id, {}, {}, class:"form-control input-control" do %>
-              <% Persona.where(persona_tipos_id: 1).each do |persona| %>
-                <option value='<%= persona.id %>'>
-                  <%= "#{persona.nombre} #{persona.ap_paterno} #{persona.ap_materno}" %>
-                </option>
-              <% end %>
-            <% end %>
-
-            <%= f.select :genero_id, options_for_select([["Macho", "1"], ["Hembra", "2"]]), {}, {class: 'form-control input-control'} %>
           </div>
 
           <div class="btn-group pull-right">

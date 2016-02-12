@@ -142,6 +142,10 @@ img.cover {
     width: 80% !important;
 }
 
+.group-size-50{
+    width: 50% !important;
+}
+
 .input-control-33{
     width: 33% !important;
 }
@@ -152,4 +156,12 @@ img.cover {
 
 .input-control-25{
     width: 25% !important;
+}
+
+.input-control-50{
+    width: 50% !important;
+}
+
+.selector{
+    color: #000000;
 }

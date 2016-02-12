@@ -18,7 +18,10 @@ class AnimalController < ApplicationController
 
   def modify
     animal = Animal.find_by(id: params[:animal][:id])
-    if animal.update(animal_params)
+    animal.peso = params[:animal][:peso]
+    animal.fecha_deceso = params[:animal][:fecha_deceso]
+    animal.image = params[:animal][:image]
+    if animal.save
       flash[:success] = "Modificado exitosamente"
       redirect_to "/animals/info/#{params[:animal][:id]}"
     else

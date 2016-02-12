@@ -1,1 +1,66 @@
+<div class="container">
+  <div class="row col-lg-3 pull-right">
+    <% if flash[:error] %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= flash[:error] %>
+        </div>
+    <% end %>
+    <% if flash[:success] %>
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= flash[:success] %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
 <%= render 'general/back_modules' %>
+
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a type="button" class="btn btn-success" id="btn-category" href="/services/new">
+          <i class="fa fa-plus"></i>
+          Registrar nuevo servicio
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Servicio</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @servicios.each do |index| %>
+            <tr class="focus">
+              <td id="especie-<%= index.id %>">
+                <%= index.nombre_servicio %>
+              </td>
+              <td id="especie-<%= index.id %>">
+                <%= index.descripcion_servicio %>
+              </td>
+              <td id="especie-<%= index.id %>">
+                <%= index.precio %>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a href="/services/modify/<%= index.id %>" id="btn-modify-<%= index.id %>">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

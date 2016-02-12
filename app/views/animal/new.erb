@@ -67,6 +67,7 @@
             </span>
               <%= f.select :cliente_id, {}, {}, class:"form-control" do %>
                   <option value="" selected>Seleccione dueño </option>
+                  <option value="0">Sin dueño</option>
                   <% Persona.where(persona_tipos_id: 1).each do |persona| %>
                       <option value='<%= persona.id %>'>
                         <%= "#{persona.nombre} #{persona.ap_paterno} #{persona.ap_materno}" %>

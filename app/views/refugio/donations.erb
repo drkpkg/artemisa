@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a type="button" class="btn btn-success" id="btn-category" href="/bunker/selection/donations/new">
+          <i class="fa fa-plus"></i>
+          Registrar nueva donación
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Lista de especies <a href="/bunker/selection" class="pull-right btn-sm btn-warning ">Volver a selección</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo de donación</th>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Fecha de donación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @donaciones.each do |index| %>
+            <tr class="focus">
+              <td>
+                <%= index.nombre %>
+              </td>
+              <td>
+                <% tipo = ["Dinero", "Alimentos", "General"] %>
+                <%= tipo[index.tipo] %>
+              </td>
+              <td>
+                <%= index.descripcion %>
+              </td>
+              <td>
+                <%= index.cantidad %>
+              </td>
+              <td>
+                <%= index.created_at %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
