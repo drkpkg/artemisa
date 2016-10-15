@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container form-color">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:error] %>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%= form_for @servicio, url: "/services/update/#{@servicio.id}", method: "post" do |f| %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <% if @servicio.servicio.present? %>
+                  <%= image_tag @servicio.servicio.url, id:"preview", size: '200x200', class: 'img-thumbnail' %>
+            <% else %>
+                  <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+            <% end %>
+              <%= f.file_field :servicio, onchange:"readURL(this)" %>
+            </div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="panel panel-default">
+              <div class="panel-heading">Información básica</div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <%= f.text_field :nombre_servicio, :class => "form-control", placeholder: "Nombre", data:{toggle:"tooltip", placement:"top", title:"Nombre del servicio"} ,:onkeypress=>"return onlyText(event)" %>
+                </div>
+                <div class="form-group">
+                  <%= f.text_area :descripcion_servicio, :class => "form-control", placeholder: "Descripción corta del servicio", data:{toggle:"tooltip", placement:"top", title:"Descripción del servicio"} %>
+                </div>
+                <div class="form-group">
+                  <%= f.number_field :precio, :class => "form-control input-control-33", placeholder: "Precio", data:{toggle:"tooltip", placement:"top", title:"Precio del servicio"}, :onkeypress=>"return onlyNumbers(event)" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group pull-right">
+            <%= f.submit 'Guardar Cambios', :class => 'btn btn-success' %>
+            <%= link_to 'Cancelar', "/services", class: 'btn btn-info' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -16,66 +16,72 @@
       <h3 class="panel-heading">Nuevo registro de animal</h3>
 
       <%= form_for :animal, url: '/animals/create' do |f| %>
-          <div class="form-group">
-            <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
-            <%= f.file_field :image, onchange: "readURL(this)" %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+              <%= f.file_field :image, onchange: "readURL(this)" %>
+            </div>
           </div>
-          <div class="hide">
-            <%= f.text_field :id %>
-          </div>
-          <div class="input-group group-size-100">
-            <%= f.text_field :nombre, :class => "form-control input-control", placeholder: "Nombre", data:{toggle:"tooltip", placement:"top", title:"Nombre"} ,:onkeypress=>"return onlyText(event)" %>
-            <%= f.text_field :alto, :class => "form-control input-control", placeholder: "Alto (En CM)", data:{toggle:"tooltip", placement:"top", title:"Alto (En CM)"}, :onkeypress=>"return onlyNumbers(event)" %>
-            <%= f.text_field :largo, :class => "form-control input-control", placeholder: "largo (En CM)", data:{toggle:"tooltip", placement:"top", title:"Ancho (En CM)"}, :onkeypress=>"return onlyNumbers(event)" %>
-            <%= f.text_field :peso, :class => "form-control input-control", placeholder: "Peso (En Kilogramos)", data:{toggle:"tooltip", placement:"top", title:"Peso (En Kilogramos)"}, :onkeypress=>"return onlyNumbers(event)"%>
-          </div>
-          <br>
-          <div class='input-group group-size-80 date' id='datetimepicker'>
-            <%= f.text_field :fecha_nacimiento, :class => "form-control", placeholder: "Fecha de nacimiento", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
-            <span class="input-group-addon">
+          <div class="col-md-9">
+            <div class="hide">
+              <%= f.text_field :id %>
+            </div>
+            <div class="input-group group-size-100">
+              <%= f.text_field :nombre, :class => "form-control input-control-25", placeholder: "Nombre", data:{toggle:"tooltip", placement:"top", title:"Nombre"} ,:onkeypress=>"return onlyText(event)" %>
+              <%= f.text_field :alto, :class => "form-control input-control-25", placeholder: "Alto (En CM)", data:{toggle:"tooltip", placement:"top", title:"Alto (En CM)"}, :onkeypress=>"return onlyNumbers(event)" %>
+              <%= f.text_field :largo, :class => "form-control input-control-25", placeholder: "largo (En CM)", data:{toggle:"tooltip", placement:"top", title:"Ancho (En CM)"}, :onkeypress=>"return onlyNumbers(event)" %>
+              <%= f.text_field :peso, :class => "form-control input-control-25", placeholder: "Peso (En Kilogramos)", data:{toggle:"tooltip", placement:"top", title:"Peso (En Kilogramos)"}, :onkeypress=>"return onlyNumbers(event)"%>
+            </div>
+            <br>
+            <div class='input-group group-size-80 date' id='datetimepicker'>
+              <%= f.text_field :fecha_nacimiento, :class => "form-control", placeholder: "Fecha de nacimiento", data:{toggle:"tooltip", placement:"top", title:"Fecha de nacimiento"} %>
+              <span class="input-group-addon">
                 <span class="fa fa-calendar"></span>
              </span>
-          </div>
-          <br>
-          <div class='input-group group-size-80 date' id='datetimepicker'>
-            <%= f.text_field :fecha_deceso, :class => "form-control", placeholder: "Fecha de deceso", data:{toggle:"tooltip", placement:"top", title:"Fecha de deceso"} %>
-            <span class="input-group-addon">
+            </div>
+            <br>
+            <div class='input-group group-size-80 date' id='datetimepicker'>
+              <%= f.text_field :fecha_deceso, :class => "form-control", placeholder: "Fecha de deceso", data:{toggle:"tooltip", placement:"top", title:"Fecha de deceso"} %>
+              <span class="input-group-addon">
                 <span class="fa fa-calendar"></span>
              </span>
-          </div>
-          <br>
-          <div class="input-group group-size-80">
+            </div>
+            <br>
+            <div class="input-group group-size-80">
             <span class="input-group-addon normalize-size">
                 Especie
              </span>
-            <%= select_tag "especie", options_from_collection_for_select(Especie.all.collect, "id", "nombre_especie"), prompt: "Seleccione especie", class: 'form-control', onchange: "showBreeds()" %>
-          </div>
-          <br>
-          <div class="input-group group-size-80">
+              <%= select_tag "especie", options_from_collection_for_select(Especie.all.collect, "id", "nombre_especie"), prompt: "Seleccione especie", class: 'form-control', onchange: "showBreeds()" %>
+            </div>
+            <br>
+            <div class="input-group group-size-80">
             <span class="input-group-addon normalize-size">
                 Raza
              </span>
-            <%= f.select :raza_id, {}, {}, {class: 'form-control'} %>
-          </div>
-          <br>
-          <div class="input-group group-size-80">
+              <%= f.select :raza_id, {}, {}, {class: 'form-control'} %>
+            </div>
+            <br>
+            <div class="input-group group-size-80">
             <span class="input-group-addon normalize-size">
                 Dueno
             </span>
-            <%= f.select :cliente_id, {}, {}, class:"form-control" do %>
-                <% Persona.where(persona_tipos_id: 1).each do |persona| %>
-                    <option value='<%= persona.id %>'>
-                      <%= "#{persona.nombre} #{persona.ap_paterno} #{persona.ap_materno}" %>
-                    </option>
-                <% end %>
-            <% end %>
-          </div>
-          <br>
-          <div class="input-group group-size-80">
+              <%= f.select :cliente_id, {}, {}, class:"form-control" do %>
+                  <option value="" selected>Seleccione dueño </option>
+                  <option value="0">Sin dueño</option>
+                  <% Persona.where(persona_tipos_id: 1).each do |persona| %>
+                      <option value='<%= persona.id %>'>
+                        <%= "#{persona.nombre} #{persona.ap_paterno} #{persona.ap_materno}" %>
+                      </option>
+                  <% end %>
+              <% end %>
+            </div>
+            <br>
+            <div class="input-group group-size-80">
             <span class="input-group-addon normalize-size">
                 Genero
              </span>
-            <%= f.select :genero_id, options_for_select([["Macho", "1"], ["Hembra", "2"]]), {}, {class: 'form-control'} %>
+              <%= f.select :genero_id, options_for_select([["Macho", "1"], ["Hembra", "2"]]), {}, {class: 'form-control'} %>
+            </div>
           </div>
           <br>
           <div class="btn-group pull-right">

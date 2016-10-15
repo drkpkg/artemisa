@@ -14,7 +14,16 @@ Rails.application.routes.draw do
   get 'info' => 'herramienta#info'
   get 'info/edit' => 'herramienta#edit'
   post 'info/modify' => 'herramienta#modify'
+  post 'info/activate_bunker' => 'herramienta#activate_bunker'
 
+  #Bunker mode
+  get 'bunker/selection' => 'refugio#selection'
+  get 'bunker/selection/donations' => 'refugio#donations'
+  get 'bunker/selection/donations/new' => 'refugio#donation_new'
+  post 'bunker/selection/donations/create' => 'refugio#donation_create'
+  get 'bunker/selection/adoptions' => 'refugio#adoptions'
+  get 'bunker/selection/adoptions/new' => 'refugio#adoption_new'
+  post 'bunker/selection/adoptions/create' => 'refugio#adoption_create'
 
   #Animals
   get 'animals/' => 'animal#list_all'
@@ -98,16 +107,21 @@ Rails.application.routes.draw do
   get 'animals/selection' => 'animal#selection'
 
   #Schedule
-  get 'schedules/' => 'horario#list_all'
-  post 'schedules/create' => 'horario#create'
-  post 'schedules/modify' => 'horario#modify'
-  post 'schedules/delete' => 'horario#delete'
+  #get 'schedules/' => 'horario#list_all'
+  #post 'schedules/create' => 'horario#create'
+  #post 'schedules/modify' => 'horario#modify'
+  #post 'schedules/delete' => 'horario#delete'
 
   #Reports
   get 'reports/' => 'reporte#generator'
 
   #Services
   get 'services/' => 'servicio#list_all'
+  get 'services/new' => 'servicio#new'
+  get 'services/modify/:id' => 'servicio#edit'
+  post 'services/create' => 'servicio#create'
+  post 'services/update/:id' => 'servicio#update'
+  post 'services/delete' => 'servicio#delete'
 
   #Artemisa API for mobile NOT IMPLEMENTED YET
   scope 'hermes' do

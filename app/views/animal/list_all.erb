@@ -64,7 +64,11 @@
             <td><%= Raza.find_by(id: animal.raza_id).nombre_raza %></td>
             <td>
               <% persona = Persona.find_by(id: animal.cliente_id) %>
-              <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+              <% if persona.blank?%>
+                  Sin dueño
+              <% else %>
+                <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+              <% end %>
             </td>
           </tr>
         <% end %>

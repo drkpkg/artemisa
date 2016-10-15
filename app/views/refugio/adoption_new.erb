@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container form-color">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:error] %>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <h3 class="panel-heading">Nueva adopción</h3>
+
+      <%= form_for :adoption, url: '/bunker/selection/adoptions/create' do |f| %>
+          <div class="form-group">
+            Yo
+            <%= f.text_field :nombre_persona, :class => " input-control-33", placeholder: "Nombre del candidato", data:{toggle:"tooltip", placement:"top", title:"Nombre del candidato"} ,:onkeypress=>"return onlyText(event)" %>
+            con documento de identidad
+            <%= f.text_field :identidad_persona, :class => " input-control", placeholder: "Documento de identidad", data:{toggle:"tooltip", placement:"top", title:"Documento de identidad"} ,:onkeypress=>"return onlyNumbers(event)" %>
+            decido adoptar a
+            <%= f.select :animal_id, {}, {}, class:"selector" do %>
+                <option value="" selected>Seleccione al animal</option>
+                <% Animal.where(cliente_id: 0).each do |index| %>
+                    <option value='<%= index.id %>'>
+                      <%= index.nombre %>
+                    </option>
+                <% end %>
+            <% end %>
+            aceptando todas las condiciones que el refugio me exigió para su respectivo cuidado.
+            <br>
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading">Importante</div>
+              <div class="panel-body">
+                <strong>En caso de que el candidato de adopción dañe al animal de forma física, el refugio/clínica tomará las acciones legales necesarias, revocando también su condición de candidato.</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group pull-right">
+            <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+            <%= link_to 'Cancelar', '/bunker/selection/adoptions', class: 'btn btn-info' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

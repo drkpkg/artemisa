@@ -2,13 +2,13 @@
   <div class="row">
 
     <% if (@user_permissions['servicios']['c'] or @user_permissions['servicios']['m'] or @user_permissions['servicios']['d']) == true  %>
-        <!--div class="col-xs-6 col-md-3">
+        <div class="col-xs-6 col-md-3">
           <a  href="/services/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
             <i class="fa  fa-scissors fa-4x"></i>
             <br>
             Servicios
           </a>
-        </div-->
+        </div>
     <% end %>
     <% if (@user_permissions['animales']['c'] or @user_permissions['animales']['m'] or @user_permissions['animales']['d']) == true  %>
         <div class="col-xs-6 col-md-3">
@@ -27,7 +27,7 @@
             Stock
           </a>
         </div>
-  <% end %>
+    <% end %>
 
     <div class="col-xs-6 col-md-3">
       <a  href="/people/selection" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
@@ -37,6 +37,16 @@
       </a>
     </div>
 
+    <% if Information.first.bunker == true %>
+        <div class="col-xs-6 col-md-3">
+          <a  href="/bunker/selection" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
+            <i class="fa fa-home fa-4x"></i>
+            <br>
+            Refugio animal
+          </a>
+        </div>
+    <% end %>
+
     <div class="col-xs-6 col-md-3">
       <a  href="/tools/" class="thumbnail text-center hvr-sweep-to-top cmn-t-bg">
         <i class="fa fa-cogs fa-4x"></i>
@@ -44,6 +54,7 @@
         Herramientas y configuración
       </a>
     </div>
+
   </div>
 </div>
 

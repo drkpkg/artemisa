@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container form-color">
+
+      <div class="container">
+        <div class="row col-lg-3 pull-right">
+          <% if flash[:error] %>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <h3 class="panel-heading">Nuevo registro de animal</h3>
+
+      <%= form_for :donation, url: '/bunker/selection/donations/create' do |f| %>
+          <div class="form-group">
+            <%= f.text_field :nombre, :class => "form-control input-control", placeholder: "Nombre completo", data:{toggle:"tooltip", placement:"top", title:"Nombre"} ,:onkeypress=>"return onlyText(event)" %>
+            <label>Deseo permanecer anónimo <%= f.check_box :anon, onclick: "hideName()" %></label>
+            <br>
+            <%= f.select :tipo, {}, {}, class: "form-control input-control-33" do %>
+              <option value="0" selected>Seleccione tipo de donación</option>
+              <option value="1">Dinero</option>
+              <option value="2">Alimentos</option>
+              <option value="3">General</option>
+            <% end %>
+            <br>
+            <%= f.number_field :cantidad, :class => "form-control input-control", placeholder: "Cantidad", data:{toggle:"tooltip", placement:"top", title:"Nombre"}%>
+            <br>
+            <%= f.text_area :descripcion, :class => "form-control input-control", placeholder: "Descripción corta", data:{toggle:"tooltip", placement:"top", title:"Nombre"} %>
+            <br>
+          </div>
+          <br>
+          <div class="btn-group pull-right">
+            <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+            <%= link_to 'Cancelar', "/bunker/selection/donations", class: 'btn btn-info' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

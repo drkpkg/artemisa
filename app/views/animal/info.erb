@@ -80,7 +80,11 @@
               <label class="input-group-addon normalize-size">Dueño </label>
               <label class="form-control">
                 <% persona = Persona.find_by(id: @animal.cliente_id) %>
-                <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+                <% if persona.blank?%>
+                    Sin dueño
+                <% else %>
+                    <%= persona.nombre + " " + persona.ap_paterno + " " + persona.ap_materno%>
+                <% end %>
               </label>
             </div>
             <br>

@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="col-md-12 row">
+    <div class="container">
+      <div class="btn-group">
+        <a type="button" class="btn btn-success" id="btn-category" href="/bunker/selection/adoptions/new">
+          <i class="fa fa-plus"></i>
+          Registrar nueva adopción
+        </a>
+      </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Lista de especies <a href="/bunker/selection" class="pull-right btn-sm btn-warning ">Volver a selección</a></div>
+      <%= render 'general/search' %>
+      <table id="table" class="table">
+        <thead>
+        <tr>
+          <th>Nombre de candidato</th>
+          <th>Documento de identidad</th>
+          <th>Nombre del animal</th>
+          <th>Fecha de adopción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @adopciones.each do |index| %>
+            <tr class="focus">
+              <td>
+                <%= index.nombre_persona %>
+              </td>
+              <td>
+                <%= index.identidad_persona %>
+              </td>
+              <td>
+                <%= Animal.find_by(id: index.animal_id).nombre %>
+              </td>
+              <td>
+                <%= index.created_at %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

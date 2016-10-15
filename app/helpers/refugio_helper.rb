@@ -1,0 +1,2 @@
+module RefugioHelper
+end

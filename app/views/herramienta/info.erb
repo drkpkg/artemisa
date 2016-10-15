@@ -10,6 +10,12 @@
                 <%= flash[:success] %>
               </div>
           <% end %>
+          <% if flash[:error] %>
+              <div class="alert alert-error alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= flash[:error] %>
+              </div>
+          <% end %>
         </div>
       </div>
 
@@ -21,7 +27,25 @@
             <form class="panel-body">
 
               <div class="col-md-3">
+                <% if @info.logo_uid.blank? %>
+                    <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+                <% else %>
+                    <% if !@info.logo.url.present? %>
+                        <%= image_tag 'no_img.jpg', id:"preview", size: '200x200', class: 'img-thumbnail' %>
+                    <% else %>
+                        <%= image_tag @info.logo.url, id:"preview", size: '200x200', class: 'img-thumbnail' %>
+                    <% end %>
+              <% end %>
+                <br>
+                <br>
                 <a href="/info/edit" class="btn btn-info">Modificar datos de la empresa</a>
+                <br>
+                <br>
+                <% if Information.first.bunker == false %>
+                    <a href="#" class="btn btn-warning" onclick="activateBunker()">Activar refugio animal</a>
+                <% else %>
+                    <a href="#" class="btn btn-success" onclick="activateBunker()">Desactivar refugio animal</a>
+                <% end %>
               </div>
               <div class="col-md-9">
                 <div class="input-group">

@@ -148,7 +148,7 @@ persona_tipos.each do |persona_tipos|
 end
 
 servicios=[
-    [nombre_servicio:"Consulta Externa",descripcion_servicio:"Consulta para un diagnostico posterior"],
+    [nombre_servicio:"Consulta Externa",descripcion_servicio:"Consulta para un diagnostico posterior", precio: 100.0],
     [nombre_servicio:"Pet Shop",descripcion_servicio:"Venta de accesorio para animales"],
     [nombre_servicio:"Peluqueria",descripcion_servicio:"servicios de belleza"],
     [nombre_servicio:"Internacion",descripcion_servicio:"En caso de gravedad se procedera a la internacion"],
@@ -214,3 +214,5 @@ Genero.create(genero: "Macho")
 Genero.create(genero: "Hembra")
 Genero.create(genero: "Hombre")
 Genero.create(genero: "Mujer")
+
+Information.create(name: "Rellene campo", email: "Rellene campo", phone: 000000 ,address: "Rellene campo")
