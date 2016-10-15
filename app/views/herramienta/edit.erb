@@ -16,6 +16,14 @@
       <h3 class="panel-heading">Información de la empresa</h3>
 
       <%= form_for :info, url: '/info/modify' do |f| %>
+          <div class="">
+            <%= image_tag 'no_img.jpg', id:"preview-logo", size: '200x200', class: 'img-thumbnail' %>
+            <%= f.file_field :logo, onchange: "readURLID('preview-logo', this)" %>
+
+            <%= image_tag 'no_img.jpg', id:"preview-login", size: '200x200', class: 'img-thumbnail' %>
+            <%= f.file_field :login_image, onchange: "readURLID('preview-login', this)" %>
+          </div>
+
           <div class='group-size-80'>
             <%= f.text_field :name, :class => "form-control", placeholder: "Nombre de la empresa", data:{toggle:"tooltip", placement:"top", title:"Nombre de la empresa"} %>
           </div>

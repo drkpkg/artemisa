@@ -216,3 +216,14 @@ function readURL(input) {
         return reader.readAsDataURL(input.files[0]);
     }
 };
+
+function readURLID(id, input) {
+    var reader;
+    if (input.files && input.files[0]) {
+        reader = new FileReader;
+        reader.onload = function(e) {
+            return $('#' + id).attr('src', e.target.result);
+        };
+        return reader.readAsDataURL(input.files[0]);
+    }
+};
