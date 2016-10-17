@@ -7,7 +7,8 @@ default: &default
   pool: 5
 
 development:
-  <<: *default
+  #<<: *default
+  adapter: sqlite3
   database: Artemisa_development
 
 test:
