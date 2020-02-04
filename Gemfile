@@ -39,6 +39,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', grupo: [:development, :test]
 
 gem 'pg'
+#gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.0'
+#gem 'ruby-oci8', '~> 2.1.0'
 gem 'dragonfly', '~> 1.0.12'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'momentjs-rails', '>= 2.9.0'
