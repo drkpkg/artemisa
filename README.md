@@ -1,4 +1,4 @@
-Artemisa, System of management for assets
+Artemisa, System of management for assets :D
 
 For the moment this software is current in development, i'm trying to finish it ASAP.
 
