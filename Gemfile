@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use debugger
 # gem 'debugger', grupo: [:development, :test]
 
+gem 'pg'
 gem 'dragonfly', '~> 1.0.12'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'momentjs-rails', '>= 2.9.0'
@@ -49,12 +50,10 @@ gem 'toastr-rails'
 gem 'dotenv-rails'
 
 group :production do
-  gem 'pg'
   gem 'rack-cache', :require => 'rack/cache'
 end
 
 group :development do
-  gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'railroady'
