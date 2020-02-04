@@ -1,4 +1,4 @@
-Artemisa, System of management veterinary clinic and animal refuge
+Artemisa, System of management for assets
 
 For the moment this software is current in development, i'm trying to finish it ASAP.
 
